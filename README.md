@@ -12,7 +12,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 1. Install [Docker](https://www.docker.io/).
 
-2. Download [trusted build](https://index.docker.io/u/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/bro`
+2. Download [trusted build](https://index.docker.io/u/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/elk`
 
 #### Alternatively, build an image from Dockerfile
 ```bash
