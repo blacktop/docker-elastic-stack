@@ -27,6 +27,6 @@ $ docker run -i -t blacktop/elk
 
 ```
 ### Todo
-- [x] Install/Run ELK
+- [ ] Install/Run ELK
 - [ ] Start Daemon and watch folder with supervisord
 - [ ] Integrate with Bro-IDS
