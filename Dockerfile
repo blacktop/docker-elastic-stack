@@ -6,25 +6,22 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
     chmod +x /usr/sbin/policy-rc.d
 
 ENV KIBANA_VERSION 3.1.1
-ENV NGINX_VERSION 1.7.5-1~wheezy
+# ENV NGINX_VERSION 1.7.5-1~wheezy
 
 # Install Required Dependancies
 RUN \
   apt-get -qq update && \
   apt-get -qy install wget --no-install-recommends && \
   wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
-  apt-key adv --keyserver pgp.mit.edu --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
   echo 'deb http://packages.elasticsearch.org/elasticsearch/1.3/debian stable main' \
     >> /etc/apt/sources.list && \
   echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' \
     >> /etc/apt/sources.list && \
-  echo "deb http://nginx.org/packages/mainline/debian/ wheezy nginx" \
-    >> /etc/apt/sources.list && \
   apt-get -qq update && \
-  apt-get -qy install nginx=${NGINX_VERSION} \
-                      elasticsearch \
+  apt-get -qy install  elasticsearch\
                       supervisor \
                       logstash \
+                      nginx \
                       unzip && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
