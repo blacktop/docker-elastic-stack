@@ -20,8 +20,7 @@ RUN \
                       supervisor && \
                       logstash && \
                       nginx && \
-                      unzip && \
-
+                      unzip
 
 # Install Kibana and Configure Nginx
 ADD https://download.elasticsearch.org/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt/
