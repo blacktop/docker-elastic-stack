@@ -5,8 +5,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 ### Dependencies
 
-* [ubuntu:latest](https://index.docker.io/_/ubuntu/)
-
+* [debian:jessie](https://index.docker.io/_/debian/)
 
 ### Installation
 
@@ -20,13 +19,13 @@ $ docker build -t blacktop/elk .
 ```
 ### Usage
 ```bash
-$ docker run -i -t blacktop/elk
+$ docker run -i -t -p 8080:80 blacktop/elk
 ```
 #### Output:
 ```bash
 
 ```
 ### Todo
-- [ ] Install/Run ELK
-- [ ] Start Daemon and watch folder with supervisord
+- [x] Install/Run ELK
+- [x] Start Daemon and watch folder with supervisord
 - [ ] Integrate with Bro-IDS
