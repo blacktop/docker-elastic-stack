@@ -9,7 +9,7 @@ ENV KIBANA_VERSION 3.1.1
 
 # Install Required Dependancies
 RUN \
-  apt-get -qy install wget && \
+  apt-get -qq update && apt-get -qy install wget && \
   wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
   add-apt-repository 'deb http://packages.elasticsearch.org/elasticsearch/1.3/debian stable main' && \
   apt-add-repository 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' && \
