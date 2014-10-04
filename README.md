@@ -32,6 +32,6 @@ Navigate to $(boot2docker ip):8080
 ### Todo
 - [x] Install/Run ELK
 - [x] Start Daemon and watch folder with supervisord
-- [x] Expose Logstach config folder volume as well as Nginx sites folder volume
+- [x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 - [ ] Rewrite Dockerfile to use GitHub Release tags
 - [ ] Integrate with Bro-IDS
