@@ -1,3 +1,4 @@
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/logo.png)
 ELK Stack Dockerfile
 =============
 
@@ -5,7 +6,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 ### Dependencies
 
-* [debian:jessie](https://index.docker.io/_/debian/)
+* [debian:wheezy](https://index.docker.io/_/debian/)
 
 ### Installation
 
@@ -15,17 +16,21 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 #### Alternatively, build an image from Dockerfile
 ```bash
-$ docker build -t blacktop/elk .
+$ docker build -t blacktop/elk github.com/blacktop/docker-elk
 ```
 ### Usage
 ```bash
 $ docker run -i -t -p 8080:80 blacktop/elk
 ```
-#### Output:
-```bash
+#### Now navigate to `<Container's IP>:8080`
 
+#### If you are using [boot2docker](http://boot2docker.io)
+```bash
+Navigate to $(boot2docker ip):8080
 ```
+
 ### Todo
 - [x] Install/Run ELK
 - [x] Start Daemon and watch folder with supervisord
+- [ ] Rewrite Dockerfile to use GitHub Release tags
 - [ ] Integrate with Bro-IDS
