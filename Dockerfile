@@ -6,7 +6,6 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
     chmod +x /usr/sbin/policy-rc.d
 
 ENV KIBANA_VERSION 3.1.2
-# ENV NGINX_VERSION 1.7.5-1~wheezy
 
 # Install Required Dependancies
 RUN \
@@ -21,8 +20,7 @@ RUN \
   apt-get -qy install  elasticsearch\
                       supervisor \
                       logstash \
-                      nginx \
-                      unzip && \
+                      nginx && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
