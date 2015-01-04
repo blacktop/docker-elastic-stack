@@ -13,7 +13,7 @@ RUN \
   apt-get -qq update && \
   apt-get -qy install wget --no-install-recommends && \
   wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
-  echo 'deb http://packages.elasticsearch.org/elasticsearch/1.3/debian stable main' \
+  echo "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" \
     >> /etc/apt/sources.list && \
   echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' \
     >> /etc/apt/sources.list && \
