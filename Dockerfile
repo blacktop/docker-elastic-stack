@@ -41,6 +41,7 @@ RUN \
   rm kibana-$KIBANA_VERSION.tar.gz
 
 ADD supervisord.conf /etc/supervisor/conf.d/
+ADD logstash/ /etc/logstash/conf.d
 
 VOLUME ["/etc/logstash/conf.d"]
 VOLUME ["/opt/kibana-3.1.1/app/dashboards"]
