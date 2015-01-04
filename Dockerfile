@@ -5,7 +5,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
     chmod +x /usr/sbin/policy-rc.d
 
-ENV KIBANA_VERSION 3.1.1
+ENV KIBANA_VERSION 3.1.2
 # ENV NGINX_VERSION 1.7.5-1~wheezy
 
 # Install Required Dependancies
