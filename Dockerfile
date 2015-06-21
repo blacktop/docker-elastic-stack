@@ -2,15 +2,15 @@ FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.0.1-linux-x64
+ENV KIBANA_VERSION 4.1.0-linux-x64
 
 # Install ELK Required Dependancies
 RUN set -x \
   && apt-get -qq update \
   && apt-get -qy install wget --no-install-recommends \
   && wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - \
-  && echo "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" >> /etc/apt/sources.list \
-  && echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' >> /etc/apt/sources.list \
+  && echo "deb http://packages.elastic.co/elasticsearch/1.6/debian stable main" >> /etc/apt/sources.list \
+  && echo "deb http://packages.elasticsearch.org/logstash/1.5/debian stable main" >> /etc/apt/sources.list \
   && apt-get -qq update && apt-get -qy install elasticsearch \
                                                apache2-utils \
                                                supervisor \
@@ -20,7 +20,7 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Kibana and Configure Nginx
-ADD https://download.elasticsearch.org/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt/
+ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt/
 ADD kibana.conf /etc/nginx/sites-available/
 
 # Configure Nginx
