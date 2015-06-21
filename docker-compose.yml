@@ -2,8 +2,10 @@ elasticsearch:
   image: "elasticsearch:latest"
   expose:
     - "9200:9200"
-  volumes_from:
-    - data
+  ports:
+    - "9200:9200"
+  # volumes_from:
+  #   - data
   # volumes:
   #   - "$PWD/config:/usr/share/elasticsearch/config"
   restart: always
