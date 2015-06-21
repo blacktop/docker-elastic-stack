@@ -1,4 +1,4 @@
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/logo.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/elk-logo.png)
 ELK Stack Dockerfile
 ===================
 
