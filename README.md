@@ -18,8 +18,8 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elk        latest              542   MB
-blacktop/elk        kibana4             542   MB
+blacktop/elk        latest              394   MB
+blacktop/elk        kibana4             394   MB
 blacktop/elk        kibana3             542   MB
 ```
 
