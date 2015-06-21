@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJU/PTcAAoJECZj0IKEt8C2MhkH/A9jgu55pEPsQtiD/9FTqRct
-PZ3RYKdzy8EeegGs9fXjGfLEUSeJH8MS2P3Cz/9OpQbAZuvCN6euFYjkXVXylBQY
-FqcMX2BWR9ezj4joTY8ZQ7YpAN5A32i/WM6CZ30hLnMUI6yOqxeAQhTSTO/Z7wsu
-y+Uci/Gwk70syH850X1+Xcyfy2txE9zjy8flSEkEgTuAeSjAJumBdqhe6LOZEHjt
-EJf/NQ+M2L/x6hxwwL1LpXxWkYjybCvCqMqUZ7KIpdTbefBfOrtbxvQjHutka4vc
-dB3DIn8xFc3AmUWXOPiG1Pk9rlAKfqpGhNesdsDSvpdQvmAUtRPYk4RzGyq6oUs=
-=5xKB
+iQEcBAABCgAGBQJVhyvyAAoJECZj0IKEt8C2eZIH/RuES1J6Awy9PUc1W9Ygd4mc
+0nS4dC/sH0+4HL3NwquPLhruOZW+yOL9MpchXCKkGWs3RZhZIc7oj74OwxIazlzS
+M9TfsMuM5CATPmC2IYnpFy2PTHkIu1a4dJAmR4wJfxl+d0j2ERAuDXeiKGZXNIBT
+P5rmQTx5fdEdiK/r1YncLvucuWyfFt6T1XhcjRq+eSZPau/ysSwsqDLDiQkH03Qt
+ev8qPs4Q+eUst8uxfFGE4zWmIhLbnet1ABT5SLCQd7+gORUJ7s72UlwXlWxiCIy5
+pbRWTB0T1kQbxIBTbfN/YKo4UONvK4i1xX/J4lRaxDjyDaIf/TtbovmR8eKnyFk=
+=4G3g
 -----END PGP SIGNATURE-----
 
 ```
@@ -21,44 +21,47 @@ dB3DIn8xFc3AmUWXOPiG1Pk9rlAKfqpGhNesdsDSvpdQvmAUtRPYk4RzGyq6oUs=
 #### Expect
 
 ```
-size      exec  file                        contents                                                                                                                         
-                ./                                                                                                                                                           
-75                .dockerignore             52624e77ca01330140b96e8380c338acc0437c4e3df395ed0b97ba1ad6fd4849                                                                 
-6148              .DS_Store                 69e77e7e5a77b86d95132f75432a7236201fe1240dae9f394bd751a39c2e1391|edeb0967fcb92d210335e447d3f3772b0fc8458c64b93f8fc293e46fd6da7575
-10                .gitignore                d97c263d44a33954979f9582146bf8d4cc1d9bf9959a9059aeb58afd01bebaea                                                                 
-8530      x       bro.conf                  3477c3f84445a5b96a1995364df41be45b58fc7e41e70dc13a0f21c96d627de6                                                                 
-1882              Dockerfile                803d3f25492fb2bf34b7eca4803e3482e2c5239e26cadc7709cbe72ab2351456                                                                 
-598               entrypoint.sh             c8366fc2f6a94ae05c0f5deaf32727753fd92ce4d507b81075839463d3bf3b32                                                                 
-44                htpasswd                  e0d6d1654b00384604015dca4487ea8a568d68ae8d22c0ebe062596d670f5246                                                                 
-557               kibana.conf               de9ad624bd72f4b335d5d20420552af84bb41506dbdcdbfe274f0632e6e2f4e8                                                                 
-65395             logo.png                  5efafa6daf870f300bc5c85f3ebab6cb9ee5311786375aa038f177fa75d14fd5|00124dd92de3b4ca1e25844328cac3672a2aa716f0f3c346f6c042272474e6c3
-                  logstash/                                                                                                                                                  
-6148                .DS_Store               d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3|27d694b2f35516b2d4809acd2e99037ed7f93f2b6c612ee60a72598da71d7947
-1907              README.md                 9db467d596ab681abf36416105077c8ee665602af5682ebe42fd3bb4e720d5c7                                                                 
-853               supervisord.conf          2f0be3af804e6da4cfa417acf846ccd86a6897a1cf3a65944370451c4a2c37f4                                                                 
-                  vagrant/                                                                                                                                                   
-                    geoip/                                                                                                                                                   
-11322531              GeoLiteCity.dat.gz    9f1f6854ca51fe7bfdad8210b41c2aa712cd7976055cdc1b2e3ce562bc68c54c|173b2ef236bd120cc5c1b4620449f4dfdb327b438c43cc40efeb10dc3d6601e4
-11563032              GeoLiteCityv6.dat.gz  1a941344372e6064822e0b20a756fa1c851f27da6ce38c01e332450789eeeff6|98d0bd253640f25c4fb566daedf974111cd6236a35006ff489483c30be034285
-                    logstash/                                                                                                                                                
-3811      x           bro-conn_log.conf     275d8e47d036543766b91d526557c549c8834895f194909c29b358111b18d97d                                                                 
-1629      x           bro-dhcp_log.conf     980e66cb17d1684de67c4207b62a2a226455a4bb0f60b271243f4db8ce0f6954                                                                 
-1802      x           bro-dns_log.conf      3b655ba4cbc9264757c15efb14a95e67a0105895de88da545342f186456e4dc9                                                                 
-1836      x           bro-files_log.conf    d601144e4b734611f3e7109e69aef0fa8c0afb5faae58727c517efce73b80c97                                                                 
-2027      x           bro-http_log.conf     de2a38d22790fa94358715905d967d51999cd767bb13967458c469dca22bb98b                                                                 
-1889      x           bro-notice_log.conf   c51ddaaa7735023224beacb92200a7aa78647eaa43f26de8252cd8d8e998a1db                                                                 
-1536      x           bro-weird_log.conf    e6f11743f53b6a7381e33d40b64486acb7b21641bb3350e402650e9608159448                                                                 
-                    setup/                                                                                                                                                   
-1226      x           install_bro.sh        86f86af7028d6a9fb383d08b10a5aaa2d5aad64808e99969f24843504e995c53                                                                 
-382                   install_docker.sh     53b29ed927bc92c066d3855648058b60c1ac552ccc6e2edccbf02a4280e78269                                                                 
-1018                  install_elk.sh        65b2e90070c9f4462f42469a255aca907011e65d9c4ef9695715ad6ed4d1feeb                                                                 
-628                   install_java8.sh      b588d364bfd400c23d25c33c5cbcdadb9237b49a9cf734f1690683b1a0bc3702                                                                 
-1201      x           install_prezto.sh     c6e7d7f2c81302455408fdef6bf17b92fa0af54d3cc40689ab9f7ec8782df275                                                                 
-                    upstart/                                                                                                                                                 
-5141      x           elasticsearch         72bb881cd85e490918ce961a044e684d23c3fcda09ffc8e4bd5aab2f56f08e0a                                                                 
-765                   elasticsearch.conf    664d93257d66555d64d92c9e89a423697263c12ab0947ec68bee95684a0de5b8                                                                 
-795                   logstash.conf         498068919a7f0f3957272b8303c630217f8f19f9c022c21fac297af9d862ef92                                                                 
-2142                Vagrantfile             f528d36d2529a8c0f823134c09a30d8ad823e28376a935a8b0e6218e29b10f47                                                                 
+size    exec  file                                   contents                                                                                                                         
+              ./                                                                                                                                                                      
+52              .dockerignore                        1e6a7c33b346fde2d16e4e24910ff7e4515a6f6bf14c4f51094c6939f3a5fc62                                                                 
+10              .gitignore                           d97c263d44a33954979f9582146bf8d4cc1d9bf9959a9059aeb58afd01bebaea                                                                 
+97              .gitmodules                          3b2779fcab753143385e1d33eca525dc2e48da7b57ab1ab4393f539e174ef076                                                                 
+1883            Dockerfile                           c38bcc9538a6aba75b658534f8f4263908b7f6df60051d245f204129ff026305                                                                 
+1088            LICENSE                              d881acc131e52a60d490203b898e9f42f68237323818d8f8bc3b8a20337df943                                                                 
+1951            README.md                            b4601ef42d95505331e90a7fc613785a0e4bb2683ae81bea30a784767a9ce1ad                                                                 
+                conf/                                                                                                                                                                 
+44                htpasswd                           e0d6d1654b00384604015dca4487ea8a568d68ae8d22c0ebe062596d670f5246                                                                 
+557               kibana.conf                        de9ad624bd72f4b335d5d20420552af84bb41506dbdcdbfe274f0632e6e2f4e8                                                                 
+853               supervisord.conf                   2f0be3af804e6da4cfa417acf846ccd86a6897a1cf3a65944370451c4a2c37f4                                                                 
+129237          elk-logo.png                         924c990c091e7efeb5d3f2e929b1cee901884e99c3e8ad0e9cce7d96af738c57|47ba57b522a645032ce24b77e68143d119bd9b32fd5856e69929a8b28391f9bf
+598             entrypoint.sh                        c8366fc2f6a94ae05c0f5deaf32727753fd92ce4d507b81075839463d3bf3b32                                                                 
+                logstash/                                                                                                                                                             
+1079              LICENSE                            98b7807625a5d1a3313bdade636b291bc33ebcf6c10ee1b3c899e03b5e8b284d                                                                 
+1627              README.md                          27f314070a207039dc7af70855a80c929751b51ec1d499ccdb5983214e42825b                                                                 
+                  conf_files/                                                                                                                                                         
+                    bro/                                                                                                                                                              
+3837                  bro-conn_log.conf              2c9d9d7cec84f432022a604e3f7f83898473b98b2dc549a2eda42ca89167b0d9                                                                 
+1638                  bro-dhcp_log.conf              36b58e38ba7986239b339b6d8425e32ce6872899d5c932fcca60341ed8f98381                                                                 
+1812                  bro-dns_log.conf               a0a85bea1431ab38cd44136da3cdf1afd3f2b79ffd960427147f16110f432981                                                                 
+1880                  bro-files_log.conf             f01bef3d9ed3f6a96c62a8cba85801c224734b80ad63b1dd9b97f9c7b2f0a8ee                                                                 
+2012                  bro-http_log.conf              1c473bde77a9df2f9679c29f58c29e19c6f7f1f12d4cde8fbaad5bbefa9a92dc                                                                 
+1898                  bro-notice_log.conf            3bda97c3388fe013059ec26718f810db37fa7ac3e7d7afc8437d6c40ecaf9018                                                                 
+1545                  bro-weird_log.conf             3c910110b9b6b8e3dd4004914b0282d41c5d2310a2ed933c34d1470f8541302f                                                                 
+                    log2timeline/                                                                                                                                                     
+1407                  logstash-log2timeline.conf     271c1f4fe77bab7675bfe90ef56b1321bfee3c077ce6390bc92769a9138f61d2                                                                 
+                    web_logs/                                                                                                                                                         
+1373                  logstash-apache-combined.conf  0319a023767132be634b77943d86cdef8fd35fde30c76f185067cd0938b19ebf                                                                 
+1469                  logstash-apache-common.conf    41c1cbd59a25b3f33bea05dda89396c7b7837ebfc0dea877b2ff27104405e2a7                                                                 
+1711                  logstash-iis6.conf             7e11499ff0ef111ba5f764a8d311b93467b590a4ad008f20596095edbfb6603f                                                                 
+1067                  logstash-iis7.conf             ebadb12fb0365a02c18642375914e313d6eeedf9877c48a8ee74e49029050457                                                                 
+1224                  logstash-iis8.conf             ad76d69b07604895914f350880df266e6dc0cefb77c6f52f2dbb08af63b1e810                                                                 
+                  dictionaries/                                                                                                                                                       
+2121                logstash-bro-conn-log.dict       1ae12747b6d257251e2ce8f473c242f4b46f60c40685bf677bcdc0159ecaa147                                                                 
+3916                logstash-ftp-status-codes.dict   2fe32a14c3db0f42541f7a9b649443bb257e0121aa902b6d980083c64f5989b8                                                                 
+3326                logstash-http-status-codes.dict  4ddd9c79899c1aa5fba95c09af60021c6265f499cbdcf61e651eb991ba2ea2d6                                                                 
+                  type_mappings/                                                                                                                                                      
+1797                log2timeline.type                af46a4e86596fb2f4f1820f03288482cbcdf2cde28972bed8df92d66725b0dd6                                                                 
+3027                mhn-hpfeed.type                  24f8a228403aa7aedece03916511a7fce73a789e5161c9619f15335f2b25598d                                                                 
 ```
 
 #### Ignore
@@ -70,7 +73,9 @@ size      exec  file                        contents
 #### Presets
 
 ```
-git  # ignore .git and anything as described by .gitignore files
+git      # ignore .git and anything as described by .gitignore files
+dropbox  # ignore .dropbox-cache and other Dropbox-related files    
+kb       # ignore anything as described by .kbignore files          
 ```
 
 <!-- summarize version = 0.0.9 -->
