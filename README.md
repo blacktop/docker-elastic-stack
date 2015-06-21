@@ -18,8 +18,8 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elk        latest              394   MB
-blacktop/elk        kibana4             394   MB
+blacktop/elk        latest              775.6   MB
+blacktop/elk        kibana4             775.6   MB
 blacktop/elk        kibana3             542   MB
 ```
 
@@ -35,21 +35,58 @@ $ docker build -t blacktop/elk github.com/blacktop/docker-elk
 ```
 ### Usage
 ```bash
-$ docker run -d --name elk -p 80:80 blacktop/elk
+$ docker run -d --name elk4 -p 80:80 -p 9200:9200 blacktop/elk
 ```
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
-#### If you are using [boot2docker](http://boot2docker.io)
+### To Run on OSX
+ - Install [Homebrew](http://brew.sh)
 
 ```bash
-Navigate to $(boot2docker ip)
+$ brew install cask
+$ brew cask install virtualbox
+$ brew install docker
+$ brew install docker-machine
+$ docker-machine create --driver virtualbox dev
+$ eval $(docker-machine env dev)
 ```
-As a convience you can add the **boot2docker** IP to you **/etc/hosts** file:
+
+#### If you are using [docker-machine](https://docs.docker.com/machine/)
+
+Navigate to `$(docker-machine ip dev)`
+
+As a convenience you can add the **docker-machine** IP to you **/etc/hosts** file:
 
 ```bash
-$ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts
+$ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
+
+### Example Usage
+Let us index some data into Elasticsearch so we can try it out.  To do this you can run conf/test_index.py which contains the following code:
+```python
+from datetime import datetime
+from elasticsearch import Elasticsearch
+
+es = Elasticsearch(['http://<enter boot2docker ip or ip assigned to docker container here>'])
+
+for i in range(10000):
+    doc = {'author': 'kimchy', 'text': 'Elasticsearch: cool. bonsai cool.', 'timestamp': datetime.now()}
+    res = es.index(index="test-index", doc_type='tweet', id=i, body=doc)
+    # print(res['created'])
+
+res = es.get(index="test-index", doc_type='tweet', id=1)
+print(res['_source'])
+
+es.indices.refresh(index="test-index")
+
+res = es.search(index="test-index", body={"query": {"match_all": {}}})
+print("Got %d Hits:" % res['hits']['total'])
+for hit in res['hits']['hits']:
+    print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
+```
+
+Now navigate to the docker-machine ip or docker ip in a web browser. You will be prompted for a user/pass which defaults to **user:** `admin`, **password:** `admin`. Now enter `*` in the index field and select timestamp then you can go to the **Discover Tab** and see those absolutely gorgeous logs!
 
 ### Todo
 - [x] Install/Run ELK

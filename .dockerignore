@@ -3,3 +3,6 @@ LICENSE
 README.md
 SIGNED.md
 logstash/*
+conf/test_index.py
+docker-compose.yml
+.DS_Store

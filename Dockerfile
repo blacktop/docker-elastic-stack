@@ -1,4 +1,5 @@
 FROM debian:wheezy
+# FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -11,12 +12,16 @@ RUN set -x \
   && wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - \
   && echo "deb http://packages.elastic.co/elasticsearch/1.6/debian stable main" >> /etc/apt/sources.list \
   && echo "deb http://packages.elasticsearch.org/logstash/1.5/debian stable main" >> /etc/apt/sources.list \
-  && apt-get -qq update && apt-get -qy install elasticsearch \
+  && apt-get -qq update && apt-get -qy install openjdk-7-jre \
+                                               elasticsearch \
                                                apache2-utils \
                                                supervisor \
                                                logstash \
                                                nginx \
+  && apt-get purge -y --auto-remove wget \
   && apt-get clean \
+  && apt-get autoclean \
+  && apt-get autoremove \  
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Kibana and Configure Nginx
