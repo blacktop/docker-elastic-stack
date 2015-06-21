@@ -2,8 +2,9 @@ elasticsearch:
   image: "elasticsearch:latest"
   expose:
     - "9200:9200"
+  volumes_from:
+    - data
   # volumes:
-  #   - "$PWD/esdata:/usr/share/elasticsearch/data"
   #   - "$PWD/config:/usr/share/elasticsearch/config"
   restart: always
 
@@ -30,3 +31,8 @@ kibana:
 #   links:
 #     - kibana:kibana
 #   restart: always
+
+data:
+  image: "busybox:latest"
+  volumes:
+    - "$PWD/es_data:/usr/share/elasticsearch/data"
