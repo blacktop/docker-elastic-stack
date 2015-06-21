@@ -8,7 +8,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 ### Dependencies
 
-* [debian:wheezy](https://index.docker.io/_/debian/)
+* [java:8-jre](https://registry.hub.docker.com/_/java/)
 
 ### Image Size
 [![](https://badge.imagelayers.io/blacktop/elk:latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest 'Get your own badge on imagelayers.io')
@@ -19,8 +19,8 @@ $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
 blacktop/elk        latest              775.6   MB
-blacktop/elk        kibana4             775.6   MB
-blacktop/elk        kibana3             542   MB
+blacktop/elk        4                   775.6   MB
+blacktop/elk        3                   542   MB
 ```
 
 ### Installation
