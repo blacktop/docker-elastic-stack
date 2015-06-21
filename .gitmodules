@@ -1,0 +1,3 @@
+[submodule "logstash"]
+	path = logstash
+	url = https://github.com/505Forensics/logstash-dfir.git
