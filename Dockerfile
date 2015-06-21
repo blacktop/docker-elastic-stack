@@ -2,9 +2,6 @@ FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
-    chmod +x /usr/sbin/policy-rc.d
-
 ENV KIBANA_VERSION 3.1.2
 
 # Install Required Dependancies
