@@ -86,7 +86,18 @@ for hit in res['hits']['hits']:
     print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
 ```
 
-Now navigate to the docker-machine ip or docker ip in a web browser. You will be prompted for a user/pass which defaults to **user:** `admin`, **password:** `admin`. Now enter `*` in the index field and select timestamp then you can go to the **Discover Tab** and see those absolutely gorgeous logs!
+ - Navigate to the docker-machine ip or docker ip in a web browser.
+ - You will be prompted for a user/pass which defaults to:
+  - **user:**  `admin`
+  - **password:**  `admin`
+
+ - Now enter `test-index` in the index field and select **timestamp**
+
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/screens/timestamp.png)
+
+ - Go to the **Discover Tab** and see those absolutely gorgeous logs!
+
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/screens/discover.png)
 
 ### Todo
 - [x] Install/Run ELK
