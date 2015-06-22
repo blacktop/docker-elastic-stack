@@ -64,7 +64,8 @@ Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
 ### Example Usage
 Let us index some data into Elasticsearch so we can try it out.  To do this you can run `conf/test_index.py` which contains the following code:
-```python
+
+```
 from datetime import datetime
 from elasticsearch import Elasticsearch
 
