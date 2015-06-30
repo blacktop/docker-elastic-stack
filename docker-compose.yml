@@ -6,7 +6,8 @@ elasticsearch:
     - "9200:9200"
   # volumes_from:
   #   - data
-  # volumes:
+  volumes:
+    - "$PWD/es_data:/usr/share/elasticsearch/data"
   #   - "$PWD/config:/usr/share/elasticsearch/config"
   restart: always
 
