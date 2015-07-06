@@ -43,7 +43,7 @@ Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
  - Install [Homebrew](http://brew.sh)
 
 ```bash
-$ brew install cask
+$ brew install caskroom/cask/brew-cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install docker-machine
