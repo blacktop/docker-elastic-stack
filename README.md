@@ -69,7 +69,7 @@ Let us index some data into Elasticsearch so we can try it out.  To do this you 
 from datetime import datetime
 from elasticsearch import Elasticsearch
 
-es = Elasticsearch(['http://<enter boot2docker ip or ip assigned to docker container here>'])
+es = Elasticsearch(['http://<enter docker-machine ip or ip assigned to docker container here>'])
 
 for i in range(10000):
     doc = {'author': 'kimchy', 'text': 'Elasticsearch: cool. bonsai cool.', 'timestamp': datetime.now()}
