@@ -35,7 +35,7 @@ $ docker build -t blacktop/elk github.com/blacktop/docker-elk
 ```
 ### Usage
 ```bash
-$ docker run -d --name elk4 -p 80:80 -p 9200:9200 blacktop/elk
+$ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
 ```
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
