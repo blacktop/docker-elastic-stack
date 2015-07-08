@@ -11,6 +11,8 @@ elasticsearch:
 
 # logstash:
 #   image: "logstash:latest"
+#   ports:
+#     - "5000:5000"
 #   volumes:
 #     - "$PWD:/config-dir"
 #   command: logstash -f /config-dir/logstash.conf
