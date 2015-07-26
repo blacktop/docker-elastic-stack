@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJVhyvyAAoJECZj0IKEt8C2eZIH/RuES1J6Awy9PUc1W9Ygd4mc
-0nS4dC/sH0+4HL3NwquPLhruOZW+yOL9MpchXCKkGWs3RZhZIc7oj74OwxIazlzS
-M9TfsMuM5CATPmC2IYnpFy2PTHkIu1a4dJAmR4wJfxl+d0j2ERAuDXeiKGZXNIBT
-P5rmQTx5fdEdiK/r1YncLvucuWyfFt6T1XhcjRq+eSZPau/ysSwsqDLDiQkH03Qt
-ev8qPs4Q+eUst8uxfFGE4zWmIhLbnet1ABT5SLCQd7+gORUJ7s72UlwXlWxiCIy5
-pbRWTB0T1kQbxIBTbfN/YKo4UONvK4i1xX/J4lRaxDjyDaIf/TtbovmR8eKnyFk=
-=4G3g
+iQEcBAABCgAGBQJVtXGbAAoJECZj0IKEt8C2cq0IAIc/qGLDiexVL132oXdrLgdW
+vTmigLA+lc2Vzk3Ku7LsxChM2N5jnkvYiVOcrjuZKTtVEyMv9YmEnY2GG7F+jjVh
+ZetKY7GK2wTgRDr1BuwSqF7mldNA1Jz09gasvnf5FLyXUe88OxDlvoSwaK0f8v61
+lCFQpfvk6J1LbOi63parzxzYsJGHpKRm41cwK902PhLt2g4idsCjzhGbG49DKUSG
+beGc7l8pUyHdt92ogccS0lQHxPfxgwNeiLiTMVq6ynJy4qVdxVKeWZRb0YywB135
+tYmqnrkrORCP5859N9gDqxIa3GlKNPLHqzYY8MJs2pMaAI1BtsI+9bdRfNBp1Wo=
+=CFsJ
 -----END PGP SIGNATURE-----
 
 ```
@@ -23,18 +23,21 @@ pbRWTB0T1kQbxIBTbfN/YKo4UONvK4i1xX/J4lRaxDjyDaIf/TtbovmR8eKnyFk=
 ```
 size    exec  file                                   contents                                                                                                                         
               ./                                                                                                                                                                      
-52              .dockerignore                        1e6a7c33b346fde2d16e4e24910ff7e4515a6f6bf14c4f51094c6939f3a5fc62                                                                 
-10              .gitignore                           d97c263d44a33954979f9582146bf8d4cc1d9bf9959a9059aeb58afd01bebaea                                                                 
+110             .dockerignore                        3fca02933b036c56ae53d8c558b7af0d69e1d4524e68456b919f91ac29100be2                                                                 
+19              .gitignore                           792e97b1e4e01f634cd8890ea2f430d97fb0e9e708e581ec1a124f5d3e1afc9c                                                                 
 97              .gitmodules                          3b2779fcab753143385e1d33eca525dc2e48da7b57ab1ab4393f539e174ef076                                                                 
-1883            Dockerfile                           c38bcc9538a6aba75b658534f8f4263908b7f6df60051d245f204129ff026305                                                                 
+1974            Dockerfile                           25e3238c88416ae97cca687c5f377912b2dea6ba9c2d3317e4def24000f0f877                                                                 
 1088            LICENSE                              d881acc131e52a60d490203b898e9f42f68237323818d8f8bc3b8a20337df943                                                                 
-1951            README.md                            b4601ef42d95505331e90a7fc613785a0e4bb2683ae81bea30a784767a9ce1ad                                                                 
+3769            README.md                            4011bf8c2cde659d1192566e163717481a1c128ad9e51b88244ee528eccb614b                                                                 
                 conf/                                                                                                                                                                 
 44                htpasswd                           e0d6d1654b00384604015dca4487ea8a568d68ae8d22c0ebe062596d670f5246                                                                 
 557               kibana.conf                        de9ad624bd72f4b335d5d20420552af84bb41506dbdcdbfe274f0632e6e2f4e8                                                                 
 853               supervisord.conf                   2f0be3af804e6da4cfa417acf846ccd86a6897a1cf3a65944370451c4a2c37f4                                                                 
+733               test_index.py                      11a43fbc9c9fd381329b8ed32b6b00bab1c0902a117ed10e6af903689173b684                                                                 
+786             docker-compose.yml                   cc1bf87cb05a827a6cf5c079e5130ad762a0446b5ce417ed35a3795d10985dc7                                                                 
 129237          elk-logo.png                         924c990c091e7efeb5d3f2e929b1cee901884e99c3e8ad0e9cce7d96af738c57|47ba57b522a645032ce24b77e68143d119bd9b32fd5856e69929a8b28391f9bf
 598             entrypoint.sh                        c8366fc2f6a94ae05c0f5deaf32727753fd92ce4d507b81075839463d3bf3b32                                                                 
+                esdata/                                                                                                                                                               
                 logstash/                                                                                                                                                             
 1079              LICENSE                            98b7807625a5d1a3313bdade636b291bc33ebcf6c10ee1b3c899e03b5e8b284d                                                                 
 1627              README.md                          27f314070a207039dc7af70855a80c929751b51ec1d499ccdb5983214e42825b                                                                 
@@ -62,6 +65,9 @@ size    exec  file                                   contents
                   type_mappings/                                                                                                                                                      
 1797                log2timeline.type                af46a4e86596fb2f4f1820f03288482cbcdf2cde28972bed8df92d66725b0dd6                                                                 
 3027                mhn-hpfeed.type                  24f8a228403aa7aedece03916511a7fce73a789e5161c9619f15335f2b25598d                                                                 
+                screens/                                                                                                                                                              
+184128            discover.png                       a3de1bd04a8fd442204d81a161318002d09d8b10dd3142218518573e302eafa5|20229b864b17499a493ca74ea320d99f36555a2367e3379b6ee7c0237620e804
+126113            timestamp.png                      c6b428056073b38b78cc599e7750bae45a99b47d4fc8285cdff3e5c1cfefa66f|ea7bd6990320a935d7457dce16ba78f84a06a2dbd7b47c5b519b7f15e338371b
 ```
 
 #### Ignore
