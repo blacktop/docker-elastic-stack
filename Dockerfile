@@ -2,7 +2,7 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.2.0-snapshot-linux-x6
+ENV KIBANA_VERSION 4.2.0-snapshot-linux-x64
 
 # Install ELK Required Dependancies
 RUN set -x \
