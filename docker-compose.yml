@@ -1,5 +1,5 @@
 elasticsearch:
-  image: "elasticsearch:latest"
+  image: "elasticsearch:2"
   ports:
     - "9200:9200"
   volumes_from:
@@ -7,6 +7,7 @@ elasticsearch:
   # volumes:
   #   - "$PWD/es_data:/usr/share/elasticsearch/data"
   #   - "$PWD/config:/usr/share/elasticsearch/config"
+  command: "-Des.network.host=0.0.0.0"
   restart: always
 
 # logstash:
@@ -18,7 +19,7 @@ elasticsearch:
 #   command: logstash -f /config-dir/logstash.conf
 
 kibana:
-  image: "kibana:latest"
+  image: "kibana:4.2"
   ports:
     - "80:5601"
   links:
