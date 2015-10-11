@@ -9,9 +9,9 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 ### Dependencies
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.0.0-beta1
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.0.0-rc1
 * [Logstash](https://www.elastic.co/products/logstash) 1.5.3
-* [Kibana](https://www.elastic.co/products/kibana) 4.2.0-snapshot
+* [Kibana](https://www.elastic.co/products/kibana) 4.2.0 Beta 2
 
 ### Image Size
 [![](https://badge.imagelayers.io/blacktop/elk:latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest 'Get your own badge on imagelayers.io')
@@ -21,7 +21,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elk        latest              803.9 MB
+blacktop/elk        latest              939.2 MB
 blacktop/elk        3                   542   MB
 ```
 
