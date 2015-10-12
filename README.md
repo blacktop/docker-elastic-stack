@@ -14,14 +14,14 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 * [Kibana](https://www.elastic.co/products/kibana) 4.2.0 Beta 2
 
 ### Image Size
-[![](https://badge.imagelayers.io/blacktop/elk:latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/blacktop/elk:4.2.svg)](https://imagelayers.io/?images=blacktop/elk:4.2 'Get your own badge on imagelayers.io')
 
 ### Image Tags
 ```bash
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elk        latest              939.2 MB
+blacktop/elk        4.2                 904   MB
 blacktop/elk        3                   542   MB
 ```
 
