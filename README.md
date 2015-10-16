@@ -1,4 +1,4 @@
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/elk-logo.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/v4.2/docs/elk-logo.png)
 ELK Stack Dockerfile
 ===================
 
@@ -96,11 +96,11 @@ for hit in res['hits']['hits']:
 
  - Now enter `test-index` in the index field and select **timestamp**
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/timestamp.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/v4.2/docs/timestamp.png)
 
  - Go to the **Discover Tab** and see those absolutely gorgeous logs!
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/v4.2/docs/discover.png)
 
 ### Todo
 - [x] Install/Run ELK
