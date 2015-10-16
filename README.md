@@ -10,7 +10,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.0.0-rc1
-* [Logstash](https://www.elastic.co/products/logstash) 1.5.3
+* [Logstash](https://www.elastic.co/products/logstash) 2.0.0-beta2
 * [Kibana](https://www.elastic.co/products/kibana) 4.2.0 Beta 2
 
 ### Image Size
