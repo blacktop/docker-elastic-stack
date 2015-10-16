@@ -7,9 +7,11 @@ ENV ELASTICSEARCH_VERSION 2.0.0~rc1
 ENV LOGSTASH_MAJOR 2.0
 ENV LOGSTASH_VERSION 1:2.0.0-beta2-1
 ENV KIBANA_VERSION 4.2.0-beta2-linux-x64
+ENV GOSU_URL https://github.com/tianon/gosu/releases/download
+ENV GOSU_VERSION 1.6
 
 # Grab gosu for easy step-down from root
-RUN curl -o /usr/local/bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/1.6/gosu-$(dpkg --print-architecture)" \
+RUN curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
 	&& chmod +x /usr/local/bin/gosu
 
 # Install ELK Required Dependancies
@@ -25,12 +27,21 @@ RUN set -x \
   && apt-get clean \
   && apt-get autoclean \
   && apt-get autoremove \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+	&& echo "Creating Elasticsearch Paths..." \
+	&& for path in \
+		/usr/share/elasticsearch/data \
+		/usr/share/elasticsearch/logs \
+		/usr/share/elasticsearch/config \
+		/usr/share/elasticsearch/config/scripts \
+	; do \
+		mkdir -p "$path"; \
+		chown -R elasticsearch:elasticsearch "$path"; \
+	done
 
 # Install Kibana and Configure Nginx
 ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt/
-ADD conf/kibana.conf /etc/nginx/sites-available/
-
+ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 # Configure Nginx
 RUN cd /opt \
   && echo "Installing Kibana $KIBANA_VERSION..." \
@@ -47,32 +58,20 @@ RUN cd /opt \
   && rm /etc/nginx/sites-enabled/default \
   && ln -s /etc/nginx/sites-available/kibana.conf /etc/nginx/sites-enabled/kibana.conf
 
-ENV PATH /usr/share/elasticsearch/bin:$PATH
-
-RUN set -ex \
-	&& for path in \
-		/usr/share/elasticsearch/data \
-		/usr/share/elasticsearch/logs \
-		/usr/share/elasticsearch/config \
-		/usr/share/elasticsearch/config/scripts \
-	; do \
-		mkdir -p "$path"; \
-		chown -R elasticsearch:elasticsearch "$path"; \
-	done
-
-# COPY config /usr/share/elasticsearch/config/
+# Add ELK PATHs
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /opt/logstash/bin:$PATH
 ENV PATH /opt/kibana/bin:$PATH
 # Add admin/admin web user account
-COPY conf/htpasswd /etc/nginx/.htpasswd
-COPY conf/elastic-logging.yml /usr/share/elasticsearch/config/logging.yml
-COPY elastic-entrypoint.sh /
-COPY logstash-entrypoint.sh /
-COPY kibana-entrypoint.sh /
+COPY config/nginx/htpasswd /etc/nginx/.htpasswd
+# Add configs
+COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/
+COPY config/elastic /usr/share/elasticsearch/config/
+# Add entrypoints
+COPY entrypoints/elastic-entrypoint.sh /
+COPY entrypoints/logstash-entrypoint.sh /
+COPY entrypoints/kibana-entrypoint.sh /
 RUN chmod +x /*.sh
-
-COPY conf/supervisord.conf /etc/supervisor/conf.d/
 
 VOLUME ["/usr/share/elasticsearch/data"]
 VOLUME ["/etc/logstash/conf.d"]
