@@ -1,9 +1,9 @@
-elk-logo.png
 LICENSE
 README.md
 SIGNED.md
 logstash/*
-screens/*
-conf/test_index.py
+docs/*
+config/test_index.py
+config/elasticsearch.nse
 docker-compose.yml
 .DS_Store

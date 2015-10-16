@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJWIHF0AAoJECZj0IKEt8C2fJEH/3TZO4n3aiBlS1irTB6zvutA
-JJjxSUi+epoJPbiTDQkhjTrJ/Z+HVIdHijE3D99G6FqF5QoLSfIQCuAzaAS2H5dF
-V5vkkXdmMoepc8vzCvqOBxRHAitRefC0qemNrh5pOEQEPJ0ejsF903HSt0zlTTO8
-0OCaGs+o9Cmrq5MY4D/qwaGwlZOWzVHlR5IIB8PiKaxkeh32fjJh30rejNAi54r7
-R3YW0nnpsy7nv2oD1ZQJ9af6Z3sxHU8nvsY/iZTL6UoTIKKgVf0LkS8UyIWpPTYo
-VlR1L6O/74N1P0H1Zike11Xtk5Pd7vW+lUJNyoaJrZFFG8ggEERfn4ltUYSZAeM=
-=pt+z
+iQEcBAABCgAGBQJWIJmpAAoJECZj0IKEt8C2z4sIAJFQcoJsTirVEdRO94Cphint
+tVwZDgTCUcesnarRRAjqeXPcT/RX42gwivTZ6HsaTk5nCqdWphe5hTxYSykRj0b2
+D+uPq4gubiVxLhpFXmEiZEtOZJEEnhZyLVoO/Q+9YmtnEslsCF2lL0LVGeIBLH+K
+5DkuOUkot4yYCdmiIo5u4nKJucBfRTfrBoScvypbBwLJsf53zSxQ7LORq9z9czi1
+Pzeug49ztvyYukz/eSQ99zo7D66mR1kxXsEA6iPfIbYOSWBmfENevI95Nvt/m40s
+OyE3cYXsLqJrqrhTjLf1yye71nkHFubJIKwIrEADMbRgmLKFe8u0F+6c5j4I678=
+=NEr9
 -----END PGP SIGNATURE-----
 
 ```
@@ -23,7 +23,7 @@ VlR1L6O/74N1P0H1Zike11Xtk5Pd7vW+lUJNyoaJrZFFG8ggEERfn4ltUYSZAeM=
 ```
 size    exec  file                                   contents                                                                                                                         
               ./                                                                                                                                                                      
-110             .dockerignore                        3fca02933b036c56ae53d8c558b7af0d69e1d4524e68456b919f91ac29100be2                                                                 
+121             .dockerignore                        464319d7971418c4beab3f5ecaf4b258b34077be8d4aaeb2efc65f6a181a317b                                                                 
 19              .gitignore                           792e97b1e4e01f634cd8890ea2f430d97fb0e9e708e581ec1a124f5d3e1afc9c                                                                 
 97              .gitmodules                          3b2779fcab753143385e1d33eca525dc2e48da7b57ab1ab4393f539e174ef076                                                                 
                 config/                                                                                                                                                               
@@ -47,7 +47,6 @@ size    exec  file                                   contents
 552               elastic-entrypoint.sh              1a829e1e0bcba27d047689012da790b0ed77afe1c31236b64ec5d88c68d1cdbc                                                                 
 694               kibana-entrypoint.sh               0df6babdf0ea18556170372b57e87e38473271b3d5fa2f2bf5695dfa90eac859                                                                 
 239               logstash-entrypoint.sh             5e59e653bba0b3c81c698a02bf7668a5df0dfa386832ef9576e992405bb0de38                                                                 
-                esdata/                                                                                                                                                               
 1088            LICENSE                              d881acc131e52a60d490203b898e9f42f68237323818d8f8bc3b8a20337df943                                                                 
                 logstash/                                                                                                                                                             
                   conf_files/                                                                                                                                                         
