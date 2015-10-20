@@ -1,6 +1,6 @@
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/elk-logo.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/elk-logo.png)
 ELK Stack Dockerfile
-===================
+====================
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
@@ -66,13 +66,13 @@ $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
 ### Example Usage
-Let us index some data into Elasticsearch so we can try it out.  To do this you can run `conf/test_index.py` which contains the following code:
+Let us index some data into Elasticsearch so we can try it out.  To do this you can run `config/test_index.py` which contains the following code:
 
 ```
 from datetime import datetime
 from elasticsearch import Elasticsearch
 
-es = Elasticsearch(['http://<enter docker-machine ip or ip assigned to docker container here>'])
+es = Elasticsearch(['http://<docker.container.ip>'])
 
 for i in range(10000):
     doc = {'author': 'kimchy', 'text': 'Elasticsearch: cool. bonsai cool.', 'timestamp': datetime.now()}
@@ -97,15 +97,14 @@ for hit in res['hits']['hits']:
 
  - Now enter `test-index` in the index field and select **timestamp**
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/screens/timestamp.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/timestamp.png)
 
  - Go to the **Discover Tab** and see those absolutely gorgeous logs!
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/screens/discover.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
 
 ### Todo
 - [x] Install/Run ELK
 - [x] Start Daemon and watch folder with supervisord
 - [x] Expose Logstash config folder as well as Nginx sites folder as Volumes
-- [ ] Rewrite Dockerfile to use GitHub Release tags
 - [ ] Integrate with Bro-IDS
