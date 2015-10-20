@@ -5,7 +5,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV ELASTICSEARCH_MAJOR 2.0
 ENV ELASTICSEARCH_VERSION 2.0.0~rc1
 ENV LOGSTASH_MAJOR 2.0
-ENV LOGSTASH_VERSION 1:2.0.0-beta2-1
+ENV LOGSTASH_VERSION 1:2.0.0-beta3-1
 ENV KIBANA_VERSION 4.2.0-beta2-linux-x64
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 ENV GOSU_VERSION 1.6

@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJWJHtIAAoJECZj0IKEt8C2AQoH/jv1s096kTGM42IB8/vF8F69
-SYLFzzp+31CMhYICsqPyALqMVm26s1Vo6bi0pv3zPzmlbaqEECPIxwmmuJj9EtyS
-3wNNEBM8fTX22O5veOoLHEHiC6kX2fGS/Ddvtesqnicw81tfRyR7kAwq+csC6xoO
-wSnYwIgRR0QfEMXuJJS4a5PDvgeZjIHhNKBaXvh8XEBF6dhUCQX16AUKLN0KydWJ
-dvfBWLRBQzsdDhReS7YnS+hXO2bF8QBT1FoHDSqJN6Axoajxsnw6IzJ+tpxzmK8J
-9eHvUEW7wrs5yryYRemEsGlaa24ih+rgv7vLGoUB2A3L2m2590f75FxQYgcZYGs=
-=1B76
+iQEcBAABCgAGBQJWJdCHAAoJECZj0IKEt8C2HPAH/itHvyEHUDEELw91Kz2FWcov
+cRsyJRQB+in3PZZv5Qx6MzNlncmirpxc3QqRidUadZlKLAH5R7b5MELOTk8ERFFd
+F1FH39mol5cUASBhd3m5767Ao2KQrIsNlSjFxnuJtHXdVvbXxJ2+yreJDJr5Q4ut
+vvemZMCKixIMBUbn4Bd6pGtqOWxerfHB1lvKmdD1tskQiAHrPnGykWx4CC+WwJm0
+rZdPNlhr2bUPpek0/k2Ufc4XfbzYnUUFSO3TBGMXykJPfzTdDYRLPsk7tdQU+39S
+7hFk6UjGZyIXGxQsUcW0FN5pL/GSCBzB5r/y3gSrkT8tFS/54VVin4atObzb+tg=
+=QANp
 -----END PGP SIGNATURE-----
 
 ```
@@ -38,7 +38,7 @@ size    exec  file                                   contents
 865                 supervisord.conf                 4b0bef9449d565367e8f54489f4a478a54df1db85e2a4471cb49330d5a1e6030                                                                 
 733               test_index.py                      11a43fbc9c9fd381329b8ed32b6b00bab1c0902a117ed10e6af903689173b684                                                                 
 817             docker-compose.yml                   8ac89adad18d67f487a7943805d5bacbebf46c611a00640b4587faa9f17ca0b5                                                                 
-3149            Dockerfile                           8d88f63ffd0d2f35de5432ccb22ee51c37bacc5363abb4a212a5e2786d5eef63                                                                 
+3149            Dockerfile                           160df285005e2769955fa9de3474e286882174d2516e3a1b0bcb9be61cb7f4d2                                                                 
                 docs/                                                                                                                                                                 
 184128            discover.png                       a3de1bd04a8fd442204d81a161318002d09d8b10dd3142218518573e302eafa5|7e382c8a749c7f5634084e63197fc4daf53dda46da4ff4b34f20eddef3109115
 129237            elk-logo.png                       924c990c091e7efeb5d3f2e929b1cee901884e99c3e8ad0e9cce7d96af738c57|62f00ad3c24696c53ab0d291fe06a08a7921acae05de0a65eef7d7b4eb10c249
