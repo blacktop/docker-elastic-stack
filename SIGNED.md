@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJWJcpkAAoJECZj0IKEt8C22uUIAJs2LqkVgnm0lmoMp8ZtsT3e
-e3secTr4D4WoWbIZGg3Yitx+XseEersioTGSh2LdBtfe7KAUrTg+PviDoHfM48uB
-A2AC1nsj0X/u8Tvk63IyNmlApL/YWJq+ICgUazIpef84OLKKjG4O/q6U5PBsHjr0
-o4fd/LbIMqK2jfBcY646fXbK+Rfmxgg3A968F0wMPjG2qMf2nT2SEqB20hftPFtc
-sOtKrQ88LxadfAOg+HPLJ+bUjruU8AE2O2ewCNd8Q2m8kvgl72uihjo6voagL/zh
-TINRdtYKn4IPmChGIY0wFXBtKBostODs9axRwPo+5uyI+DSfRR++lCO4ZuVktXs=
-=HyP3
+iQEcBAABCgAGBQJWJdFCAAoJECZj0IKEt8C2TQgH/0KSVUCw3D9pRpsAfNBNFiN9
+lSeYtOBeuZffqInPvKF13wecmlN7FUC7TCPQx4tbnVZxcQTYAiaqPRdXOEXFXSTS
+JARFM8EilDjsRwZsWxt6FI5otPOIGVSVFJNF/zHOlBVZsGW/z+mszNQ1YOZn0MCd
+qQTLCY/ma3inpihrvpP6ZqZzVnDwqlLoC+HgjpQ39I4J1/UKvHhMRO7qnRVvzryB
+4oUYtmV/n7hlcVFYL9Ng0fBnKFRcfVFXPnvMofOO8GTd9B/IE0owjzV1Ai+pHdnx
++dddkn8lUo3U/C87AOZMXUfnOdzEvtxl34SerKT8XUbLMjgirdO7+nThxyz0DrU=
+=zS8d
 -----END PGP SIGNATURE-----
 
 ```
@@ -75,7 +75,7 @@ size    exec  file                                   contents
                   type_mappings/                                                                                                                                                      
 1797                log2timeline.type                af46a4e86596fb2f4f1820f03288482cbcdf2cde28972bed8df92d66725b0dd6                                                                 
 3027                mhn-hpfeed.type                  24f8a228403aa7aedece03916511a7fce73a789e5161c9619f15335f2b25598d                                                                 
-3864            README.md                            d2d45d52809a490e2cd714413c5baf9e4bdd0c9db57c5007fd389590b6df3129                                                                 
+3864            README.md                            47c8ac3d7cb8daaa35812e58060de87ba3f8208a4ebda3be5e9917e181a25983                                                                 
 ```
 
 #### Ignore
