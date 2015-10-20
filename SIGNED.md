@@ -3,13 +3,13 @@
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQEcBAABCgAGBQJWJH1ZAAoJECZj0IKEt8C29JwH/RmE5Ge0ioBoL2UZC/Fb+S6W
-8vR367tQl13V8A3+JS9z2+/yQAGS1hYCaKuXaWqjhQ0w24CaKuX6KQ3yRus1Fzf3
-8WQSTiOz3JlYI7pSiV8RVPV8/WG+shxyxsEYKQD5PUtaBE7zN8nwMlj4r/oZd3CD
-uUx71XY+bK7wpmEh5AQWwLkMYlgD0sDYI5+CAi+/OtksdosOZQjxYNyuh3qPApAu
-Z2e/A6vkEJUAAQGyfYlj+TKqq+gSbrIF84f1uV6Hy6uawXRJ8E7HvwFCMUVELHyJ
-W6V3QgBkS+1Wi8lc/P1Q3S6qnpR/80r/RjYu6bTEEeWSNYtswyaXK96y1ut+ggI=
-=aP+y
+iQEcBAABCgAGBQJWJcpkAAoJECZj0IKEt8C22uUIAJs2LqkVgnm0lmoMp8ZtsT3e
+e3secTr4D4WoWbIZGg3Yitx+XseEersioTGSh2LdBtfe7KAUrTg+PviDoHfM48uB
+A2AC1nsj0X/u8Tvk63IyNmlApL/YWJq+ICgUazIpef84OLKKjG4O/q6U5PBsHjr0
+o4fd/LbIMqK2jfBcY646fXbK+Rfmxgg3A968F0wMPjG2qMf2nT2SEqB20hftPFtc
+sOtKrQ88LxadfAOg+HPLJ+bUjruU8AE2O2ewCNd8Q2m8kvgl72uihjo6voagL/zh
+TINRdtYKn4IPmChGIY0wFXBtKBostODs9axRwPo+5uyI+DSfRR++lCO4ZuVktXs=
+=HyP3
 -----END PGP SIGNATURE-----
 
 ```
@@ -26,16 +26,27 @@ size    exec  file                                   contents
 110             .dockerignore                        3fca02933b036c56ae53d8c558b7af0d69e1d4524e68456b919f91ac29100be2                                                                 
 19              .gitignore                           792e97b1e4e01f634cd8890ea2f430d97fb0e9e708e581ec1a124f5d3e1afc9c                                                                 
 97              .gitmodules                          3b2779fcab753143385e1d33eca525dc2e48da7b57ab1ab4393f539e174ef076                                                                 
-                conf/                                                                                                                                                                 
-44                htpasswd                           e0d6d1654b00384604015dca4487ea8a568d68ae8d22c0ebe062596d670f5246                                                                 
-557               kibana.conf                        de9ad624bd72f4b335d5d20420552af84bb41506dbdcdbfe274f0632e6e2f4e8                                                                 
-853               supervisord.conf                   2f0be3af804e6da4cfa417acf846ccd86a6897a1cf3a65944370451c4a2c37f4                                                                 
-733               test_index.py                      11a43fbc9c9fd381329b8ed32b6b00bab1c0902a117ed10e6af903689173b684                                                                 
                 config/                                                                                                                                                               
+                  elastic/                                                                                                                                                            
+3250    x           elasticsearch.yml                c0c1a70c83bfe12865233622e641bf1c06dff6c8d585bb984f9f93c92b349b00                                                                 
+469     x           logging.yml                      a5eba34e1891eff31e18a5ce1b0c467845b0c7e6ed720206aab5c8bb11b29da7                                                                 
+576     x         elasticsearch.nse                  c2fce0c316fc909ce6d229b6ee171d094cb21122a592038efe567bf866e7713e                                                                 
+                  nginx/                                                                                                                                                              
+44      x           htpasswd                         e0d6d1654b00384604015dca4487ea8a568d68ae8d22c0ebe062596d670f5246                                                                 
+557     x           kibana.conf                      de9ad624bd72f4b335d5d20420552af84bb41506dbdcdbfe274f0632e6e2f4e8                                                                 
+                  supervisord/                                                                                                                                                        
+865     x           supervisord.conf                 4b0bef9449d565367e8f54489f4a478a54df1db85e2a4471cb49330d5a1e6030                                                                 
+733     x         test_index.py                      11a43fbc9c9fd381329b8ed32b6b00bab1c0902a117ed10e6af903689173b684                                                                 
 786             docker-compose.yml                   cc1bf87cb05a827a6cf5c079e5130ad762a0446b5ce417ed35a3795d10985dc7                                                                 
-1974            Dockerfile                           635b2fed6a1913ba6ac7b2fc8c861fd1ab34e61a96098dd6e4be93fbec0f88ac                                                                 
-129237          elk-logo.png                         924c990c091e7efeb5d3f2e929b1cee901884e99c3e8ad0e9cce7d96af738c57|62f00ad3c24696c53ab0d291fe06a08a7921acae05de0a65eef7d7b4eb10c249
-598             entrypoint.sh                        c8366fc2f6a94ae05c0f5deaf32727753fd92ce4d507b81075839463d3bf3b32                                                                 
+2996            Dockerfile                           5f8b605998c2eef3ad50997768ad1d99331129f7a9e432790b6c162586c4d0bc                                                                 
+                docs/                                                                                                                                                                 
+184128  x         discover.png                       a3de1bd04a8fd442204d81a161318002d09d8b10dd3142218518573e302eafa5|7e382c8a749c7f5634084e63197fc4daf53dda46da4ff4b34f20eddef3109115
+129237  x         elk-logo.png                       924c990c091e7efeb5d3f2e929b1cee901884e99c3e8ad0e9cce7d96af738c57|62f00ad3c24696c53ab0d291fe06a08a7921acae05de0a65eef7d7b4eb10c249
+126113  x         timestamp.png                      c6b428056073b38b78cc599e7750bae45a99b47d4fc8285cdff3e5c1cfefa66f|82a5bbca5df771a45761e82b64ec73b5d1ad88fc48f4e631b47dcd8c050a713d
+                entrypoints/                                                                                                                                                          
+552     x         elastic-entrypoint.sh              1a829e1e0bcba27d047689012da790b0ed77afe1c31236b64ec5d88c68d1cdbc                                                                 
+694     x         kibana-entrypoint.sh               0df6babdf0ea18556170372b57e87e38473271b3d5fa2f2bf5695dfa90eac859                                                                 
+239     x         logstash-entrypoint.sh             5e59e653bba0b3c81c698a02bf7668a5df0dfa386832ef9576e992405bb0de38                                                                 
 1088            LICENSE                              d881acc131e52a60d490203b898e9f42f68237323818d8f8bc3b8a20337df943                                                                 
                 logstash/                                                                                                                                                             
                   conf_files/                                                                                                                                                         
@@ -64,10 +75,7 @@ size    exec  file                                   contents
                   type_mappings/                                                                                                                                                      
 1797                log2timeline.type                af46a4e86596fb2f4f1820f03288482cbcdf2cde28972bed8df92d66725b0dd6                                                                 
 3027                mhn-hpfeed.type                  24f8a228403aa7aedece03916511a7fce73a789e5161c9619f15335f2b25598d                                                                 
-3958            README.md                            161ab7cc57e0d118a48bc2c45b64f1c7c5409a06ece6ec0c51adb2dc56099086                                                                 
-                screens/                                                                                                                                                              
-184128            discover.png                       a3de1bd04a8fd442204d81a161318002d09d8b10dd3142218518573e302eafa5|7e382c8a749c7f5634084e63197fc4daf53dda46da4ff4b34f20eddef3109115
-126113            timestamp.png                      c6b428056073b38b78cc599e7750bae45a99b47d4fc8285cdff3e5c1cfefa66f|82a5bbca5df771a45761e82b64ec73b5d1ad88fc48f4e631b47dcd8c050a713d
+3864            README.md                            d2d45d52809a490e2cd714413c5baf9e4bdd0c9db57c5007fd389590b6df3129                                                                 
 ```
 
 #### Ignore
