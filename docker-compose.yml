@@ -26,14 +26,18 @@ kibana:
   restart: always
 
 # nginx:
-#   image: "nginx:latest"
-#   ports:
-#     - "80:80"
-#   volumes:
-#     - "$PWD/conf/kibana.conf:/etc/nginx/nginx.conf:ro"
-#   links:
-#     - kibana:kibana
-#   restart: always
+#     build: .
+#     ports:
+#         - "443:443"
+#     volumes:
+#         - ./nginx.key:/etc/nginx/ssl/nginx.key
+#         - ./nginx.crt:/etc/nginx/ssl/nginx.crt
+#         - ./config/nginx/kibana.conf:/etc/nginx/conf.d/kibana.conf
+#     env_file:
+#         - ./secrets.env
+#     links:
+#       - kibana:kibana
+#     restart: always
 
 data:
   image: "busybox"
