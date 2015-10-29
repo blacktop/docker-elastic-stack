@@ -2,7 +2,7 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.1.2-linux-x64
+ENV KIBANA_VERSION 4.2.0-linux-x64
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 ENV GOSU_VERSION 1.6
 
@@ -14,8 +14,8 @@ RUN curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --
 RUN set -x \
   && apt-get -qq update \
   && apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 46095ACC8548582C1A2699A9D27D666CD88E42B4 \
-  && echo "deb http://packages.elastic.co/elasticsearch/1.7/debian stable main" >> /etc/apt/sources.list \
-  && echo "deb http://packages.elasticsearch.org/logstash/1.5/debian stable main" >> /etc/apt/sources.list \
+  && echo "deb http://packages.elastic.co/elasticsearch/2.x/debian stable main" >> /etc/apt/sources.list \
+  && echo "deb http://packages.elasticsearch.org/logstash/2.0/debian stable main" >> /etc/apt/sources.list \
   && apt-get -qq update && apt-get -qy install elasticsearch \
                                                apache2-utils \
                                                supervisor \
