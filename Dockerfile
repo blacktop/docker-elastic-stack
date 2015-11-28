@@ -3,10 +3,10 @@ FROM java:8-jre
 MAINTAINER blacktop, https://github.com/blacktop
 
 ENV ELASTICSEARCH_MAJOR 2.0
-ENV ELASTICSEARCH_VERSION 2.0.0~rc1
+ENV ELASTICSEARCH_VERSION 2.0.1
 ENV LOGSTASH_MAJOR 2.0
-ENV LOGSTASH_VERSION 1:2.0.0-beta2-1
-ENV KIBANA_VERSION 4.2.0-beta2-linux-x64
+ENV LOGSTASH_VERSION 1:2.0.0-1
+ENV KIBANA_VERSION 4.2.1
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 ENV GOSU_VERSION 1.6
 
@@ -40,7 +40,7 @@ RUN set -x \
 	done
 
 # Install Kibana and Configure Nginx
-ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt/
+ADD https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz /opt/
 ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 # Configure Nginx
 RUN cd /opt \
