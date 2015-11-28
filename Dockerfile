@@ -2,7 +2,7 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.2.0-linux-x64
+ENV KIBANA_VERSION 4.3.0-linux-x64
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 ENV GOSU_VERSION 1.6
 
@@ -55,6 +55,9 @@ RUN cd /opt \
 	&& echo "\ndaemon off;" >> /etc/nginx/nginx.conf \
 	&& rm /etc/nginx/sites-enabled/default \
 	&& ln -s /etc/nginx/sites-available/kibana.conf /etc/nginx/sites-enabled/kibana.conf
+
+# Install Timelion Kibana Plugin
+RUN /opt/kibana/bin/kibana plugin -i kibana/timelion
 
 # Add ELK PATHs
 ENV PATH /usr/share/elasticsearch/bin:$PATH
