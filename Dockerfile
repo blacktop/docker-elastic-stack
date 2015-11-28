@@ -45,11 +45,11 @@ ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 # Configure Nginx
 RUN cd /opt \
   && echo "Installing Kibana $KIBANA_VERSION..." \
-  && tar xzf kibana-$KIBANA_VERSION.tar.gz \
-  && ln -s /opt/kibana-$KIBANA_VERSION /opt/kibana \
+  && tar xzf kibana-$KIBANA_VERSION-linux-x64.tar.gz \
+  && ln -s /opt/kibana-$KIBANA_VERSION-linux-x64 /opt/kibana \
 	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
 	&& chown -R kibana:kibana /opt/kibana \
-  && rm kibana-$KIBANA_VERSION.tar.gz \
+  && rm kibana-$KIBANA_VERSION-linux-x64.tar.gz \
   && echo "Configuring Nginx..." \
   && mkdir -p /var/www \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
