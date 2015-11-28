@@ -22,7 +22,7 @@ $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
 blacktop/elk        latest              757   MB
-blacktop/elk        4.3                 829   MB
+blacktop/elk        4.3                 696   MB
 blacktop/elk        4.2                 829   MB
 blacktop/elk        3                   542   MB
 ```
