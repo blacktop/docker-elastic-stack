@@ -10,11 +10,11 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.1.0
-* [Logstash](https://www.elastic.co/products/logstash) 2.0
+* [Logstash](https://www.elastic.co/products/logstash) 2.1.0
 * [Kibana](https://www.elastic.co/products/kibana) 4.3.0
 
 ### Image Size
-[![](https://badge.imagelayers.io/blacktop/elk:latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/blacktop/elk:latest.svg)](https://imagelayers.io/?images=blacktop/elk:4.3 'Get your own badge on imagelayers.io')
 
 ### Image Tags
 ```bash
