@@ -2,7 +2,7 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.2.0-linux-x64
+ENV KIBANA_VERSION 4.3.0
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 ENV GOSU_VERSION 1.6
 
@@ -38,16 +38,16 @@ RUN set -x \
 	done
 
 # Install Kibana and Configure Nginx
-ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt/
+ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION-linux-x64.tar.gz /opt/
 ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 # Configure Nginx
 RUN cd /opt \
 	&& echo "Installing Kibana "$KIBANA_VERSION"..." \
-	&& tar xzf kibana-$KIBANA_VERSION.tar.gz \
-	&& ln -s /opt/kibana-$KIBANA_VERSION /opt/kibana \
+	&& tar xzf kibana-$KIBANA_VERSION-linux-x64.tar.gz\
+	&& ln -s /opt/kibana-$KIBANA_VERSION-linux-x64 /opt/kibana \
 	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
 	&& chown -R kibana:kibana /opt/kibana \
-	&& rm kibana-$KIBANA_VERSION.tar.gz \
+	&& rm kibana-$KIBANA_VERSION-linux-x64.tar.gz \
 	&& echo "Configuring Nginx..." \
 	&& mkdir -p /var/www \
 	&& ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -55,6 +55,9 @@ RUN cd /opt \
 	&& echo "\ndaemon off;" >> /etc/nginx/nginx.conf \
 	&& rm /etc/nginx/sites-enabled/default \
 	&& ln -s /etc/nginx/sites-available/kibana.conf /etc/nginx/sites-enabled/kibana.conf
+
+# Install Timelion Kibana Plugin
+RUN /opt/kibana/bin/kibana plugin -i kibana/timelion
 
 # Add ELK PATHs
 ENV PATH /usr/share/elasticsearch/bin:$PATH
