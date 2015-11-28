@@ -42,7 +42,7 @@ ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION.tar.gz /opt
 ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 # Configure Nginx
 RUN cd /opt \
-	&& echo "Installing Kibana $KIBANA_VERSION..." \
+	&& echo "Installing Kibana "$KIBANA_VERSION"..." \
 	&& tar xzf kibana-$KIBANA_VERSION.tar.gz \
 	&& ln -s /opt/kibana-$KIBANA_VERSION /opt/kibana \
 	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
