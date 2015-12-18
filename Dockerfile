@@ -2,7 +2,7 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.3.0
+ENV KIBANA_VERSION 4.3.1
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 ENV GOSU_VERSION 1.6
 
