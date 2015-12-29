@@ -1,3 +1,6 @@
+# Ignore .git folder
+.git*
+
 elk-logo.png
 LICENSE
 README.md
