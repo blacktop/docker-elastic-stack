@@ -3,6 +3,10 @@ ELK Stack Dockerfile
 ====================
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Docker Stars](https://img.shields.io/docker/stars/blacktop/elk.svg)][hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elk.svg)][hub]
+[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/elk/latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest)
+[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/elk/latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest)
 
 This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/overview/elkdownloads/) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/elk/) published to the public [Docker Registry](https://index.docker.io/).
 
@@ -12,9 +16,6 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.1.1
 * [Logstash](https://www.elastic.co/products/logstash) 2.1.1
 * [Kibana](https://www.elastic.co/products/kibana) 4.3.1
-
-### Image Size
-[![](https://badge.imagelayers.io/blacktop/elk:latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest 'Get your own badge on imagelayers.io')
 
 ### Image Tags
 ```bash
@@ -109,3 +110,5 @@ for hit in res['hits']['hits']:
 - [x] Start Daemon and watch folder with supervisord
 - [x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 - [ ] Integrate with Bro-IDS
+
+[hub]: https://hub.docker.com/r/blacktop/elk/
