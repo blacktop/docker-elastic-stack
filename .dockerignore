@@ -1,5 +1,7 @@
 # Ignore .git folder
 .git*
+.gitignore
+.gitmodules
 
 elk-logo.png
 LICENSE
