@@ -2,9 +2,11 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 4.3.1
+ENV KIBANA 4.4
+ENV ELASTIC 2.x
+ENV LOGSTASH 2.2
+ENV GOSU_VERSION 1.7
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
-ENV GOSU_VERSION 1.6
 
 # Grab gosu for easy step-down from root
 RUN curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
@@ -14,12 +16,14 @@ RUN curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --
 RUN set -x \
   && apt-get -qq update \
   && apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 46095ACC8548582C1A2699A9D27D666CD88E42B4 \
-  && echo "deb http://packages.elastic.co/elasticsearch/2.x/debian stable main" >> /etc/apt/sources.list \
-  && echo "deb http://packages.elasticsearch.org/logstash/2.1/debian stable main" >> /etc/apt/sources.list \
+  && echo "deb http://packages.elastic.co/elasticsearch/$ELASTIC/debian stable main" >> /etc/apt/sources.list \
+  && echo "deb http://packages.elasticsearch.org/logstash/$LOGSTASH/debian stable main" >> /etc/apt/sources.list \
+	&& echo "deb http://packages.elastic.co/kibana/$KIBANA/debian stable main" >> /etc/apt/sources.list \
   && apt-get -qq update && apt-get -qy install elasticsearch \
                                                apache2-utils \
                                                supervisor \
                                                logstash \
+																							 kibana \
                                                nginx --no-install-recommends \
   && apt-get purge -y --auto-remove wget \
   && apt-get clean \
@@ -37,17 +41,9 @@ RUN set -x \
 	chown -R elasticsearch:elasticsearch "$path"; \
 	done
 
-# Install Kibana and Configure Nginx
-ADD https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION-linux-x64.tar.gz /opt/
-ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 # Configure Nginx
+ADD config/nginx/kibana.conf /etc/nginx/sites-available/
 RUN cd /opt \
-	&& echo "Installing Kibana "$KIBANA_VERSION"..." \
-	&& tar xzf kibana-$KIBANA_VERSION-linux-x64.tar.gz\
-	&& ln -s /opt/kibana-$KIBANA_VERSION-linux-x64 /opt/kibana \
-	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
-	&& chown -R kibana:kibana /opt/kibana \
-	&& rm kibana-$KIBANA_VERSION-linux-x64.tar.gz \
 	&& echo "Configuring Nginx..." \
 	&& mkdir -p /var/www \
 	&& ln -sf /dev/stdout /var/log/nginx/access.log \
