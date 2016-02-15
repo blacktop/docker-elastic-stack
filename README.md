@@ -15,7 +15,7 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.2.0
 * [Logstash](https://www.elastic.co/products/logstash) 2.2.0
-* [Kibana](https://www.elastic.co/products/kibana) 4.4.0
+* [Kibana](https://www.elastic.co/products/kibana) 4.4.1
 
 ### Image Tags
 ```bash
@@ -35,10 +35,6 @@ blacktop/elk        3                   542   MB
 
 2. Download [trusted build](https://index.docker.io/u/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/elk`
 
-#### Alternatively, build an image from Dockerfile
-```bash
-$ docker build -t blacktop/elk github.com/blacktop/docker-elk
-```
 ### Usage
 ```bash
 $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
@@ -53,8 +49,8 @@ $ brew install caskroom/cask/brew-cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install docker-machine
-$ docker-machine create --driver virtualbox dev
-$ eval $(docker-machine env dev)
+$ docker-machine create --driver virtualbox default
+$ eval $(docker-machine env default)
 ```
 
 #### If you are using [docker-machine](https://docs.docker.com/machine/)
@@ -67,6 +63,18 @@ As a convenience you can add the **docker-machine** IP to you **/etc/hosts** fil
 $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
+
+#### Change Kibana Nginx password
+```bash
+$ docker exec -it elk bash
+# htpasswd -D /etc/nginx/.htpasswd admin
+Deleting password for user admin
+# htpasswd /etc/nginx/.htpasswd blacktop
+New password: *****
+Re-type new password: *****
+Adding password for user blacktop
+# exit
+```
 
 ### Example Usage
 Let us index some data into Elasticsearch so we can try it out.  To do this you can run `config/test_index.py` which contains the following code:
