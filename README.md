@@ -82,7 +82,9 @@ root@593cf95bd8cc:/# exit
 
 ### Example Usage
 Let us index some data into Elasticsearch so we can try it out.  To do this you can run `config/test_index.py` which contains the following code:
-
+```bash
+$ pip install elasticsearch
+```
 ```
 from datetime import datetime
 from elasticsearch import Elasticsearch
