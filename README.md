@@ -67,13 +67,17 @@ Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 #### Change Kibana Nginx password
 ```bash
 $ docker exec -it elk bash
-# htpasswd -D /etc/nginx/.htpasswd admin
+```
+```bash
+root@593cf95bd8cc:/# htpasswd -D /etc/nginx/.htpasswd admin
 Deleting password for user admin
-# htpasswd /etc/nginx/.htpasswd blacktop
+
+root@593cf95bd8cc:/# htpasswd /etc/nginx/.htpasswd blacktop
 New password: *****
 Re-type new password: *****
 Adding password for user blacktop
-# exit
+
+root@593cf95bd8cc:/# exit
 ```
 
 ### Example Usage
