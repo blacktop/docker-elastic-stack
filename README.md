@@ -124,6 +124,7 @@ for hit in res['hits']['hits']:
 - [x] Install/Run ELK
 - [x] Start Daemon and watch folder with supervisord
 - [x] Expose Logstash config folder as well as Nginx sites folder as Volumes
+- [ ] Add SSL
 - [ ] Integrate with Bro-IDS
 
 [hub]: https://hub.docker.com/r/blacktop/elk/
