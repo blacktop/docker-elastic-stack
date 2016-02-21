@@ -15,13 +15,14 @@ RUN curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --
 # Install ELK Required Dependancies
 RUN set -x \
 	&& apt-get -qq update \
+	&& apt-get install -yq wget ca-certificates \
 	&& wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
 	&& echo "deb http://packages.elastic.co/elasticsearch/$ELASTIC/debian stable main" >> /etc/apt/sources.list \
 	&& echo "deb http://packages.elasticsearch.org/logstash/$LOGSTASH/debian stable main" >> /etc/apt/sources.list \
 	&& echo "deb http://packages.elastic.co/kibana/$KIBANA/debian stable main" >> /etc/apt/sources.list \
 	&& echo "NOTE: the 'ffi-rzmq-core' gem is very picky about where it looks for libzmq.so" \
 	&& mkdir -p /usr/local/lib && ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so \
-	&& apt-get -qq update && apt-get -qy install elasticsearch \
+	&& apt-get -qq update && apt-get -yq install elasticsearch \
 																							 apache2-utils \
 																							 supervisor \
 																							 logstash \
