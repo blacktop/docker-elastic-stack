@@ -14,16 +14,16 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.2.0
-* [Logstash](https://www.elastic.co/products/logstash) 2.2.0
-* [Kibana](https://www.elastic.co/products/kibana) 4.4.0
+* [Logstash](https://www.elastic.co/products/logstash) 2.2.2
+* [Kibana](https://www.elastic.co/products/kibana) 4.4.1
 
 ### Image Tags
 ```bash
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elk        latest              688   MB
-blacktop/elk        4.4                 688   MB
+blacktop/elk        latest              665   MB
+blacktop/elk        4.4                 665   MB
 blacktop/elk        4.3                 688   MB
 blacktop/elk        4.2                 669   MB
 blacktop/elk        3                   542   MB
@@ -35,10 +35,6 @@ blacktop/elk        3                   542   MB
 
 2. Download [trusted build](https://index.docker.io/u/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/elk`
 
-#### Alternatively, build an image from Dockerfile
-```bash
-$ docker build -t blacktop/elk github.com/blacktop/docker-elk
-```
 ### Usage
 ```bash
 $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
@@ -53,8 +49,8 @@ $ brew install caskroom/cask/brew-cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install docker-machine
-$ docker-machine create --driver virtualbox dev
-$ eval $(docker-machine env dev)
+$ docker-machine create --driver virtualbox default
+$ eval $(docker-machine env default)
 ```
 
 #### If you are using [docker-machine](https://docs.docker.com/machine/)
@@ -68,9 +64,27 @@ $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
+#### Change Kibana Nginx password
+```bash
+$ docker exec -it elk bash
+```
+```bash
+root@593cf95bd8cc:/# htpasswd -D /etc/nginx/.htpasswd admin
+Deleting password for user admin
+
+root@593cf95bd8cc:/# htpasswd /etc/nginx/.htpasswd blacktop
+New password: *****
+Re-type new password: *****
+Adding password for user blacktop
+
+root@593cf95bd8cc:/# exit
+```
+
 ### Example Usage
 Let us index some data into Elasticsearch so we can try it out.  To do this you can run `config/test_index.py` which contains the following code:
-
+```bash
+$ pip install elasticsearch
+```
 ```
 from datetime import datetime
 from elasticsearch import Elasticsearch
@@ -110,6 +124,7 @@ for hit in res['hits']['hits']:
 - [x] Install/Run ELK
 - [x] Start Daemon and watch folder with supervisord
 - [x] Expose Logstash config folder as well as Nginx sites folder as Volumes
+- [ ] Add SSL
 - [ ] Integrate with Bro-IDS
 
 [hub]: https://hub.docker.com/r/blacktop/elk/
