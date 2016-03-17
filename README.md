@@ -13,9 +13,9 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 ### Dependencies
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.2.0
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.2.1
 * [Logstash](https://www.elastic.co/products/logstash) 2.2.2
-* [Kibana](https://www.elastic.co/products/kibana) 4.4.1
+* [Kibana](https://www.elastic.co/products/kibana) 4.4.2
 
 ### Image Tags
 ```bash
@@ -64,22 +64,6 @@ $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
-#### Change Kibana Nginx password
-```bash
-$ docker exec -it elk bash
-```
-```bash
-root@593cf95bd8cc:/# htpasswd -D /etc/nginx/.htpasswd admin
-Deleting password for user admin
-
-root@593cf95bd8cc:/# htpasswd /etc/nginx/.htpasswd blacktop
-New password: *****
-Re-type new password: *****
-Adding password for user blacktop
-
-root@593cf95bd8cc:/# exit
-```
-
 ### Example Usage
 Let us index some data into Elasticsearch so we can try it out.  To do this you can run `config/test_index.py` which contains the following code:
 ```bash
@@ -119,6 +103,22 @@ for hit in res['hits']['hits']:
  - Go to the **Discover Tab** and see those absolutely gorgeous logs!
 
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
+
+#### Change Kibana Nginx password
+```bash
+$ docker exec -it elk bash
+```
+```bash
+root@593cf95bd8cc:/# htpasswd -D /etc/nginx/.htpasswd admin
+Deleting password for user admin
+
+root@593cf95bd8cc:/# htpasswd /etc/nginx/.htpasswd blacktop
+New password: *****
+Re-type new password: *****
+Adding password for user blacktop
+
+root@593cf95bd8cc:/# exit
+```
 
 ### Todo
 - [x] Install/Run ELK
