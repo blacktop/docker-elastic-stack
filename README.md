@@ -62,7 +62,7 @@ As a convenience you can add the **docker-machine** IP to you **/etc/hosts** fil
 ```bash
 $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
-Now you can navigate to [http://dockerhost](http://dockerhost) from your host
+Now you can navigate to [http://dockerhost](http://dockerhost) from your host and login with: **user:** `admin`/**password:**  `admin`
 
 ### Example Usage
 Let us index some data into Elasticsearch so we can try it out.  To do this you can run `config/test_index.py` which contains the following code:

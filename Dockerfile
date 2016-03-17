@@ -23,12 +23,12 @@ RUN set -x \
 	&& echo "NOTE: the 'ffi-rzmq-core' gem is very picky about where it looks for libzmq.so" \
 	&& mkdir -p /usr/local/lib && ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so \
 	&& apt-get -qq update && apt-get -yq install elasticsearch \
-																							apache2-utils \
-																							supervisor \
-																							logstash \
-																							libzmq3 \
-																							kibana \
-																							nginx --no-install-recommends \
+                                               apache2-utils \
+                                               supervisor \
+                                               logstash \
+                                               libzmq3 \
+                                               kibana \
+                                               nginx --no-install-recommends \
   && apt-get purge -y --auto-remove wget \
   && apt-get clean \
   && apt-get autoclean \
