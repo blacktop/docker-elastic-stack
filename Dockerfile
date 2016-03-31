@@ -2,9 +2,9 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA 4.4
+ENV KIBANA 4.5
 ENV ELASTIC 2.x
-ENV LOGSTASH 2.2
+ENV LOGSTASH 2.3
 ENV GOSU_VERSION 1.7
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 
