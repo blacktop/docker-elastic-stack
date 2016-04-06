@@ -13,9 +13,9 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 ### Dependencies
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.3
-* [Logstash](https://www.elastic.co/products/logstash) 2.3
-* [Kibana](https://www.elastic.co/products/kibana) 4.5
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 5.0.0-alpha
+* [Logstash](https://www.elastic.co/products/logstash) 5.0.0-alpha
+* [Kibana](https://www.elastic.co/products/kibana) 5.0.0-alpha
 
 ### Image Tags
 ```bash
@@ -23,6 +23,7 @@ $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
 blacktop/elk        latest              665   MB
+blacktop/elk        5.0-alpha           665   MB
 blacktop/elk        4.4                 665   MB
 blacktop/elk        4.3                 688   MB
 blacktop/elk        4.2                 669   MB

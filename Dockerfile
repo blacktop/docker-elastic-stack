@@ -2,9 +2,9 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA 4.5
-ENV ELASTIC 2.x
-ENV LOGSTASH 2.3
+ENV KIBANA 5.0.0-alpha
+ENV ELASTIC 5.x
+ENV LOGSTASH 5.0.0-alpha
 ENV GOSU_VERSION 1.7
 ENV GOSU_URL https://github.com/tianon/gosu/releases/download
 
@@ -18,17 +18,16 @@ RUN set -x \
 	&& apt-get install -yq wget ca-certificates \
 	&& wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
 	&& echo "deb http://packages.elastic.co/elasticsearch/$ELASTIC/debian stable main" >> /etc/apt/sources.list \
-	&& echo "deb http://packages.elasticsearch.org/logstash/$LOGSTASH/debian stable main" >> /etc/apt/sources.list \
 	&& echo "deb http://packages.elastic.co/kibana/$KIBANA/debian stable main" >> /etc/apt/sources.list \
-	&& echo "NOTE: the 'ffi-rzmq-core' gem is very picky about where it looks for libzmq.so" \
-	&& mkdir -p /usr/local/lib && ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so \
 	&& apt-get -qq update && apt-get -yq install elasticsearch \
                                                apache2-utils \
                                                supervisor \
-                                               logstash \
-                                               libzmq3 \
+																							 logrotate \
                                                kibana \
                                                nginx --no-install-recommends \
+  && cd /tmp \
+	&& wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_5.0.0~alpha1-1_all.deb	\
+	&& dpkg -i logstash_5.0.0~alpha1-1_all.deb \
   && apt-get purge -y --auto-remove wget \
   && apt-get clean \
   && apt-get autoclean \
@@ -44,6 +43,7 @@ RUN set -x \
 	mkdir -p "$path"; \
 	chown -R elasticsearch:elasticsearch "$path"; \
 	done
+COPY config/elastic /usr/share/elasticsearch/config
 
 # Configure Nginx
 ADD config/nginx/kibana.conf /etc/nginx/sites-available/
@@ -56,8 +56,9 @@ RUN cd /opt \
 	&& rm /etc/nginx/sites-enabled/default \
 	&& ln -s /etc/nginx/sites-available/kibana.conf /etc/nginx/sites-enabled/kibana.conf
 
-# Install Timelion Kibana Plugin
-RUN /opt/kibana/bin/kibana plugin -i kibana/timelion
+# Install Kibana Plugins
+RUN /opt/kibana/bin/kibana-plugin install timelion
+# RUN /opt/kibana/bin/kibana-plugin install x-pack
 
 # Add ELK PATHs
 ENV PATH /usr/share/elasticsearch/bin:$PATH
