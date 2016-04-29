@@ -4,13 +4,42 @@ MAINTAINER blacktop, https://github.com/blacktop
 
 ENV KIBANA 5.0.0-alpha
 ENV ELASTIC 5.x
-ENV LOGSTASH 5.0.0-alpha
-ENV GOSU_VERSION 1.7
-ENV GOSU_URL https://github.com/tianon/gosu/releases/download
+ENV LOGSTASH 5.0
 
 # Grab gosu for easy step-down from root
-RUN curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
-	&& chmod +x /usr/local/bin/gosu
+ENV GOSU_VERSION 1.7
+ENV GOSU_URL https://github.com/tianon/gosu/releases/download
+RUN set -x \
+	&& wget -O /usr/local/bin/gosu "$GOSU_URL/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
+	&& wget -O /usr/local/bin/gosu.asc "$GOSU_URL/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
+	&& chmod +x /usr/local/bin/gosu \
+	&& gosu nobody true
+
+# Grab tini for signal processing and zombie killing
+ENV TINI_VERSION v0.9.0
+RUN set -x \
+	&& wget -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini" \
+	&& wget -O /usr/local/bin/tini.asc "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini.asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
+	&& gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
+	&& rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
+	&& chmod +x /usr/local/bin/tini \
+	&& tini -h
+
+# Install plugin dependencies
+RUN set -x \
+	&& apt-get -qq update
+	&& apt-get install -y --no-install-recommends libzmq3 \
+	&& mkdir -p /usr/local/lib \
+	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
+  && apt-get autoclean \
+  && apt-get autoremove \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install ELK Required Dependancies
 RUN set -x \
@@ -19,10 +48,12 @@ RUN set -x \
 	&& wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
 	&& echo "deb http://packages.elastic.co/elasticsearch/$ELASTIC/debian stable main" >> /etc/apt/sources.list \
 	&& echo "deb http://packages.elastic.co/kibana/$KIBANA/debian stable main" >> /etc/apt/sources.list \
+	&& echo "deb http://packages.elastic.co/logstash/$LOGSTASH/debian stable main" >> /etc/apt/sources.list \
 	&& apt-get -qq update && apt-get -yq install elasticsearch \
                                                apache2-utils \
                                                supervisor \
 																							 logrotate \
+																							 logstash \
                                                kibana \
                                                nginx --no-install-recommends \
   && cd /tmp \
