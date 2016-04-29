@@ -33,7 +33,7 @@ RUN set -x \
 
 # Install plugin dependencies
 RUN set -x \
-	&& apt-get -qq update
+	&& apt-get -qq update \
 	&& apt-get install -y --no-install-recommends libzmq3 \
 	&& mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
