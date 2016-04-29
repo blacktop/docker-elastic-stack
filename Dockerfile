@@ -36,7 +36,7 @@ RUN set -x \
 	&& apt-get -qq update \
 	&& apt-get install -y --no-install-recommends libzmq3 \
 	&& mkdir -p /usr/local/lib \
-	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
+	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so \
   && apt-get autoclean \
   && apt-get autoremove \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
