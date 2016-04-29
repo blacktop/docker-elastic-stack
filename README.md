@@ -13,8 +13,8 @@ This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/
 ### Dependencies
 
 * [java:8-jre](https://registry.hub.docker.com/_/java/)
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.3.1
-* [Logstash](https://www.elastic.co/products/logstash) 2.3.1
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.3.2
+* [Logstash](https://www.elastic.co/products/logstash) 2.3.2
 * [Kibana](https://www.elastic.co/products/kibana) 4.5
 
 ### Image Tags
