@@ -67,8 +67,6 @@ RUN set -x \
   && apt-get autoclean \
   && apt-get autoremove \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
-	&& chown -R kibana:kibana /opt/kibana \
 	&& echo "Creating Elasticsearch Paths..." \
 	&& for path in \
 				/usr/share/elasticsearch/data \
@@ -79,7 +77,6 @@ RUN set -x \
 			mkdir -p "$path"; \
 			chown -R elasticsearch:elasticsearch "$path"; \
 	done
-COPY config/elastic /usr/share/elasticsearch/config
 
 # Configure Nginx
 ADD config/nginx/kibana.conf /etc/nginx/sites-available/
@@ -104,6 +101,7 @@ ENV PATH /opt/kibana/bin:$PATH
 # Add admin/admin web user account
 COPY config/nginx/htpasswd /etc/nginx/.htpasswd
 # Add configs
+COPY config/elastic /usr/share/elasticsearch/config
 COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/
 # Add entrypoints
 COPY entrypoints/elastic-entrypoint.sh /
