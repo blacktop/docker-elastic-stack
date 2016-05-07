@@ -4,7 +4,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 
 ENV KIBANA_VERSION 5.0.0-alpha2
 ENV KIBANA_REPO_BASE http://packages.elastic.co/kibana/5.0.0-alpha/debian
-ENV ELASTICSEARCH_VERSION 5.0.0~alpha2
+ENV ELASTICSEARCH_VERSION 5.0.0~alpha1
 ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/5.x/debian
 ENV LOGSTASH_VERSION 1:5.0.0~alpha2-1
 ENV LOGSTASH_REPO_BASE http://packages.elastic.co/logstash/5.0/debian
@@ -59,9 +59,6 @@ RUN set -x \
                                                supervisor \
 																							 logrotate \
                                                nginx --no-install-recommends \
-  && cd /tmp \
-	&& wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_5.0.0~alpha1-1_all.deb	\
-	&& dpkg -i logstash_5.0.0~alpha1-1_all.deb \
   && apt-get purge -y --auto-remove wget \
   && apt-get clean \
   && apt-get autoclean \
