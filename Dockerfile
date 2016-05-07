@@ -2,9 +2,12 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA 5.0.0-alpha
-ENV ELASTIC 5.x
-ENV LOGSTASH 5.0
+ENV KIBANA_VERSION 5.0.0-alpha2
+ENV KIBANA_REPO_BASE http://packages.elastic.co/kibana/5.0.0-alpha/debian
+ENV ELASTICSEARCH_VERSION 5.0.0~alpha2
+ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/5.x/debian
+ENV LOGSTASH_VERSION 1:5.0.0~alpha2-1
+ENV LOGSTASH_REPO_BASE http://packages.elastic.co/logstash/5.0/debian
 
 # Grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -46,15 +49,15 @@ RUN set -x \
 	&& apt-get -qq update \
 	&& apt-get install -yq wget ca-certificates \
 	&& wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
-	&& echo "deb http://packages.elastic.co/elasticsearch/$ELASTIC/debian stable main" >> /etc/apt/sources.list \
-	&& echo "deb http://packages.elastic.co/kibana/$KIBANA/debian stable main" >> /etc/apt/sources.list \
-	&& echo "deb http://packages.elastic.co/logstash/$LOGSTASH/debian stable main" >> /etc/apt/sources.list \
-	&& apt-get -qq update && apt-get -yq install elasticsearch \
+	&& echo "deb $KIBANA_REPO_BASE stable main" >> /etc/apt/sources.list \
+	&& echo "deb $LOGSTASH_REPO_BASE stable main" >> /etc/apt/sources.list \
+	&& echo "deb $ELASTICSEARCH_REPO_BASE stable main" >> /etc/apt/sources.list \
+	&& apt-get -qq update && apt-get -yq install elasticsearch=$ELASTICSEARCH_VERSION \
+																							 logstash=$LOGSTASH_VERSION \
+                                               kibana=$KIBANA_VERSION \
                                                apache2-utils \
                                                supervisor \
 																							 logrotate \
-																							 logstash \
-                                               kibana \
                                                nginx --no-install-recommends \
   && cd /tmp \
 	&& wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_5.0.0~alpha1-1_all.deb	\
@@ -64,15 +67,17 @@ RUN set -x \
   && apt-get autoclean \
   && apt-get autoremove \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
+	&& chown -R kibana:kibana /opt/kibana \
 	&& echo "Creating Elasticsearch Paths..." \
 	&& for path in \
-		/usr/share/elasticsearch/data \
-		/usr/share/elasticsearch/logs \
-		/usr/share/elasticsearch/config \
-		/usr/share/elasticsearch/config/scripts \
+				/usr/share/elasticsearch/data \
+				/usr/share/elasticsearch/logs \
+				/usr/share/elasticsearch/config \
+				/usr/share/elasticsearch/config/scripts \
 	; do \
-	mkdir -p "$path"; \
-	chown -R elasticsearch:elasticsearch "$path"; \
+			mkdir -p "$path"; \
+			chown -R elasticsearch:elasticsearch "$path"; \
 	done
 COPY config/elastic /usr/share/elasticsearch/config
 
