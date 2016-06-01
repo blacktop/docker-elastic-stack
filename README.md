@@ -5,8 +5,6 @@ ELK Stack Dockerfile
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elk.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elk.svg)][hub]
-[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/elk/latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest)
-[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/elk/latest.svg)](https://imagelayers.io/?images=blacktop/elk:latest)
 
 This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/overview/elkdownloads/) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/elk/) published to the public [Docker Registry](https://index.docker.io/).
 
