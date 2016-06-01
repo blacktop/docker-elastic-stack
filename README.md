@@ -36,8 +36,10 @@ blacktop/elk        3                   542   MB
 
 ### Usage
 ```bash
-$ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
+$ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g" blacktop/elk
 ```
+> **NOTE:** `ES_JAVA_OPTS="-Xms2g -Xmx2g"` sets the HEAP_MAX and HEAP_MIN to 2GB.
+
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
 ### To Run on OSX

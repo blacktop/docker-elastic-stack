@@ -92,13 +92,14 @@ RUN /opt/kibana/bin/kibana-plugin install timelion
 
 # Add ELK PATHs
 ENV PATH /usr/share/elasticsearch/bin:$PATH
-ENV PATH /opt/logstash/bin:$PATH
+ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /opt/kibana/bin:$PATH
 
 # Add admin/admin web user account
 COPY config/nginx/htpasswd /etc/nginx/.htpasswd
 # Add configs
 COPY config/elastic /usr/share/elasticsearch/config
+COPY config/logstash /usr/share/logstash/config
 COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/
 # Add entrypoints
 COPY entrypoints/elastic-entrypoint.sh /
