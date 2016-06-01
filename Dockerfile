@@ -4,7 +4,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 
 ENV KIBANA_VERSION 5.0.0-alpha3
 ENV KIBANA_REPO_BASE http://packages.elastic.co/kibana/5.0.0-alpha/debian
-ENV ELASTICSEARCH_VERSION 5.0.0~alpha3
+ENV ELASTICSEARCH_VERSION 5.0.0-alpha3
 ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/5.x/debian
 ENV LOGSTASH_VERSION 1:5.0.0~alpha3-1
 ENV LOGSTASH_REPO_BASE http://packages.elastic.co/logstash/5.0/debian
