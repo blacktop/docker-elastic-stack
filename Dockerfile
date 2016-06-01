@@ -71,6 +71,8 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /opt/logstash/bin:$PATH
 ENV PATH /opt/kibana/bin:$PATH
 
+# Add elastic config
+COPY config/elastic /usr/share/elasticsearch/config
 # Add admin/admin web user account
 COPY config/nginx/htpasswd /etc/nginx/.htpasswd
 # Add configs
