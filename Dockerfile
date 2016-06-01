@@ -41,6 +41,7 @@ RUN set -x \
 	&& echo "deb http://packages.elastic.co/kibana/$KIBANA/debian stable main" >> /etc/apt/sources.list \
 	&& echo "NOTE: the 'ffi-rzmq-core' gem is very picky about where it looks for libzmq.so" \
 	&& mkdir -p /usr/local/lib && ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so \
+	&& groupadd -r kibana && useradd -r -m -g kibana kibana \
 	&& apt-get -qq update && apt-get -yq install elasticsearch \
                                                apache2-utils \
                                                supervisor \
@@ -53,6 +54,7 @@ RUN set -x \
   && apt-get autoclean \
   && apt-get autoremove \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+	&& chown -R kibana:kibana /opt/kibana \
 	&& echo "ensure the default configuration is useful when using --link" \
   && sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 'http://elasticsearch:9200'!" /opt/kibana/config/kibana.yml \
 	&& grep -q 'elasticsearch:9200' /opt/kibana/config/kibana.yml	\
