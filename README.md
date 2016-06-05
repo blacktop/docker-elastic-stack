@@ -40,6 +40,12 @@ $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
 ```
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
+### Or to try out the Elastic Stack :sunglasses:
+```bash
+$ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g" blacktop/elk:5.0-alpha
+```
+> **NOTE:** `ES_JAVA_OPTS="-Xms2g -Xmx2g"` sets the HEAP_MAX and HEAP_MIN to 2GB.
+
 ### To Run on OSX
  - Install [Homebrew](http://brew.sh)
 
