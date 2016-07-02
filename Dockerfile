@@ -2,11 +2,11 @@ FROM java:8-jre
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV KIBANA_VERSION 5.0.0-alpha3
+ENV KIBANA_VERSION 5.0.0-alpha4
 ENV KIBANA_REPO_BASE http://packages.elastic.co/kibana/5.0.0-alpha/debian
-ENV ELASTICSEARCH_VERSION 5.0.0-alpha3
+ENV ELASTICSEARCH_VERSION 5.0.0-alpha4
 ENV ELASTICSEARCH_REPO_BASE http://packages.elasticsearch.org/elasticsearch/5.x/debian
-ENV LOGSTASH_VERSION 1:5.0.0~alpha3-1
+ENV LOGSTASH_VERSION 1:5.0.0~alpha4-1
 ENV LOGSTASH_REPO_BASE http://packages.elastic.co/logstash/5.0/debian
 
 # Grab gosu for easy step-down from root
@@ -87,13 +87,13 @@ RUN cd /opt \
 	&& ln -s /etc/nginx/sites-available/kibana.conf /etc/nginx/sites-enabled/kibana.conf
 
 # Install Kibana Plugins
-RUN /opt/kibana/bin/kibana-plugin install timelion
-# RUN /opt/kibana/bin/kibana-plugin install x-pack
+RUN /usr/share/kibana/bin/kibana-plugin install timelion
+# RUN /etc/kibana/bin/kibana-plugin install x-pack
 
 # Add ELK PATHs
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
-ENV PATH /opt/kibana/bin:$PATH
+ENV PATH /usr/share/kibana/bin:$PATH
 
 # Add admin/admin web user account
 COPY config/nginx/htpasswd /etc/nginx/.htpasswd
