@@ -49,16 +49,6 @@ $ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g"
 
 > **NOTE:** `ES_JAVA_OPTS="-Xms2g -Xmx2g"` sets the HEAP_MAX and HEAP_MIN to 2GB.
 
-If you are using [docker-machine](https://docs.docker.com/machine/) navigate to `$(docker-machine ip)`
-
-As a convenience you can add the **docker-machine** IP to you **/etc/hosts** file:
-
-```bash
-$ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
-```
-
-Now you can navigate to [http://dockerhost](http://dockerhost) from your host and login with: **user:** `admin`/**password:** `admin`
-
 ### Documentation
 
 #### Add some test data
@@ -104,6 +94,18 @@ for hit in res['hits']['hits']:
 -	Go to the **Discover Tab** and see those absolutely gorgeous logs!
 
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
+
+#### Navigate to Kibana
+
+If you are using [docker-machine](https://docs.docker.com/machine/) navigate to `$(docker-machine ip)`
+
+As a convenience you can add the **docker-machine** IP to you **/etc/hosts** file:
+
+```bash
+$ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
+```
+
+Now you can navigate to [http://dockerhost](http://dockerhost) from your host and login with: **user:** `admin`/**password:** `admin`
 
 #### Change Kibana's Nginx password
 
