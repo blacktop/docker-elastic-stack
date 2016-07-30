@@ -3,9 +3,9 @@
 ELK Stack Dockerfile
 ====================
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elk.svg)](https://hub.docker.com/r/blacktop/elk/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elk.svg)](https://hub.docker.com/r/blacktop/elk/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elk.png?style=shield)](https://circleci.com/gh/blacktop/docker-elk) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elk.svg)](https://hub.docker.com/r/blacktop/elk/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elk.svg)](https://hub.docker.com/r/blacktop/elk/) [![Docker Image](https://img.shields.io/badge/docker image-683.3 MB-blue.svg)](https://hub.docker.com/r/blacktop/elk/)
 
-This repository contains a **Dockerfile** of [ELK](http://www.elasticsearch.org/overview/elkdownloads/) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/elk/) published to the public [Docker Registry](https://index.docker.io/).
+This repository contains a **Dockerfile** of [ELK](https://www.elastic.co/downloads).
 
 ### Dependencies
 
@@ -30,11 +30,10 @@ blacktop/elk        3                   542   MB
 
 ### Installation
 
-1.	Install [Docker](https://www.docker.io/).
+1.	Install [Docker](https://docs.docker.com)
+2.	Download [trusted build](https://hub.docker.com/r/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/elk`
 
-2.	Download [trusted build](https://index.docker.io/u/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/elk`
-
-### Usage
+### Getting Started
 
 ```bash
 $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
@@ -42,26 +41,13 @@ $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
 
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
-### Or try out the *NEW* Elastic Stack v5.0-alpha4 :sunglasses:
+### Or try out the :new: Elastic Stack **v5.0-alpha4**
 
 ```bash
 $ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g" blacktop/elk:5.0-alpha
 ```
 
 > **NOTE:** `ES_JAVA_OPTS="-Xms2g -Xmx2g"` sets the HEAP_MAX and HEAP_MIN to 2GB.
-
-### To Run on OSX
-
--	Install [Homebrew](http://brew.sh)
-
-```bash
-$ brew install caskroom/cask/brew-cask
-$ brew cask install virtualbox
-$ brew install docker
-$ brew install docker-machine
-$ docker-machine create --driver virtualbox default
-$ eval $(docker-machine env default)
-```
 
 #### If you are using [docker-machine](https://docs.docker.com/machine/)
 
@@ -75,7 +61,9 @@ $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host and login with: **user:** `admin`/**password:** `admin`
 
-### Example Usage
+### Documentation
+
+#### Usage
 
 Let us index some data into Elasticsearch so we can try it out. To do this you can run `config/test_index.py` which contains the following code:
 
@@ -137,6 +125,12 @@ Adding password for user blacktop
 root@593cf95bd8cc:/# exit
 ```
 
+### Issues
+
+Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-elk/issues/new) and I'll get right on it.
+
+### Credits
+
 ### Todo
 
 -	[x] Install/Run ELK
@@ -144,3 +138,7 @@ root@593cf95bd8cc:/# exit
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 -	[ ] Add SSL
 -	[ ] Integrate with Bro-IDS
+
+### License
+
+MIT Copyright (c) 2015-2016 **blacktop**

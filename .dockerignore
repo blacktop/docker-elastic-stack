@@ -3,12 +3,13 @@
 .gitignore
 .gitmodules
 
-elk-logo.png
+build
+CHANGELOG.md
 LICENSE
+Makefile
 README.md
-SIGNED.md
-logstash/*
-screens/*
-conf/test_index.py
+README.md.bu
+VERSION
+circle.yml
 docker-compose.yml
-.DS_Store
+docs
