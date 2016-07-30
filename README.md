@@ -41,7 +41,7 @@ $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
 
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
-### Or try out the :new: Elastic Stack **v5.0-alpha4**
+#### Or try out the :new: Elastic Stack `v5.0-alpha4`
 
 ```bash
 $ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g" blacktop/elk:5.0-alpha
@@ -49,21 +49,19 @@ $ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g"
 
 > **NOTE:** `ES_JAVA_OPTS="-Xms2g -Xmx2g"` sets the HEAP_MAX and HEAP_MIN to 2GB.
 
-#### If you are using [docker-machine](https://docs.docker.com/machine/)
-
-Navigate to `$(docker-machine ip dev)`
+If you are using [docker-machine](https://docs.docker.com/machine/) navigate to `$(docker-machine ip)`
 
 As a convenience you can add the **docker-machine** IP to you **/etc/hosts** file:
 
 ```bash
-$ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
+$ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
 ```
 
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host and login with: **user:** `admin`/**password:** `admin`
 
 ### Documentation
 
-#### Usage
+#### Add some test data
 
 Let us index some data into Elasticsearch so we can try it out. To do this you can run `config/test_index.py` which contains the following code:
 
@@ -71,7 +69,7 @@ Let us index some data into Elasticsearch so we can try it out. To do this you c
 $ pip install elasticsearch
 ```
 
-```
+```python
 from datetime import datetime
 from elasticsearch import Elasticsearch
 
@@ -107,7 +105,7 @@ for hit in res['hits']['hits']:
 
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
 
-#### Change Kibana Nginx password
+#### Change Kibana's Nginx password
 
 ```bash
 $ docker exec -it elk bash
