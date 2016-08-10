@@ -1,2 +1,4 @@
 .DS_Store
 es_data/
+build
+*.bu
