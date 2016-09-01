@@ -10,9 +10,9 @@ This repository contains a **Dockerfile** of [ELK](https://www.elastic.co/downlo
 ### Dependencies
 
 -	[java:8-jre](https://registry.hub.docker.com/_/java/)
--	[Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.3.5
--	[Logstash](https://www.elastic.co/products/logstash) 2.3.4
--	[Kibana](https://www.elastic.co/products/kibana) 4.5.4
+-	[Elasticsearch](https://www.elastic.co/products/elasticsearch) 2.4
+-	[Logstash](https://www.elastic.co/products/logstash) 2.4
+-	[Kibana](https://www.elastic.co/products/kibana) 4.6
 
 ### Image Tags
 
