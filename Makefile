@@ -1,6 +1,6 @@
 NAME=elk
 VERSION=$(shell cat VERSION)
-DEV_RUN_OPTS ?= 
+DEV_RUN_OPTS ?=
 
 dev:
 	docker build -f Dockerfile.dev -t $(NAME):dev .

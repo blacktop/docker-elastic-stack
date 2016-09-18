@@ -3,12 +3,13 @@ machine:
     - docker
 
 dependencies:
-  pre:
-    - make circleci
+  cache_directories:
+    - "~/docker"
   override:
-    - make build
-  post:
-    - cp build/* $CIRCLE_ARTIFACTS
+    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+    - docker build -t blacktop_elk .
+    - mkdir -p ~/docker; docker save blacktop_elk > ~/docker/image.tar
 
 test:
   override:
