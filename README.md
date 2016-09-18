@@ -41,7 +41,7 @@ $ docker run -d --name elk -p 80:80 -p 9200:9200 blacktop/elk
 
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
 
-#### Or try out the :new: Elastic Stack `v5.0-alpha4`
+#### Or try out the :new: Elastic Stack `v5.0-alpha5`
 
 ```bash
 $ docker run -d --name elk -p 80:80 -p 9200:9200 -e ES_JAVA_OPTS="-Xms2g -Xmx2g" blacktop/elk:5.0-alpha
