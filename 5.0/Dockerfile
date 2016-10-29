@@ -27,6 +27,7 @@ RUN apk-install libzmq bash nodejs supervisor nginx
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk-install -t .build-deps wget ca-certificates \
+  && set -x \
   && cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
 	&& echo "Download Elasticsearch..." \
@@ -60,9 +61,6 @@ RUN apk-install -t .build-deps wget ca-certificates \
   # the default "server.host" is "localhost" in 5+
 	&& sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /usr/share/kibana/config/kibana.yml \
 	&& grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
-  # ensure the default configuration is useful when using --link
-	&& sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 'http://elasticsearch:9200'!" /usr/share/kibana/config/kibana.yml \
-	&& grep -q "^elasticsearch\.url: 'http://elasticsearch:9200'\$" /usr/share/kibana/config/kibana.yml \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
   && apline_node='NODE="/usr/bin/node"' \
@@ -90,7 +88,6 @@ ENV LS_SETTINGS_DIR /etc/logstash
 COPY config/nginx/htpasswd /etc/nginx/.htpasswd
 # Add configs
 COPY config/supervisord/supervisord.conf /etc/supervisor/
-# COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
@@ -103,6 +100,3 @@ VOLUME ["/etc/nginx"]
 EXPOSE 80 443 5601 9200 9300
 
 CMD ["/sbin/tini","--","/usr/bin/supervisord","-c", "/etc/supervisor/supervisord.conf"]
-
-# ENTRYPOINT ["/elastic-entrypoint.sh"]
-# CMD ["elasticsearch"]
