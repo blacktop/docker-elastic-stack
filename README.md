@@ -14,6 +14,8 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 -	[Elasticsearch](https://www.elastic.co/products/elasticsearch) 5.0.0
 -	[Logstash](https://www.elastic.co/products/logstash) 5.0.0
 -	[Kibana](https://www.elastic.co/products/kibana) 5.0.0
+-	[Filebeat](https://www.elastic.co/products/beats/filebeat) 5.0.0
+-	[Metricbeat](https://www.elastic.co/products/beats/metricbeat) 5.0.0
 
 ### Image Tags
 
