@@ -41,7 +41,7 @@ For [docker-machine](https://docs.docker.com/machine/):
 
  * Now navigate to `http://$(docker-machine ip)`
 
-For docker-engine on Linux:
+For [docker-engine](https://docs.docker.com/engine/installation/linux/) on Linux:
 
  * Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
