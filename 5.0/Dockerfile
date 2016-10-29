@@ -76,8 +76,12 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
+# Add custom config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/kibana.conf /etc/nginx/conf.d/
+# Add entrypoints
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
