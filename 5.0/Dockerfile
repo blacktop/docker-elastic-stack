@@ -10,15 +10,15 @@ RUN apk-install openjdk8-jre tini
 # Install gosu
 RUN apk-install -t build-deps wget ca-certificates gpgme \
   && set -x \
-	&& echo "Grab *gosu* for easy step-down from root..." \
-	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
-	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
-	&& chmod +x /usr/local/bin/gosu \
-	&& gosu nobody true \
+  && echo "Grab *gosu* for easy step-down from root..." \
+  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
+  && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc" \
+  && export GNUPGHOME="$(mktemp -d)" \
+  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+  && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
+  && chmod +x /usr/local/bin/gosu \
+  && gosu nobody true \
   && apk del --purge build-deps
 
 ENV STACK 5.0.0
@@ -29,54 +29,54 @@ RUN mkdir -p /usr/local/lib \
 RUN apk-install -t .build-deps wget ca-certificates \
   && set -x \
   && cd /tmp \
-	&& echo "Download Elastic Stack ======================================================" \
-	&& echo "Download Elasticsearch..." \
+  && echo "Download Elastic Stack ======================================================" \
+  && echo "Download Elasticsearch..." \
   && wget -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK.tar.gz \
   && tar -xzf elasticsearch-$STACK.tar.gz \
   && mv elasticsearch-$STACK /usr/share/elasticsearch \
-	&& echo "Download Logstash..." \
+  && echo "Download Logstash..." \
   && wget -O logstash-$STACK.tar.gz \
     https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
   && tar -xzf logstash-$STACK.tar.gz \
   && mv logstash-$STACK /usr/share/logstash \
-	&& echo "Download Kibana..." \
-	&& wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
+  && echo "Download Kibana..." \
+  && wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
   && tar -xzf kibana-$STACK.tar.gz \
   && mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
-	&& echo "Download Filebeat..." \
+  && echo "Download Filebeat..." \
   && wget -O filebeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$STACK-linux-x86_64.tar.gz \
   && tar -xzf filebeat-$STACK.tar.gz \
   && mv filebeat-$STACK-linux-x86_64 /usr/share/filebeat \
-	&& echo "Configure [Elasticsearch] ===================================================" \
-	&& for path in \
-		/usr/share/elasticsearch/data \
-		/usr/share/elasticsearch/logs \
-		/usr/share/elasticsearch/config \
-		/usr/share/elasticsearch/config/scripts \
-		/usr/share/elasticsearch/plugins \
-	; do \
-	mkdir -p "$path"; \
-	done \
-	&& echo "Configure [Logstash] ========================================================" \
+  && echo "Configure [Elasticsearch] ===================================================" \
+  && for path in \
+  	/usr/share/elasticsearch/data \
+  	/usr/share/elasticsearch/logs \
+  	/usr/share/elasticsearch/config \
+  	/usr/share/elasticsearch/config/scripts \
+  	/usr/share/elasticsearch/plugins \
+  ; do \
+  mkdir -p "$path"; \
+  done \
+  && echo "Configure [Logstash] ========================================================" \
   && if [ -f "$LS_SETTINGS_DIR/logstash.yml" ]; then \
   		sed -ri 's!^(path.log|path.config):!#&!g' "$LS_SETTINGS_DIR/logstash.yml"; \
   	fi \
-	&& echo "Configure [Kibana] ==========================================================" \
+  && echo "Configure [Kibana] ==========================================================" \
   # the default "server.host" is "localhost" in 5+
-	&& sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /usr/share/kibana/config/kibana.yml \
-	&& grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
+  && sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /usr/share/kibana/config/kibana.yml \
+  && grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
   && apline_node='NODE="/usr/bin/node"' \
   && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
   && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
-	&& echo "Create elstack user..." \
+  && echo "Create elstack user..." \
   && adduser -DH -s /sbin/nologin elstack \
   && chown -R elstack:elstack /usr/share/elasticsearch \
   && chown -R elstack:elstack /usr/share/logstash \
   && chown -R elstack:elstack /usr/share/kibana \
-	&& echo "Clean Up..." \
+  && echo "Clean Up..." \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
