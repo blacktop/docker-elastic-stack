@@ -67,6 +67,7 @@ Heavily (if not entirely) influenced by all the elasitc official docker images
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 - [ ] Build ES test data docker image
 - [ ] Add filebeat/metricbeat
+- [ ] compile golang [import-dashboard](https://github.com/elastic/beats/tree/master/libbeat/dashboards) on alpine 
 -	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars and autocreate certs if not found
 -	[ ] Add SSL
 -	[ ] Integrate with Bro-IDS
