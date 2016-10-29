@@ -7,11 +7,11 @@ if [ "${1:0:1}" = '-' ]; then
 	set -- logstash "$@"
 fi
 
-# Run as user "logstash" if the command is "logstash"
+# Run as user "elstack" if the command is "logstash"
 if [ "$1" = 'logstash' ]; then
-	chown -R logstash:logstash /usr/share/logstash
+	chown -R elstack:elstack /usr/share/logstash
 
-	set -- gosu logstash tini -- "$@"
+	set -- gosu elstack tini -- "$@"
 fi
 
 exec "$@"

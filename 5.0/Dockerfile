@@ -23,7 +23,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 
 ENV STACK 5.0.0
 
-RUN apk-install libzmq bash nodejs
+RUN apk-install libzmq bash nodejs supervisor nginx
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk-install -t .build-deps wget ca-certificates \
@@ -89,7 +89,8 @@ ENV LS_SETTINGS_DIR /etc/logstash
 # Add admin/admin web user account
 COPY config/nginx/htpasswd /etc/nginx/.htpasswd
 # Add configs
-COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/
+COPY config/supervisord/supervisord.conf /etc/supervisor/
+# COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
@@ -99,9 +100,9 @@ VOLUME ["/usr/share/elasticsearch/data"]
 VOLUME ["/etc/logstash/conf.d"]
 VOLUME ["/etc/nginx"]
 
-EXPOSE 80 443 9200 9300
+EXPOSE 80 443 5601 9200 9300
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/sbin/tini","--","/usr/bin/supervisord","-c", "/etc/supervisor/supervisord.conf"]
 
 # ENTRYPOINT ["/elastic-entrypoint.sh"]
 # CMD ["elasticsearch"]

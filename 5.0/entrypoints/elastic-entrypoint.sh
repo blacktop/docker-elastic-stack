@@ -11,10 +11,10 @@ fi
 # allow the container to be started with `--user`
 if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
-	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elasticsearch /sbin/tini -- "$@"
-	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
+	set -- gosu elstack /sbin/tini -- "$@"
+	#exec gosu elstack "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'master' -a "$(id -u)" = '0' ]; then
@@ -24,10 +24,10 @@ if [ "$1" = 'master' -a "$(id -u)" = '0' ]; then
 	echo "node.data: false" >> /usr/share/elasticsearch/config/elasticsearch.yml
 
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
-	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elasticsearch /sbin/tini -- elasticsearch
-	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
+	set -- gosu elstack /sbin/tini -- elasticsearch
+	#exec gosu elstack "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'ingest' -a "$(id -u)" = '0' ]; then
@@ -38,10 +38,10 @@ if [ "$1" = 'ingest' -a "$(id -u)" = '0' ]; then
 	echo "discovery.zen.ping.unicast.hosts: [\"elastic-master\"]" >> /usr/share/elasticsearch/config/elasticsearch.yml
 
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
-	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elasticsearch /sbin/tini -- elasticsearch
-	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
+	set -- gosu elstack /sbin/tini -- elasticsearch
+	#exec gosu elstack "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'data' -a "$(id -u)" = '0' ]; then
@@ -52,10 +52,10 @@ if [ "$1" = 'data' -a "$(id -u)" = '0' ]; then
 	echo "discovery.zen.ping.unicast.hosts: [\"elastic-master\"]" >> /usr/share/elasticsearch/config/elasticsearch.yml
 
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
-	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elasticsearch /sbin/tini -- elasticsearch
-	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
+	set -- gosu elstack /sbin/tini -- elasticsearch
+	#exec gosu elstack "$BASH_SOURCE" "$@"
 fi
 
 # As argument is not related to elasticsearch,

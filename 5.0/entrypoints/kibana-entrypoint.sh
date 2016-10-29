@@ -6,13 +6,13 @@ if [[ "$1" == -* ]]; then
 	set -- kibana "$@"
 fi
 
-# Run as user "kibana" if the command is "kibana"
+# Run as user "elstack" if the command is "kibana"
 if [ "$1" = 'kibana' ]; then
 	if [ "$ELASTICSEARCH_URL" ]; then
 		sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 '$ELASTICSEARCH_URL'!" /etc/kibana/kibana.yml
 	fi
 
-	set -- gosu kibana tini -- "$@"
+	set -- gosu elstack tini -- "$@"
 fi
 
 exec "$@"
