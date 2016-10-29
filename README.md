@@ -20,9 +20,9 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 ```bash
 $ docker images
 
-REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elastic-stack        latest              668   MB
-blacktop/elastic-stack        5.0                 659   MB
+REPOSITORY                    TAG                 VIRTUAL SIZE
+blacktop/elastic-stack        latest              524.3   MB
+blacktop/elastic-stack        5.0                 524.3   MB
 blacktop/elastic-stack        4.6                 665   MB
 blacktop/elastic-stack        3                   542   MB
 ```
