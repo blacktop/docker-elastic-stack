@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -9,7 +9,9 @@ fi
 
 # Run as user "logstash" if the command is "logstash"
 if [ "$1" = 'logstash' ]; then
-	set -- gosu logstash "$@"
+	chown -R logstash:logstash /usr/share/logstash
+
+	set -- gosu logstash tini -- "$@"
 fi
 
 exec "$@"

@@ -2,6 +2,9 @@ machine:
   services:
     - docker
 
+general:
+  build_dir: "5.0"
+
 dependencies:
   cache_directories:
     - "~/docker"

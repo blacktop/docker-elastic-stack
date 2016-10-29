@@ -1,45 +1,64 @@
-elasticsearch:
-  image: "elasticsearch:latest"
-  ports:
-    - "9200:9200"
-  volumes_from:
-    - data
-  # volumes:
-  #   - "$PWD/es_data:/usr/share/elasticsearch/data"
-  #   - "$PWD/config:/usr/share/elasticsearch/config"
-  restart: always
+version: "2"
 
-# logstash:
-#   image: "logstash:latest"
-#   ports:
-#     - "5000:5000"
-#   volumes:
-#     - "$PWD:/config-dir"
-#   command: logstash -f /config-dir/logstash.conf
-
-kibana:
-  image: "kibana:latest"
-  ports:
-    - "80:5601"
-  links:
-    - "elasticsearch:elasticsearch"
-  restart: always
-
-# nginx:
-#     build: .
-#     ports:
-#         - "443:443"
-#     volumes:
-#         - ./nginx.key:/etc/nginx/ssl/nginx.key
-#         - ./nginx.crt:/etc/nginx/ssl/nginx.crt
-#         - ./config/nginx/kibana.conf:/etc/nginx/conf.d/kibana.conf
-#     env_file:
-#         - ./secrets.env
-#     links:
-#       - kibana:kibana
-#     restart: always
-
-data:
-  image: "busybox"
-  volumes:
-    - "/usr/share/elasticsearch/data"
+services:
+  #############################
+  # ELASTICSEARCH MASTER NODE #
+  #############################
+  master:
+    restart: unless-stopped
+    image: blacktop/elasticsearch:x-pack
+    command: master
+    volumes:
+      - data:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+  ####################################
+  # ELASTICSEARCH CLIENT/INGEST NODE #
+  ####################################
+  ingest:
+    restart: unless-stopped
+    image: blacktop/elasticsearch:x-pack
+    command: ingest
+    ports:
+      - "9200:9200"
+    links:
+     - master:elastic-master
+    networks:
+      - elastic
+  ###########################
+  # ELASTICSEARCH DATA NODE #
+  ###########################
+  data:
+    restart: unless-stopped
+    image: blacktop/elasticsearch:x-pack
+    environment:
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    command: data
+    links:
+     - master:elastic-master
+    # volumes:
+    #   - data:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+  ###############
+  # KIBANA NODE #
+  ###############
+  kibana:
+    image: blacktop/kibana:x-pack
+    ports:
+      - "80:5601"
+    links:
+     - ingest:elasticsearch
+    networks:
+      - elastic
+#############################
+# ELASTICSEARCH DATA VOLUME #
+#############################
+volumes:
+  data:
+################################
+# ELASTICSEARCH BRIDGE NETWORK #
+################################
+networks:
+  elastic:
+    driver: bridge
