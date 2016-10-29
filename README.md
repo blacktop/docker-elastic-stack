@@ -58,6 +58,8 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 ### Credits
 
+Heavily (if not entirely) influenced by all the elasitc official docker images
+
 ### Todo
 
 -	[x] Install/Run Elastic Stack
