@@ -43,6 +43,10 @@ RUN apk-install -t .build-deps wget ca-certificates \
 	&& wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
   && tar -xzf kibana-$STACK.tar.gz \
   && mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
+	&& echo "Download Filebeat..." \
+  && wget -O filebeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$STACK-linux-x86_64.tar.gz \
+  && tar -xzf filebeat-$STACK.tar.gz \
+  && mv filebeat-$STACK-linux-x86_64 /usr/share/filebeat \
 	&& echo "Configure [Elasticsearch] ===================================================" \
 	&& for path in \
 		/usr/share/elasticsearch/data \
@@ -76,12 +80,16 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
-# Add custom config
+# Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+# Add custom logstash config
 COPY config/logstash/conf.d/ /etc/logstash/conf.d/
 COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
+# Add custom filebeat config
+COPY config/filebeat/filebeat.yml /etc/filebeat/
+# Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
 # Add entrypoints
@@ -98,6 +106,7 @@ COPY config/supervisord/supervisord.conf /etc/supervisor/
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
+ENV PATH /usr/share/filebeat:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
 
 VOLUME ["/usr/share/elasticsearch/data"]
