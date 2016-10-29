@@ -28,18 +28,21 @@ RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk-install -t .build-deps wget ca-certificates \
   && cd /tmp \
-	&& echo "Download Elastic Stack..." \
+	&& echo "Download Elastic Stack ======================================================" \
+	&& echo "Download Elasticsearch..." \
   && wget -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK.tar.gz \
+  && tar -xzf elasticsearch-$STACK.tar.gz \
+  && mv elasticsearch-$STACK /usr/share/elasticsearch \
+	&& echo "Download Logstash..." \
   && wget -O logstash-$STACK.tar.gz \
     https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
-	&& wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
-  && tar -xzf elasticsearch-$STACK.tar.gz \
-  && mv elasticsearch-$ELASTIC /usr/share/elasticsearch \
   && tar -xzf logstash-$STACK.tar.gz \
-  && mv logstash-$ELASTIC /usr/share/logstash \
+  && mv logstash-$STACK /usr/share/logstash \
+	&& echo "Download Kibana..." \
+	&& wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
   && tar -xzf kibana-$STACK.tar.gz \
   && mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
-	&& echo "Configure Elasticsearch======================================================" \
+	&& echo "Configure [Elasticsearch] ===================================================" \
 	&& for path in \
 		/usr/share/elasticsearch/data \
 		/usr/share/elasticsearch/logs \
@@ -49,11 +52,11 @@ RUN apk-install -t .build-deps wget ca-certificates \
 	; do \
 	mkdir -p "$path"; \
 	done \
-	&& echo "Configure Logstash===========================================================" \
+	&& echo "Configure [Logstash] ========================================================" \
   && if [ -f "$LS_SETTINGS_DIR/logstash.yml" ]; then \
   		sed -ri 's!^(path.log|path.config):!#&!g' "$LS_SETTINGS_DIR/logstash.yml"; \
   	fi \
-	&& echo "Configure Kibana=============================================================" \
+	&& echo "Configure [Kibana] ==========================================================" \
   # the default "server.host" is "localhost" in 5+
 	&& sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /usr/share/kibana/config/kibana.yml \
 	&& grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
@@ -76,7 +79,7 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && apk del --purge .build-deps
 
 COPY config/elastic /usr/share/elasticsearch/config
-COPY config/logrotate /etc/logrotate.d/elasticsearch
+COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
