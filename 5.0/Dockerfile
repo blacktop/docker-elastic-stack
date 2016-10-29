@@ -23,7 +23,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 
 ENV STACK 5.0.0
 
-RUN apk-install libzmq bash nodejs supervisor nginx
+RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk-install -t .build-deps wget ca-certificates \
@@ -79,6 +79,8 @@ RUN apk-install -t .build-deps wget ca-certificates \
 # Add custom config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+COPY config/logstash/conf.d/ /etc/logstash/conf.d/
+COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
@@ -90,7 +92,7 @@ COPY entrypoints/kibana-entrypoint.sh /
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
 # Add admin/admin web user account
-COPY config/nginx/htpasswd /etc/nginx/.htpasswd
+COPY config/nginx/htpasswd /etc/nginx/htpasswd.users
 # Add configs
 COPY config/supervisord/supervisord.conf /etc/supervisor/
 
