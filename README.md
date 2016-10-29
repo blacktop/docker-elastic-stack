@@ -1,9 +1,9 @@
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elastic-stack/master/docs/el_stack_logo.png)
+![el-stack-logo](https://raw.githubusercontent.com/blacktop/docker-elastic-stack/master/docs/el_stack_logo.png)
 
 Elastic Stack Dockerfile
 ========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elk.svg)](https://hub.docker.com/r/blacktop/elk/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elk.svg)](https://hub.docker.com/r/blacktop/elk/) [![Docker Image](https://img.shields.io/badge/docker image-683.3 MB-blue.svg)](https://hub.docker.com/r/blacktop/elk/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-683.3 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
@@ -21,16 +21,11 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/elk        latest              668   MB
-blacktop/elk        5.0                 659   MB
-blacktop/elk        4.6                 665   MB
-blacktop/elk        3                   542   MB
+blacktop/elastic-stack        latest              668   MB
+blacktop/elastic-stack        5.0                 659   MB
+blacktop/elastic-stack        4.6                 665   MB
+blacktop/elastic-stack        3                   542   MB
 ```
-
-### Installation
-
-1.	Install [Docker](https://docs.docker.com)
-2.	Download [trusted build](https://hub.docker.com/r/blacktop/elk/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/elk`
 
 ### Getting Started
 
@@ -38,7 +33,7 @@ blacktop/elk        3                   542   MB
 $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 ```
 
-Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elk)`
+Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
 ### Documentation
 
@@ -53,7 +48,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 ### Todo
 
--	[x] Install/Run ELK
+-	[x] Install/Run Elastic Stack
 -	[x] Start Daemon and watch folder with supervisord
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 -	[ ] Add SSL
