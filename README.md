@@ -51,6 +51,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Install/Run Elastic Stack
 -	[x] Start Daemon and watch folder with supervisord
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
+-	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars and autocreate certs if not found
 -	[ ] Add SSL
 -	[ ] Integrate with Bro-IDS
 
