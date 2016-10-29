@@ -87,22 +87,21 @@ COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
 COPY config/logstash/conf.d/ /etc/logstash/conf.d/
 COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
+# necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
+ENV LS_SETTINGS_DIR /etc/logstash
 # Add custom filebeat config
 COPY config/filebeat/filebeat.yml /etc/filebeat/
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
+COPY config/nginx/htpasswd /etc/nginx/htpasswd.users
+# Add custom supervisor config
+COPY config/supervisord/supervisord.conf /etc/supervisor/
+
 # Add entrypoints
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
-
-# necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
-ENV LS_SETTINGS_DIR /etc/logstash
-# Add admin/admin web user account
-COPY config/nginx/htpasswd /etc/nginx/htpasswd.users
-# Add configs
-COPY config/supervisord/supervisord.conf /etc/supervisor/
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
