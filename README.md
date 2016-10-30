@@ -33,6 +33,20 @@ blacktop/elastic-stack        3                   542   MB
 $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 ```
 
+To build a multi-node cluster
+
+```bash
+$ wget https://github.com/blacktop/docker-elasticsearch-alpine/raw/master/docker-compose.yml
+$ docker-compose up -d && docker-compose scale data=3
+```
+
+You can also use each part of the stack independantly
+
+Elastic Stack  
+ * [blacktop/elasticsearch](https://github.com/blacktop/docker-elasticsearch-alpine)
+ * [blacktop/logstash](https://github.com/blacktop/docker-logstash-alpine)
+ * [blacktop/kibana](https://github.com/blacktop/docker-kibana-alpine)
+
 #### Now Navigate To
 
  * With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
