@@ -21,18 +21,12 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-ENV GOLANG_VERSION 1.7.3
-ENV GOLANG_SRC_URL https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
-ENV GOLANG_SRC_SHA256 79430a0027a09b0b3ad57e214c4c1acfdd7af290961dd08d322818895af1ef44
-# https://golang.org/issue/14851
-COPY config/golang/no-pic.patch /
-
 ENV STACK 5.0.0
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
-RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base musl-dev openssl \
+RUN apk-install -t .build-deps wget ca-certificates \
   && set -x \
   && cd /tmp \
   && echo "Download Elastic Stack ======================================================" \
@@ -49,31 +43,6 @@ RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base 
   && wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
   && tar -xzf kibana-$STACK.tar.gz \
   && mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
-  && echo "Download Filebeat..." \
-  && wget -O filebeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$STACK-linux-x86_64.tar.gz \
-  && tar -xzf filebeat-$STACK.tar.gz \
-  && mv filebeat-$STACK-linux-x86_64 /usr/share/filebeat \
-  && echo "Download Metricbeat..." \
-  && wget -O metricbeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-$STACK-linux-x86_64.tar.gz \
-  && tar -xzf metricbeat-$STACK.tar.gz \
-  && mv metricbeat-$STACK-linux-x86_64 /usr/share/metricbeat \
-  && echo "Upgrade Golang to $GOLANG_VERSION..." \
-  && export GOROOT_BOOTSTRAP="$(go env GOROOT)" \
-  && wget -q "$GOLANG_SRC_URL" -O golang.tar.gz \
-  && echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c - \
-  && tar -C /usr/local -xzf golang.tar.gz \
-  && cd /usr/local/go/src \
-  && patch -p2 -i /no-pic.patch \
-  && ./make.bash \
-  && rm -rf /*.patch \
-  && echo "Build [import-dashboard]" \
-  && export GOPATH=/go \
-  && go version \
-  && git clone -b v$STACK https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats \
-  && cd $GOPATH/src/github.com/elastic/beats/libbeat/dashboards \
-  && go build -ldflags "-X main.beat=" -o import_dashboards \
-  && mv import_dashboards /usr/share/filebeat \
-  && rm -rf $GOPATH /usr/local/go /usr/lib/go \
   && echo "Configure [Elasticsearch] ===================================================" \
   && for path in \
   	/usr/share/elasticsearch/data \
@@ -116,10 +85,6 @@ COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
-# Add custom filebeat config
-COPY config/filebeat/filebeat.yml /etc/filebeat/
-# Add custom metricbeat config
-COPY config/metricbeat/metricbeat.yml /etc/metricbeat/
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
@@ -131,13 +96,9 @@ COPY config/supervisord/supervisord.conf /etc/supervisor/
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
-COPY entrypoints/filebeat-entrypoint.sh /
-COPY entrypoints/metricbeat-entrypoint.sh /
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
-ENV PATH /usr/share/filebeat:$PATH
-ENV PATH /usr/share/metricbeat:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
 
 VOLUME ["/usr/share/elasticsearch/data"]

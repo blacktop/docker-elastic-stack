@@ -14,8 +14,6 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 -	[Elasticsearch](https://www.elastic.co/products/elasticsearch)
 -	[Logstash](https://www.elastic.co/products/logstash)
 -	[Kibana](https://www.elastic.co/products/kibana)
--	[Filebeat](https://www.elastic.co/products/beats/filebeat)
--	[Metricbeat](https://www.elastic.co/products/beats/metricbeat)
 
 ### Image Tags
 
@@ -66,8 +64,6 @@ Heavily (if not entirely) influenced by all the elasitc official docker images
 -	[x] Start Daemon and watch folder with supervisord
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 - [ ] Build ES test data docker image
-- [x] Add filebeat/metricbeat
-- [x] compile golang [import-dashboard](https://github.com/elastic/beats/tree/master/libbeat/dashboards) on alpine
 -	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars and autocreate certs if not found
 -	[ ] Add SSL
 -	[ ] Integrate with Bro-IDS
