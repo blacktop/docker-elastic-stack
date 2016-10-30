@@ -46,7 +46,7 @@ $ wget https://github.com/blacktop/docker-elastic-stack/raw/master/docker-compos
 $ docker-compose up -d && docker-compose scale data=3
 ```
 
-> **NOTE:** Nodes have X-Pack Plugin (30 day trial) installed  
+> **NOTE:** Nodes have [X-Pack](https://www.elastic.co/products/x-pack) Plugin (30 day trial) installed  
 > **NOTE:** Assumes your **data.nodes** have at least 4GB of RAM.  
 
 #### You can also use each part of the stack independently
