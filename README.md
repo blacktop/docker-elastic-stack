@@ -33,17 +33,11 @@ blacktop/elastic-stack        3                   542   MB
 $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 ```
 
-For [Docker for Mac](https://docs.docker.com/engine/installation/mac/):
+#### Now Navigate To
 
- * Now navigate to `http://localhost`
-
-For [docker-machine](https://docs.docker.com/machine/):
-
- * Now navigate to `http://$(docker-machine ip)`
-
-For [docker-engine](https://docker.github.io/engine/installation/):
-
- * Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
+ * With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
+ * With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
+ * With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
 ### Documentation
 
