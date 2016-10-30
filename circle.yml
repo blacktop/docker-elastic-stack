@@ -11,12 +11,14 @@ dependencies:
   override:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
-    - docker build -t blacktop_elk .
-    - mkdir -p ~/docker; docker save blacktop_elk > ~/docker/image.tar
+    - docker build -t blacktop_elstack .
+    - mkdir -p ~/docker; docker save blacktop_elstack > ~/docker/image.tar
 
 test:
   override:
-    - /bin/true
+    - docker run -d -p 80:80 -p 9200:9200 blacktop_elstack; sleep 10
+    - curl --retry 10 --retry-delay 5 -v http://localhost:9200
+    - curl --retry 10 --retry-delay 5 -v http://localhost
 
 deployment:
   # master:
