@@ -3,7 +3,7 @@
 Elastic Stack Dockerfile
 ========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-596.9 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-524.9 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
@@ -46,7 +46,7 @@ $ wget https://github.com/blacktop/docker-elastic-stack/raw/master/docker-compos
 $ docker-compose up -d && docker-compose scale data=3
 ```
 
-> **NOTE:** Nodes have [X-Pack](https://www.elastic.co/products/x-pack) Plugin (30 day trial) installed  
+> **NOTE:** Nodes have [X-Pack](https://www.elastic.co/products/x-pack) Plugin (*30 day trial*) installed  
 > **NOTE:** Assumes your **data.nodes** have at least 4GB of RAM.  
 
 #### You can also use each part of the stack independently
