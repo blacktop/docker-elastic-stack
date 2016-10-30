@@ -53,6 +53,10 @@ RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base 
   && wget -O filebeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$STACK-linux-x86_64.tar.gz \
   && tar -xzf filebeat-$STACK.tar.gz \
   && mv filebeat-$STACK-linux-x86_64 /usr/share/filebeat \
+  && echo "Download Metricbeat..." \
+  && wget -O metricbeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-$STACK-linux-x86_64.tar.gz \
+  && tar -xzf metricbeat-$STACK.tar.gz \
+  && mv metricbeat-$STACK-linux-x86_64 /usr/share/metricbeat \
   && echo "Upgrade Golang to $GOLANG_VERSION..." \
   && export GOROOT_BOOTSTRAP="$(go env GOROOT)" \
   && wget -q "$GOLANG_SRC_URL" -O golang.tar.gz \
@@ -67,7 +71,7 @@ RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base 
   && go version \
   && git clone -b v$STACK https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats \
   && cd $GOPATH/src/github.com/elastic/beats/libbeat/dashboards \
-  && go build -ldflags "-X main.beat=filebeat" -o import_dashboards \
+  && go build -ldflags "-X main.beat=" -o import_dashboards \
   && mv import_dashboards /usr/share/filebeat \
   && rm -rf $GOPATH /usr/local/go /usr/lib/go \
   && echo "Configure [Elasticsearch] ===================================================" \
@@ -114,6 +118,8 @@ COPY config/logstash/logstash.yml /etc/logstash/
 ENV LS_SETTINGS_DIR /etc/logstash
 # Add custom filebeat config
 COPY config/filebeat/filebeat.yml /etc/filebeat/
+# Add custom metricbeat config
+COPY config/metricbeat/metricbeat.yml /etc/metricbeat/
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
@@ -126,10 +132,12 @@ COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
 COPY entrypoints/filebeat-entrypoint.sh /
+COPY entrypoints/metricbeat-entrypoint.sh /
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/filebeat:$PATH
+ENV PATH /usr/share/metricbeat:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
 
 VOLUME ["/usr/share/elasticsearch/data"]
