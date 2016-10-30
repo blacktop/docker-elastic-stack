@@ -3,7 +3,7 @@
 Elastic Stack Dockerfile
 ========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-524.9 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-536.3 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
@@ -11,11 +11,11 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 
 -	[gliderlabs/alpine:3.4](https://index.docker.io/_/gliderlabs/alpine/)
 -	[openjdk8-jre](https://pkgs.alpinelinux.org/package/v3.4/community/x86_64/openjdk8-jre)
--	[Elasticsearch](https://www.elastic.co/products/elasticsearch) 5.0.0
--	[Logstash](https://www.elastic.co/products/logstash) 5.0.0
--	[Kibana](https://www.elastic.co/products/kibana) 5.0.0
--	[Filebeat](https://www.elastic.co/products/beats/filebeat) 5.0.0
--	[Metricbeat](https://www.elastic.co/products/beats/metricbeat) 5.0.0
+-	[Elasticsearch](https://www.elastic.co/products/elasticsearch)
+-	[Logstash](https://www.elastic.co/products/logstash)
+-	[Kibana](https://www.elastic.co/products/kibana)
+-	[Filebeat](https://www.elastic.co/products/beats/filebeat)
+-	[Metricbeat](https://www.elastic.co/products/beats/metricbeat)
 
 ### Image Tags
 
@@ -67,7 +67,7 @@ Heavily (if not entirely) influenced by all the elasitc official docker images
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 - [ ] Build ES test data docker image
 - [ ] Add filebeat/metricbeat
-- [ ] compile golang [import-dashboard](https://github.com/elastic/beats/tree/master/libbeat/dashboards) on alpine 
+- [ ] compile golang [import-dashboard](https://github.com/elastic/beats/tree/master/libbeat/dashboards) on alpine
 -	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars and autocreate certs if not found
 -	[ ] Add SSL
 -	[ ] Integrate with Bro-IDS

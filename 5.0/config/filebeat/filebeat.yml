@@ -3,8 +3,9 @@ filebeat:
     -
       paths:
         - /var/log/auth.log
+        - /var/log/nginx/access.log
         - /var/log/syslog
-      #  - /var/log/*.log
+        - /var/log/*.log
 
       input_type: log
 

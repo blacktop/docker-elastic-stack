@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM gliderlabs/alpine:edge
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -26,7 +26,7 @@ ENV STACK 5.0.0
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
-RUN apk-install -t .build-deps wget ca-certificates \
+RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base \
   && set -x \
   && cd /tmp \
   && echo "Download Elastic Stack ======================================================" \
@@ -47,6 +47,14 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && wget -O filebeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$STACK-linux-x86_64.tar.gz \
   && tar -xzf filebeat-$STACK.tar.gz \
   && mv filebeat-$STACK-linux-x86_64 /usr/share/filebeat \
+  && echo "Build [import-dashboard]" \
+  && export GOPATH=/go \
+  && go version \
+  && git clone -b v$STACK https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats \
+  && cd $GOPATH/src/github.com/elastic/beats/libbeat/dashboards \
+  && go build -ldflags "-X main.beat=filebeat" -o import_dashboards \
+  && mv import_dashboards /usr/share/filebeat \
+  && rm -rf $GOPATH /usr/local/go \
   && echo "Configure [Elasticsearch] ===================================================" \
   && for path in \
   	/usr/share/elasticsearch/data \
@@ -102,6 +110,7 @@ COPY config/supervisord/supervisord.conf /etc/supervisor/
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
+COPY entrypoints/filebeat-entrypoint.sh /
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
