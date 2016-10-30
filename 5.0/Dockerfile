@@ -69,7 +69,7 @@ RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base 
   && cd $GOPATH/src/github.com/elastic/beats/libbeat/dashboards \
   && go build -ldflags "-X main.beat=filebeat" -o import_dashboards \
   && mv import_dashboards /usr/share/filebeat \
-  && rm -rf $GOPATH /usr/local/go \
+  && rm -rf $GOPATH /usr/local/go /usr/lib/go \
   && echo "Configure [Elasticsearch] ===================================================" \
   && for path in \
   	/usr/share/elasticsearch/data \
