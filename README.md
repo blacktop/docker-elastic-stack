@@ -42,7 +42,7 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 #### To build a multi-node cluster
 
 ```bash
-$ wget https://github.com/blacktop/docker-elasticsearch-alpine/raw/master/docker-compose.yml
+$ wget https://github.com/blacktop/docker-elastic-stack/raw/master/docker-compose.yml
 $ docker-compose up -d && docker-compose scale data=3
 ```
 
