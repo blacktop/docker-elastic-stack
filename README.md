@@ -46,6 +46,8 @@ $ wget https://github.com/blacktop/docker-elastic-stack/raw/master/docker-compos
 $ docker-compose up -d && docker-compose scale data=3
 ```
 
+> **NOTE:** Assumes your **data.nodes** have at least 4GB of RAM.
+
 #### You can also use each part of the stack independently
 
  * [blacktop/elasticsearch](https://github.com/blacktop/docker-elasticsearch-alpine)
