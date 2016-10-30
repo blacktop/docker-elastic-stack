@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:edge
+FROM gliderlabs/alpine:3.4
 
 MAINTAINER blacktop, https://github.com/blacktop
 
@@ -21,12 +21,18 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
+ENV GOLANG_VERSION 1.7.3
+ENV GOLANG_SRC_URL https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
+ENV GOLANG_SRC_SHA256 79430a0027a09b0b3ad57e214c4c1acfdd7af290961dd08d322818895af1ef44
+# https://golang.org/issue/14851
+COPY config/golang/no-pic.patch /
+
 ENV STACK 5.0.0
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
-RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base \
+RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base musl-dev openssl \
   && set -x \
   && cd /tmp \
   && echo "Download Elastic Stack ======================================================" \
@@ -47,6 +53,15 @@ RUN apk-install -t .build-deps wget ca-certificates go git mercurial build-base 
   && wget -O filebeat-$STACK.tar.gz https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-$STACK-linux-x86_64.tar.gz \
   && tar -xzf filebeat-$STACK.tar.gz \
   && mv filebeat-$STACK-linux-x86_64 /usr/share/filebeat \
+  && echo "Upgrade Golang to $GOLANG_VERSION..." \
+  && export GOROOT_BOOTSTRAP="$(go env GOROOT)" \
+  && wget -q "$GOLANG_SRC_URL" -O golang.tar.gz \
+  && echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c - \
+  && tar -C /usr/local -xzf golang.tar.gz \
+  && cd /usr/local/go/src \
+  && patch -p2 -i /no-pic.patch \
+  && ./make.bash \
+  && rm -rf /*.patch \
   && echo "Build [import-dashboard]" \
   && export GOPATH=/go \
   && go version \
