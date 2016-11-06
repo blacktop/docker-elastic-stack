@@ -1,7 +1,7 @@
 ## Add Some Demo Data
 
 ```bash
-$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack; sleep 10
+$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack:geoip; sleep 10
 $ docker run --rm --link elstack:elasticsearch blacktop/es-data
 ```
 
