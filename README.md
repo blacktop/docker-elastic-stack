@@ -69,8 +69,8 @@ Heavily (if not entirely) influenced by all the elasitc official docker images
 -	[x] Start Daemon and watch folder with supervisord
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 -	[x] Build ES test data docker image
--	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars and autocreate certs if not found
--	[ ] Add SSL
+-	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars
+-	[ ] Add SSL (autocreate certs if not found)
 -	[ ] Integrate with Bro-IDS
 
 ### License
