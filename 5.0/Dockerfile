@@ -76,6 +76,14 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+ENV PATH /usr/share/logstash/bin:$PATH
+ENV PATH /usr/share/kibana/bin:$PATH
+
+# Install geoip/user-agent plugin
+RUN elasticsearch-plugin install -b ingest-geoip
+RUN elasticsearch-plugin install -b ingest-user-agent
+
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
@@ -96,10 +104,6 @@ COPY config/supervisord/supervisord.conf /etc/supervisor/
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
-
-ENV PATH /usr/share/elasticsearch/bin:$PATH
-ENV PATH /usr/share/logstash/bin:$PATH
-ENV PATH /usr/share/kibana/bin:$PATH
 
 VOLUME ["/usr/share/elasticsearch/data"]
 VOLUME ["/etc/logstash/conf.d"]
