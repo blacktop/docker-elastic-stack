@@ -39,6 +39,10 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 -	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
 -	With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
+> **NOTE:** You will be prompted for a *user/pass* which defaults to:
+ * user: **admin**
+ * password: **admin**
+
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
 
 #### To build a multi-node cluster
@@ -48,8 +52,9 @@ $ wget https://github.com/blacktop/docker-elastic-stack/raw/master/docker-compos
 $ docker-compose up -d && docker-compose scale data=3
 ```
 
-> **NOTE:** Nodes have [X-Pack](https://www.elastic.co/products/x-pack) Plugin (*30 day trial*) installed  
-> **NOTE:** Assumes your **data.nodes** have at least 4GB of RAM.
+> **NOTE**
+ * Nodes have [X-Pack](https://www.elastic.co/products/x-pack) Plugin (*30 day trial*) installed  
+ * Assumes your **data.nodes** have at least 4GB of RAM.
 
 #### You can also use each part of the stack independently
 
