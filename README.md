@@ -39,7 +39,7 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 -	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
 -	With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/add-data-dashboard.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
 
 #### To build a multi-node cluster
 
