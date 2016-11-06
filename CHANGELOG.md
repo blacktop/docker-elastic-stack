@@ -37,3 +37,16 @@ Same as v5.0
 ### Removed
 
 ### Changed
+
+[v3.1][2016-11-06]
+------------------
+
+This hasn't been tested and might not work with ES 2.4 as I have it now.
+
+### Fixed
+
+### Added
+
+### Removed
+
+### Changed
