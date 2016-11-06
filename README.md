@@ -51,9 +51,9 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 
 ### Documentation
 
--	[Build a multi-node Elastic Stack cluster](docs/mutil-node.md)
 -	[Add some demo data](docs/add-data.md)
 -	[Change nginx password](docs/change-pass.md)
+-	[Build a multi-node Elastic Stack cluster](docs/mutil-node.md)
 
 ### Issues
 
