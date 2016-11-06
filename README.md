@@ -35,9 +35,9 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 
 ##### Now Navigate To
 
- * With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
- * With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
- * With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
+-	With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
+-	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
+-	With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
 #### To build a multi-node cluster
 
@@ -47,19 +47,18 @@ $ docker-compose up -d && docker-compose scale data=3
 ```
 
 > **NOTE:** Nodes have [X-Pack](https://www.elastic.co/products/x-pack) Plugin (*30 day trial*) installed  
-> **NOTE:** Assumes your **data.nodes** have at least 4GB of RAM.  
+> **NOTE:** Assumes your **data.nodes** have at least 4GB of RAM.
 
 #### You can also use each part of the stack independently
 
- * [blacktop/elasticsearch](https://github.com/blacktop/docker-elasticsearch-alpine)
- * [blacktop/logstash](https://github.com/blacktop/docker-logstash-alpine)
- * [blacktop/kibana](https://github.com/blacktop/docker-kibana-alpine)
-
+-	[blacktop/elasticsearch](https://github.com/blacktop/docker-elasticsearch-alpine)
+-	[blacktop/logstash](https://github.com/blacktop/docker-logstash-alpine)
+-	[blacktop/kibana](https://github.com/blacktop/docker-kibana-alpine)
 
 ### Documentation
 
- * [Add some demo data](docs/add-data.md)
- * [Change nginx password](docs/change-pass.md)
+-	[Add some demo data](docs/add-data.md)
+-	[Change nginx password](docs/change-pass.md)
 
 ### Issues
 
@@ -74,7 +73,7 @@ Heavily (if not entirely) influenced by all the elasitc official docker images
 -	[x] Install/Run Elastic Stack
 -	[x] Start Daemon and watch folder with supervisord
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
-- [ ] Build ES test data docker image
+-	[x] Build ES test data docker image
 -	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars and autocreate certs if not found
 -	[ ] Add SSL
 -	[ ] Integrate with Bro-IDS
