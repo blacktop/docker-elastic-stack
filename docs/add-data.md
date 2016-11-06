@@ -57,7 +57,7 @@ for hit in res['hits']['hits']:
 
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/python-data.png)
 
-## Navigate to Kibana
+## Tips and Tricks
 
 If you are using [docker-machine](https://docs.docker.com/machine/) navigate to `$(docker-machine ip)`
 
