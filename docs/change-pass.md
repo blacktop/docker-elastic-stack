@@ -1,7 +1,7 @@
 ## Change Kibana's Nginx password
 
 ```bash
-$ docker exec -it elk bash
+$ docker exec -it elstack bash
 ```
 
 ```bash

@@ -7,11 +7,11 @@ $ docker run --rm --link elstack:elasticsearch blacktop/es-data
 
 Click on `nginx_json_elastic_stack_example` and :star: **Set as default index**  
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/add-data-index.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/add-data-index.png)
 
 Click on **Dashboard** -> **Open** -> `Sample Dashboard for Nginx (JSON) Logs`  
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/add-data-dashboard.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/add-data-dashboard.png)
 
 ## Add Data with Python
 
@@ -51,11 +51,11 @@ for hit in res['hits']['hits']:
 
 -	Now enter `test-index` in the index field and select **timestamp**
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/timestamp.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/timestamp.png)
 
 -	Go to the **Discover Tab** and see those absolutely gorgeous logs!
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/python-data.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/python-data.png)
 
 ## Tips and Tricks
 

@@ -1,4 +1,4 @@
-![el-stack-logo](https://raw.githubusercontent.com/blacktop/docker-elastic-stack/master/docs/el_stack_logo.png)
+![el-stack-logo](https://raw.githubusercontent.com/blacktop/docker-elastic-stack/master/docs/img/el_stack_logo.png)
 
 Elastic Stack Dockerfile
 ========================
@@ -41,7 +41,7 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 
 > **NOTE:** You will be prompted for a *user/password* which defaults to: **admin/admin**
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/discover.png)
 
 #### You can also use each part of the stack independently
 
