@@ -1,9 +1,17 @@
 ## Add Some Demo Data
 
 ```bash
-$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
-$ docker run -t --rm --link elstack:elasticsearch blacktop/es-data
+$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack; sleep 10
+$ docker run --rm --link elstack:elasticsearch blacktop/es-data
 ```
+
+Click on `nginx_json_elastic_stack_example` and :star: **Set as default index**  
+
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/add-data-index.png)
+
+Click on **Dashboard** -> **Open** -> `Sample Dashboard for Nginx (JSON) Logs`  
+
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/add-data-dashboard.png)
 
 ## Add Data with Python
 
