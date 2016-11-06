@@ -1,4 +1,11 @@
-## Add some test data
+## Add Some Demo Data
+
+```bash
+$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
+$ docker run -t --rm --link elstack:elasticsearch blacktop/es-data
+```
+
+## Add Data with Python
 
 Let us index some data into Elasticsearch so we can try it out. To do this you can run `config/test_index.py` which contains the following code:
 

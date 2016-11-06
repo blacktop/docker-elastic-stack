@@ -58,7 +58,7 @@ $ docker-compose up -d && docker-compose scale data=3
 
 ### Documentation
 
- * [Add test data](docs/add-data.md)
+ * [Add some demo data](docs/add-data.md)
  * [Change nginx password](docs/change-pass.md)
 
 ### Issues
