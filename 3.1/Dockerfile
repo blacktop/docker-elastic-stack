@@ -99,7 +99,6 @@ COPY config/supervisord/supervisord.conf /etc/supervisor/
 # Add entrypoints
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
-COPY entrypoints/kibana-entrypoint.sh /
 
 VOLUME ["/usr/share/elasticsearch/data"]
 VOLUME ["/etc/logstash/conf.d"]
