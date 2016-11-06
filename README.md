@@ -61,7 +61,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 ### Credits
 
-Heavily (if not entirely) influenced by all the elasitc official docker images
+Heavily (if not entirely) influenced by all the elastic official docker images
 
 ### Todo
 
@@ -70,7 +70,7 @@ Heavily (if not entirely) influenced by all the elasitc official docker images
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 -	[x] Build ES test data docker image
 -	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars
--	[ ] Add SSL (autocreate certs if not found)
+-	[ ] Add SSL (auto-create certs if not found)
 -	[ ] Integrate with Bro-IDS
 
 ### License
