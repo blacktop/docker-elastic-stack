@@ -24,7 +24,6 @@ REPOSITORY                    TAG                 VIRTUAL SIZE
 blacktop/elastic-stack        latest              557.8 MB
 blacktop/elastic-stack        5.0                 557.8 MB
 blacktop/elastic-stack        4.6                 451   MB
-blacktop/elastic-stack        3                   542   MB
 ```
 
 ### Getting Started
@@ -71,6 +70,7 @@ Heavily (if not entirely) influenced by all the elastic official docker images
 -	[x] Build ES test data docker image
 -	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars
 -	[ ] Add SSL (auto-create certs if not found)
+-	[ ] Add back a 3.0 version of the stack (elk stack)
 -	[ ] Integrate with Bro-IDS
 
 ### License
