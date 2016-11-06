@@ -55,7 +55,7 @@ for hit in res['hits']['hits']:
 
 -	Go to the **Discover Tab** and see those absolutely gorgeous logs!
 
-![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/discover.png)
+![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/python-data.png)
 
 ## Navigate to Kibana
 

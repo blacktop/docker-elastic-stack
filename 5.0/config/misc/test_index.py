@@ -2,7 +2,7 @@ from datetime import datetime
 
 from elasticsearch import Elasticsearch
 
-es = Elasticsearch(['http://<enter docker-machine ip or ip assigned to docker container here>'])
+es = Elasticsearch()
 
 for i in range(10000):
     doc = {'author': 'kimchy', 'text': 'Elasticsearch: cool. bonsai cool.', 'timestamp': datetime.now()}
