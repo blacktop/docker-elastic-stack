@@ -21,9 +21,9 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
-blacktop/elastic-stack        latest              557.8   MB
-blacktop/elastic-stack        5.0                 557.8   MB
-blacktop/elastic-stack        4.6                 665   MB
+blacktop/elastic-stack        latest              557.8 MB
+blacktop/elastic-stack        5.0                 557.8 MB
+blacktop/elastic-stack        4.6                 451   MB
 blacktop/elastic-stack        3                   542   MB
 ```
 

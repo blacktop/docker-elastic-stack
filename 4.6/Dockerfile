@@ -21,7 +21,9 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-ENV STACK 5.0.0
+ENV ELASTIC 2.4.1
+ENV LOGSTASH 2.4.0
+ENV KIBANA 4.6.2
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
 RUN mkdir -p /usr/local/lib \
@@ -31,18 +33,18 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && cd /tmp \
   && echo "Download Elastic Stack ======================================================" \
   && echo "Download Elasticsearch..." \
-  && wget -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK.tar.gz \
-  && tar -xzf elasticsearch-$STACK.tar.gz \
-  && mv elasticsearch-$STACK /usr/share/elasticsearch \
+  && wget -O elasticsearch-$ELASTIC.tar.gz https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ELASTIC/elasticsearch-$ELASTIC.tar.gz \
+  && tar -xzf elasticsearch-$ELASTIC.tar.gz \
+  && mv elasticsearch-$ELASTIC /usr/share/elasticsearch \
   && echo "Download Logstash..." \
-  && wget -O logstash-$STACK.tar.gz \
-    https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
-  && tar -xzf logstash-$STACK.tar.gz \
-  && mv logstash-$STACK /usr/share/logstash \
+  && wget -O logstash-$LOGSTASH.tar.gz \
+    https://download.elastic.co/logstash/logstash/logstash-$LOGSTASH.tar.gz \
+  && tar -xzf logstash-$LOGSTASH.tar.gz \
+  && mv logstash-$LOGSTASH /usr/share/logstash \
   && echo "Download Kibana..." \
-  && wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
-  && tar -xzf kibana-$STACK.tar.gz \
-  && mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
+  && wget -O kibana-$KIBANA.tar.gz https://download.elastic.co/kibana/kibana/kibana-$KIBANA-linux-x86_64.tar.gz \
+  && tar -xzf kibana-$KIBANA.tar.gz \
+  && mv kibana-$KIBANA-linux-x86_64 /usr/share/kibana \
   && echo "Configure [Elasticsearch] ===================================================" \
   && for path in \
   	/usr/share/elasticsearch/data \
@@ -64,7 +66,6 @@ RUN apk-install -t .build-deps wget ca-certificates \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
   && apline_node='NODE="/usr/bin/node"' \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
   && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
   && echo "Create elstack user..." \
@@ -79,10 +80,6 @@ RUN apk-install -t .build-deps wget ca-certificates \
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
-
-# Install geoip/user-agent plugin
-RUN elasticsearch-plugin install -b ingest-geoip
-RUN elasticsearch-plugin install -b ingest-user-agent
 
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
