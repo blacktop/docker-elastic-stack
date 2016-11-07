@@ -5,6 +5,8 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack:geoi
 $ docker run --rm --link elstack:elasticsearch blacktop/es-data
 ```
 
+> **NOTE:** I have noticed that sometimes the `geoip.city_name` etc doesn't work.  I believe this is a bug in the **ingest-geoip** plugin.  If you `DELETE /_all` and try again it might work.
+
 Click on `nginx_json_elastic_stack_example` and :star: **Set as default index**  
 
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/add-data-index.png)
