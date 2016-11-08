@@ -1,11 +1,12 @@
 ## Add Some Demo Data
 
 ```bash
-$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack:geoip; sleep 10
-$ docker run --rm --link elstack:elasticsearch blacktop/es-data
+$ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack:geoip \
+  && sleep 15 \
+  && docker run --rm --link elstack:elasticsearch blacktop/es-data
 ```
 
-> **NOTE:** I have noticed that sometimes the `geoip.city_name` etc doesn't work.  I believe this is a bug in the **ingest-geoip** plugin.  If you `DELETE /_all` and try again it might work.
+> **NOTE:** I have noticed that sometimes the `geoip.city_name` etc doesn't work.  I believe this is a bug in the **ingest-geoip** plugin.  If you `DELETE /_all` and try again it usually works.
 
 Click on `nginx_json_elastic_stack_example` and :star: **Set as default index**  
 
