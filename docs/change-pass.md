@@ -14,3 +14,7 @@ $ docker run -d --name elstack \
 ```
 
 > **NOTE:** You can only set a **user/pass** if `SSL` is enabled via the env var as seen above.
+
+### To use your own SSL certs
+
+See [here](ssl.md)
