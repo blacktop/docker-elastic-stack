@@ -1,4 +1,6 @@
-## Change kibana's nginx default user and password (which defaults to **admin/admin**)
+## Change kibana's nginx default user and password
+
+> which defaults to `admin/admin`
 
 ```bash
 $ docker run -d --name elstack \
@@ -10,3 +12,5 @@ $ docker run -d --name elstack \
   -p 9200:9200 \
   blacktop/elastic-stack
 ```
+
+> **NOTE:** You can only set a **user/pass** if `SSL` is enabled via the env var as seen above.
