@@ -44,6 +44,8 @@ $ docker run -d --name elstack \
   blacktop/elastic-stack
 ```
 
+> **NOTE:** It will also set a basic auth **user/pass** of `admin/admin` if none are supplied.  
+
 ### To set your own user/pass  
 
 See [here](change-pass.md)
