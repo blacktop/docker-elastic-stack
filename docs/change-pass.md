@@ -17,4 +17,4 @@ $ docker run -d --name elstack \
 
 ### To use your own SSL certs
 
-See [here](ssl.md)
+See [here](ssl.md#to-supply-your-own-ssl-certs)
