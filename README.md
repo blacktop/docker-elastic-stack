@@ -3,7 +3,7 @@
 Elastic Stack Dockerfile
 ========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-364.5 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker image-527.8 MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
@@ -21,8 +21,8 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
-blacktop/elastic-stack        latest              524.9  MB
-blacktop/elastic-stack        5.0                 524.9  MB
+blacktop/elastic-stack        latest              527.8  MB
+blacktop/elastic-stack        5.0                 527.8  MB
 blacktop/elastic-stack        geoip               557.8  MB
 blacktop/elastic-stack        4.6                 451    MB
 blacktop/elastic-stack        3.1                 364.5  MB
@@ -42,8 +42,6 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 -	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
 -	With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' elstack)`
 
-> **NOTE:** You will be prompted for a *user/password* which defaults to: **admin/admin**
-
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/discover.png)
 
 #### You can also use each part of the stack independently
@@ -55,6 +53,7 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 ### Documentation
 
 -	[Add some demo data](docs/add-data.md)
+-	[Enable SSL](docs/ssl.md)
 -	[Change nginx password](docs/change-pass.md)
 -	[Build a multi-node Elastic Stack cluster](docs/mutil-node.md)
 
@@ -72,8 +71,8 @@ Heavily (if not entirely) influenced by all the elastic official docker images
 -	[x] Start Daemon and watch folder with supervisord
 -	[x] Expose Logstash config folder as well as Nginx sites folder as Volumes
 -	[x] Build ES test data docker image
--	[ ] Add Nginx entrypoint to pass USER/PASS in as env vars
--	[ ] Add SSL (auto-create certs if not found)
+-	[x] Add Nginx entrypoint to pass USER/PASS in as env vars
+-	[x] Add SSL (auto-create certs if not found)
 -	[x] Add back a 3.0 version of the stack (elk stack)
 -	[ ] Integrate with Bro-IDS
 

@@ -1,17 +1,12 @@
-## Change Kibana's Nginx password
+## Change kibana's nginx default user and password (which defaults to **admin/admin**)
 
 ```bash
-$ docker exec -it elstack bash
-```
-
-```bash
-root@593cf95bd8cc:/# htpasswd -D /etc/nginx/.htpasswd admin
-Deleting password for user admin
-
-root@593cf95bd8cc:/# htpasswd /etc/nginx/.htpasswd blacktop
-New password: *****
-Re-type new password: *****
-Adding password for user blacktop
-
-root@593cf95bd8cc:/# exit
+$ docker run -d --name elstack \
+  -e SSL=true \
+  -e ELSK_USER="blacktop" \
+  -e ELSK_PASS="S3cr3T" \
+  -p 80:80 \
+  -p 443:443 \
+  -p 9200:9200 \
+  blacktop/elastic-stack
 ```

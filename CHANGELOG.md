@@ -17,6 +17,8 @@ Same as v5.0
 
 ### Added
 
+-	Nginx entrypoint to pass USER/PASS in as env vars
+-	SSL (auto-create certs if not found)
 -	tini/gosu to all the things  
 -	geoip/user-agent plugin
 -	way to add nginx demo data with [blacktop/es-data](https://github.com/blacktop/docker-es-demo-data)
