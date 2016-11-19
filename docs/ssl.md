@@ -4,8 +4,8 @@
 $ docker run -d --name elstack -e SSL=true -p 80:80 -p 443:443 -p 9200:9200 blacktop/elastic-stack
 ```
 
-This will generate a self-signed cert if none are supplied  
-It will also set a basic auth **user/pass** of `admin/admin` if none are supplied.
+> This will generate a self-signed cert if none is supplied  
+> It will also set a basic auth **user/pass** of `admin/admin` if none are supplied.  
 
 ### To change the domain in the auto-generated self-signed SSL cert set the `DOMAIN` var  
 
