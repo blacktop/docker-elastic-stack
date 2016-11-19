@@ -59,7 +59,7 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 
 ### Issues
 
-Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-elastic-stack/issues/new) and I'll get right on it.
+Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-elastic-stack/issues/new)
 
 ### Credits
 
