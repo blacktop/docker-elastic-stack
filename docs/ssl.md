@@ -11,8 +11,8 @@ It will also set a basic auth **user/pass** of `admin/admin` if none are supplie
 
 Create certs with the following names
 
- - `/etc/nginx/ssl/kibana.key`  
- - `/etc/nginx/ssl/kibana.crt`  
+ - `kibana.key`  
+ - `kibana.crt`  
 
 ```bash
 $ docker run -d --name elstack \
