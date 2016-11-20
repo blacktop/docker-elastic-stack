@@ -57,6 +57,15 @@ $ docker run -d --name elstack -p 80:80 -p 9200:9200 blacktop/elastic-stack
 -	[Change nginx password](docs/change-pass.md)
 -	[Build a multi-node Elastic Stack cluster](docs/mutil-node.md)
 
+### Known Issues :warning:
+
+I have noticed when running the new **5.0** version on a **linux** host you need to increase the memory map areas with the following command
+
+```bash
+echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -w vm.max_map_count=262144
+```
+
 ### Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-elastic-stack/issues/new)
