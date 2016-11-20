@@ -17,7 +17,7 @@ Same as v5.0
 
 ### Added
 
--	Nginx entrypoint to pass USER/PASS in as env vars
+-	Nginx entry-point to pass USER/PASS in as env vars
 -	SSL (auto-create certs if not found)
 -	tini/gosu to all the things  
 -	geoip/user-agent plugin
@@ -35,6 +35,9 @@ Same as v5.0
 ### Fixed
 
 ### Added
+
+-	Nginx entry-point to pass USER/PASS in as env vars
+-	SSL (auto-create certs if not found)
 
 ### Removed
 

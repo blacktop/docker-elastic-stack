@@ -7,8 +7,10 @@ dev:
 	docker run --rm $(NAME):dev $(DEV_RUN_OPTS)
 
 build:
-	docker build -t $(NAME):$(VERSION) .; sleep 3;
-	sed -i.bu 's/docker image-.*-blue/docker image-$(shell docker images --format "{{.Size}}" $(NAME):$(VERSION))-blue/g' ../README.md
+	docker build -t blacktop/$(NAME):$(VERSION) .
+
+size:
+	sed -i.bu 's/docker image-.*-blue/docker image-$(shell docker images --format "{{.Size}}" blacktop/$(NAME):$(VERSION))-blue/g' ../README.md
 
 release:
 	rm -rf release && mkdir release

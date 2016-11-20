@@ -25,7 +25,7 @@ ENV ELASTIC 2.4.1
 ENV LOGSTASH 2.4.0
 ENV KIBANA 4.6.2
 
-RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
+RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk-install -t .build-deps wget ca-certificates \
@@ -68,6 +68,8 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && apline_node='NODE="/usr/bin/node"' \
   && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
+  && echo "Make Ngins SSL directory..." \
+  && mkdir -p /etc/nginx/ssl \
   && echo "Create elstack user..." \
   && adduser -DH -s /sbin/nologin elstack \
   && chown -R elstack:elstack /usr/share/elasticsearch \
@@ -84,16 +86,20 @@ ENV PATH /usr/share/kibana/bin:$PATH
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+
 # Add custom logstash config
 COPY config/logstash/conf.d/ /etc/logstash/conf.d/
 COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
+
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
+
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
-COPY config/nginx/htpasswd /etc/nginx/htpasswd.users
+COPY config/nginx/ssl.kibana.conf /etc/nginx/conf.d/
+
 # Add custom supervisor config
 COPY config/supervisord/supervisord.conf /etc/supervisor/
 
@@ -101,6 +107,7 @@ COPY config/supervisord/supervisord.conf /etc/supervisor/
 COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
+COPY entrypoints/nginx-entrypoint.sh /
 
 VOLUME ["/usr/share/elasticsearch/data"]
 VOLUME ["/etc/logstash/conf.d"]
