@@ -21,9 +21,9 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-ENV ELASTIC 2.4.1
-ENV LOGSTASH 2.4.0
-ENV KIBANA 4.6.2
+ENV ELASTIC 2.4.2
+ENV LOGSTASH 2.4.1
+ENV KIBANA 4.6.3
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \

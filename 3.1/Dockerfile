@@ -21,10 +21,10 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-# ENV ELASTIC 1.7.5
+# ENV ELASTIC 1.7.6
 # ENV LOGSTASH 1.5.6
-ENV ELASTIC 2.4.1
-ENV LOGSTASH 2.4.0
+ENV ELASTIC 2.4.2
+ENV LOGSTASH 2.4.1
 ENV KIBANA 3.1.3
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils
