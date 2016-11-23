@@ -17,11 +17,11 @@ $ docker run -d --name elstack -e SSL=true -p 80:80 -p 443:443 -p 9200:9200 blac
 
 ```bash
 $ docker run -d --name elstack \
-  -e SSL=true \
-  -e ELSK_DOMAIN="elk.blacktop.io" \
   -p 80:80 \
   -p 443:443 \
   -p 9200:9200 \
+  -e SSL=true \  
+  -e ELSK_DOMAIN="elk.blacktop.io" \  
   blacktop/elastic-stack
 ```
 
@@ -36,11 +36,11 @@ Create certs with the following names
 
 ```bash
 $ docker run -d --name elstack \
-  -e SSL=true \
-  -v /path/to/kibana/certs:/etc/nginx/ssl:ro \
   -p 80:80 \
   -p 443:443 \
   -p 9200:9200 \
+  -e SSL=true \
+  -v /path/to/kibana/certs:/etc/nginx/ssl:ro \  
   blacktop/elastic-stack
 ```
 
