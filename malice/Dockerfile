@@ -83,7 +83,7 @@ ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
 
 # Install geoip/user-agent plugin
-RUN kibana-plugin install https://github.com/maliceio/malice-kibana-plugin/releases/download/0.1.0/malice-0.1.0.zip
+RUN kibana-plugin install https://github.com/maliceio/malice-kibana-plugin/releases/download/v5.0.2/malice-5.0.2.zip
 
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
