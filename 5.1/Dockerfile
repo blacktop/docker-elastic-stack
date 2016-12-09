@@ -82,23 +82,23 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
 
-# Install geoip/user-agent plugin
-RUN elasticsearch-plugin install -b ingest-geoip
-RUN elasticsearch-plugin install -b ingest-user-agent
-
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+
 # Add custom logstash config
 COPY config/logstash/conf.d/ /etc/logstash/conf.d/
 COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
+
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
+
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
 COPY config/nginx/ssl.kibana.conf /etc/nginx/conf.d/
+
 # Add custom supervisor config
 COPY config/supervisord/supervisord.conf /etc/supervisor/
 

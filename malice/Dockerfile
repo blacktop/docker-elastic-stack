@@ -21,7 +21,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-ENV STACK 5.0.2
+ENV STACK 5.1.1
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
@@ -83,7 +83,7 @@ ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
 
 # Install geoip/user-agent plugin
-RUN kibana-plugin install https://github.com/maliceio/malice-kibana-plugin/releases/download/v5.0.2/malice-5.0.2.zip
+RUN kibana-plugin install https://github.com/maliceio/malice-kibana-plugin/releases/download/v5.1.1/malice-5.1.1.zip
 
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config

@@ -3,7 +3,7 @@ machine:
     - docker
 
 general:
-  build_dir: "5.0"
+  build_dir: "5.1"
 
 dependencies:
   cache_directories:
