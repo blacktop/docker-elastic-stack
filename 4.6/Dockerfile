@@ -21,7 +21,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-ENV ELASTIC 2.4.2
+ENV ELASTIC 2.4.3
 ENV LOGSTASH 2.4.1
 ENV KIBANA 4.6.3
 
