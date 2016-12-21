@@ -2,24 +2,7 @@ FROM gliderlabs/alpine:3.4
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-ENV GOSU_VERSION 1.10
-ENV GOSU_URL https://github.com/tianon/gosu/releases/download
-
-# Install java and tini
-RUN apk-install openjdk8-jre tini
-# Install gosu
-RUN apk-install -t build-deps wget ca-certificates gpgme \
-  && set -x \
-  && echo "Grab *gosu* for easy step-down from root..." \
-  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
-  && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc" \
-  && export GNUPGHOME="$(mktemp -d)" \
-  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-  && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
-  && chmod +x /usr/local/bin/gosu \
-  && gosu nobody true \
-  && apk del --purge build-deps
+RUN apk-install openjdk8-jre tini su-exec
 
 ENV ELASTIC 2.4.3
 ENV LOGSTASH 2.4.1

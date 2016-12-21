@@ -13,8 +13,8 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elstack /sbin/tini -s -- "$@"
-	#exec gosu elstack "$BASH_SOURCE" "$@"
+	set -- su-exec elstack /sbin/tini -s -- "$@"
+	#exec su-exec elstack "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'master' -a "$(id -u)" = '0' ]; then
@@ -26,8 +26,8 @@ if [ "$1" = 'master' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elstack /sbin/tini -- elasticsearch
-	#exec gosu elstack "$BASH_SOURCE" "$@"
+	set -- su-exec elstack /sbin/tini -- elasticsearch
+	#exec su-exec elstack "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'ingest' -a "$(id -u)" = '0' ]; then
@@ -40,8 +40,8 @@ if [ "$1" = 'ingest' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elstack /sbin/tini -- elasticsearch
-	#exec gosu elstack "$BASH_SOURCE" "$@"
+	set -- su-exec elstack /sbin/tini -- elasticsearch
+	#exec su-exec elstack "$BASH_SOURCE" "$@"
 fi
 
 if [ "$1" = 'data' -a "$(id -u)" = '0' ]; then
@@ -54,8 +54,8 @@ if [ "$1" = 'data' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elstack:elstack /usr/share/elasticsearch/data
 
-	set -- gosu elstack /sbin/tini -- elasticsearch
-	#exec gosu elstack "$BASH_SOURCE" "$@"
+	set -- su-exec elstack /sbin/tini -- elasticsearch
+	#exec su-exec elstack "$BASH_SOURCE" "$@"
 fi
 
 # As argument is not related to elasticsearch,
