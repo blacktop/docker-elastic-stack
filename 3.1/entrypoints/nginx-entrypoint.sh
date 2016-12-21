@@ -10,7 +10,7 @@ fi
 # Run as user "nginx" if the command is "nginx"
 if [ "$1" = 'nginx' ]; then
 
-	set -- gosu elstack tini -- "$@"
+	set -- su-exec elstack tini -- "$@"
 fi
 
 exec "$@"

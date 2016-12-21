@@ -25,7 +25,7 @@ blacktop/elastic-stack        latest              502.1  MB
 blacktop/elastic-stack        5.1                 502.1  MB
 blacktop/elastic-stack        geoip               535.1  MB
 blacktop/elastic-stack        4.6                 450.9  MB
-blacktop/elastic-stack        3.1                 364.5  MB
+blacktop/elastic-stack        3.1                 363.3  MB
 ```
 
 > **NOTE:** tag **geoip** is the same as tag **latest**, but includes the *ingest-geoip* and the *ingest-user-agent* plugins.
