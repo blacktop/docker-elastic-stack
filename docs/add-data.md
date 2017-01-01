@@ -45,11 +45,6 @@ for hit in res['hits']['hits']:
 ```
 
 -	Navigate to the docker-machine ip or docker ip in a web browser.
--	You will be prompted for a user/pass which defaults to:
-
-	-	**user:** `admin`
-	-	**password:** `admin`
-
 -	Now enter `test-index` in the index field and select **timestamp**
 
 ![elk-logo](https://raw.githubusercontent.com/blacktop/docker-elk/master/docs/img/timestamp.png)
@@ -68,4 +63,4 @@ As a convenience you can add the **docker-machine** IP to you **/etc/hosts** fil
 $ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
 ```
 
-Now you can navigate to [http://dockerhost](http://dockerhost) from your host and login with: **user:** `admin`/**password:** `admin`
+Now you can navigate to [http://dockerhost](http://dockerhost) from your host
