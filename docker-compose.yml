@@ -31,8 +31,8 @@ services:
   data:
     restart: unless-stopped
     image: blacktop/elasticsearch:x-pack
-    environment:
-      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    # environment:
+    #   - ES_JAVA_OPTS=-Xms2g -Xmx2g
     command: data
     links:
      - master:elastic-master
