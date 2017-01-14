@@ -4,9 +4,9 @@ MAINTAINER blacktop, https://github.com/blacktop
 
 RUN apk-install openjdk8-jre tini su-exec
 
-ENV ELASTIC 2.4.3
+ENV ELASTIC 2.4.4
 ENV LOGSTASH 2.4.1
-ENV KIBANA 4.6.3
+ENV KIBANA 4.6.4
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
