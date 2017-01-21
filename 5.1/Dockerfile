@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.4
 
-MAINTAINER blacktop, https://github.com/blacktop
+LABEL maintainer "https://github.com/blacktop"
 
 RUN apk-install openjdk8-jre tini su-exec
 
