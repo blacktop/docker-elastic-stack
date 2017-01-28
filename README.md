@@ -87,4 +87,4 @@ Heavily (if not entirely) influenced by all the elastic official docker images
 
 ### License
 
-MIT Copyright (c) 2015-2016 **blacktop**
+MIT Copyright (c) 2015-2017 **blacktop**
