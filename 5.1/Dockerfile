@@ -4,7 +4,7 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk-install openjdk8-jre tini su-exec
 
-ENV STACK 5.1.2
+ENV STACK 5.2.0
 
 RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
@@ -64,6 +64,7 @@ RUN apk-install -t .build-deps wget ca-certificates \
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
