@@ -20,7 +20,8 @@ tags:
 
 test:
 	docker run -d --name etest $(REPO)/$(NAME):$(BUILD); sleep 10;
-	docker exec etest head -n30 /var/log/elasticsearch.stdout.log
+	docker logs etest
+	docker exec etest head -n100 /var/log/elasticsearch.stdout.log
 	docker rm -f etest
 
 .PHONY: build size tags test
