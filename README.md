@@ -22,7 +22,7 @@ $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
 blacktop/elastic-stack        latest              504.2  MB
-blacktop/elastic-stack        5.1                 504.2  MB
+blacktop/elastic-stack        5.2                 504.2  MB
 blacktop/elastic-stack        geoip               535.1  MB
 blacktop/elastic-stack        4.6                 450.9  MB
 blacktop/elastic-stack        3.1                 363.3  MB
