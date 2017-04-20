@@ -8,8 +8,9 @@ All notable changes to this project will be documented in this file.
 
 Same as v5.1
 
-[v5.1][2016-12-21]
-------------------
+### Added
+
+-	Ability to pass in Elasticsearch config via Env vars. i.e. `-e cluster.name=testcluster`[v5.1][2016-12-21] ------------------
 
 ### Fixed
 
