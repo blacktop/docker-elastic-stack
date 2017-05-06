@@ -3,13 +3,13 @@
 Elastic Stack Dockerfile
 ========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker%20image-506%20MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker%20image-537MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
 ### Dependencies
 
--	[gliderlabs/alpine:3.4](https://index.docker.io/_/gliderlabs/alpine/)
+-	[alpine:3.5](https://index.docker.io/_/gliderlabs/alpine/)
 -	[openjdk8-jre](https://pkgs.alpinelinux.org/package/v3.4/community/x86_64/openjdk8-jre)
 -	[Elasticsearch](https://www.elastic.co/products/elasticsearch)
 -	[Logstash](https://www.elastic.co/products/logstash)
@@ -21,12 +21,13 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
-blacktop/elastic-stack        latest              506    MB
-blacktop/elastic-stack        5.3                 506    MB
-blacktop/elastic-stack        geoip               535.1  MB
-blacktop/elastic-stack        5.2                 504.2  MB
-blacktop/elastic-stack        4.6                 450.9  MB
-blacktop/elastic-stack        3.1                 363.3  MB
+blacktop/elastic-stack        latest              537MB
+blacktop/elastic-stack        5.4                 537MB
+blacktop/elastic-stack        5.3                 506MB
+blacktop/elastic-stack        geoip               538MB
+blacktop/elastic-stack        5.2                 537MB
+blacktop/elastic-stack        4.6                 450.9MB
+blacktop/elastic-stack        3.1                 363.3MB
 ```
 
 > **NOTE:** tag **geoip** is the same as tag **latest**, but includes the *ingest-geoip* and the *ingest-user-agent* plugins.
