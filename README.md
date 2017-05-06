@@ -24,7 +24,7 @@ REPOSITORY                    TAG                 VIRTUAL SIZE
 blacktop/elastic-stack        latest              537MB
 blacktop/elastic-stack        5.4                 537MB
 blacktop/elastic-stack        5.3                 506MB
-blacktop/elastic-stack        geoip               538MB
+blacktop/elastic-stack        geoip               596MB
 blacktop/elastic-stack        5.2                 537MB
 blacktop/elastic-stack        4.6                 450.9MB
 blacktop/elastic-stack        3.1                 363.3MB
