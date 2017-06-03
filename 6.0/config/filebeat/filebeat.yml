@@ -1,0 +1,25 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /var/log/auth.log
+        - /var/log/nginx/access.log
+        - /var/log/syslog
+        - /var/log/*.log
+
+      input_type: log
+
+      document_type: syslog
+
+  registry_file: /var/lib/filebeat/registry
+
+output:
+  logstash:
+    hosts: ["localhost:5044"]
+    bulk_max_size: 1024
+
+shipper:
+
+logging:
+  files:
+    rotateeverybytes: 10485760 # = 10MB

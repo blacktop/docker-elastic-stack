@@ -25,4 +25,7 @@ test:
 	http localhost:9200 | jq .cluster_name
 	docker rm -f "estest$(BUILD)"
 
-.PHONY: build size tags test
+run:
+	docker run -d --name elstack -p 80:80 -p 9200:9200 $(REPO)/$(NAME):$(BUILD)
+
+.PHONY: build size tags test run
