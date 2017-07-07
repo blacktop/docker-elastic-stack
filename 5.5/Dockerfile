@@ -1,15 +1,15 @@
-FROM gliderlabs/alpine:3.4
+FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-RUN apk-install openjdk8-jre tini su-exec
+RUN apk add --no-cache openjdk8-jre tini su-exec
 
 ENV STACK 5.5.0
 
-RUN apk-install libzmq bash nodejs supervisor nginx apache2-utils openssl
+RUN apk add --no-cache libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
-RUN apk-install -t .build-deps wget ca-certificates \
+RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& set -x \
 	&& cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
@@ -50,7 +50,7 @@ RUN apk-install -t .build-deps wget ca-certificates \
 	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
 	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
 	&& rm -rf /usr/share/kibana/node \
-	&& echo "Make Ngins SSL directory..." \
+	&& echo "Make Nginx SSL directory..." \
 	&& mkdir -p /etc/nginx/ssl \
 	&& rm /etc/nginx/conf.d/default.conf \
 	&& echo "Create elstack user..." \
@@ -65,24 +65,25 @@ RUN apk-install -t .build-deps wget ca-certificates \
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
 ENV PATH /usr/share/kibana/bin:$PATH
-
-# Install geoip/user-agent plugin
-RUN elasticsearch-plugin install -b ingest-geoip
-RUN elasticsearch-plugin install -b ingest-user-agent
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 
 # Add custom elasticsearch config
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+
 # Add custom logstash config
 COPY config/logstash/conf.d/ /etc/logstash/conf.d/
 COPY config/logstash/patterns/ /opt/logstash/patterns/
 COPY config/logstash/logstash.yml /etc/logstash/
+
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
+
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY config/nginx/kibana.conf /etc/nginx/conf.d/
 COPY config/nginx/ssl.kibana.conf /etc/nginx/conf.d/
+
 # Add custom supervisor config
 COPY config/supervisord/supervisord.conf /etc/supervisor/
 
