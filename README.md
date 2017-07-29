@@ -26,7 +26,7 @@ blacktop/elastic-stack        6.0-alpha           529MB
 blacktop/elastic-stack        5.5                 525MB
 blacktop/elastic-stack        5.4                 539MB
 blacktop/elastic-stack        5.3                 506MB
-blacktop/elastic-stack        geoip               596MB
+blacktop/elastic-stack        geoip               558MB
 blacktop/elastic-stack        5.2                 537MB
 blacktop/elastic-stack        4.6                 450.9MB
 blacktop/elastic-stack        3.1                 363.3MB
