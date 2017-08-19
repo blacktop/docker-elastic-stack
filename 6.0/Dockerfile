@@ -4,7 +4,7 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.0.0-alpha2
+ENV STACK 6.0.0-beta1
 
 RUN apk add --no-cache libzmq bash nodejs supervisor nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
@@ -14,16 +14,16 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
 	&& echo "Download Elasticsearch..." \
-	&& wget -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK.tar.gz \
+	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK.tar.gz \
 	&& tar -xzf elasticsearch-$STACK.tar.gz \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
-	&& wget -O logstash-$STACK.tar.gz \
+	&& wget --progress=bar:force -O logstash-$STACK.tar.gz \
 	  https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
 	&& tar -xzf logstash-$STACK.tar.gz \
 	&& mv logstash-$STACK /usr/share/logstash \
 	&& echo "Download Kibana..." \
-	&& wget -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
+	&& wget --progress=bar:force -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
 	&& tar -xzf kibana-$STACK.tar.gz \
 	&& mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
 	&& echo "Configure [Elasticsearch] ===================================================" \
