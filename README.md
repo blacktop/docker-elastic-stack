@@ -3,7 +3,7 @@
 Elastic Stack Dockerfile
 ========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker%20image-537MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker%20image-543MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
@@ -21,9 +21,9 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
-blacktop/elastic-stack        latest              537MB
+blacktop/elastic-stack        latest              543MB
 blacktop/elastic-stack        6.0-rc1             562MB
-blacktop/elastic-stack        5.6                 537MB
+blacktop/elastic-stack        5.6                 543MB
 blacktop/elastic-stack        5.5                 537MB
 blacktop/elastic-stack        5.4                 539MB
 blacktop/elastic-stack        5.3                 538MB
