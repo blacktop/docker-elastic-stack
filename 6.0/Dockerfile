@@ -6,7 +6,7 @@ RUN apk add --no-cache openjdk8-jre tini su-exec
 
 ENV STACK 6.0.1
 
-RUN apk add --no-cache libzmq bash nodejs supervisor nginx apache2-utils openssl libc6-compat
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -61,6 +61,8 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& echo "Clean Up..." \
 	&& rm -rf /tmp/* \
 	&& apk del --purge .build-deps
+
+RUN apk add --no-cache supervisor libc6-compat
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
