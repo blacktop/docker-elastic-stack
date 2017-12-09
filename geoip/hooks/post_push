@@ -3,7 +3,7 @@
 set -e
 
 VERSION=$(cat Dockerfile | grep '^ENV STACK' | cut -d" " -f3)
-TAGS=($VERSION 6)
+TAGS=($VERSION 5)
 
 for TAG in "${TAGS[@]}"; do
   echo "===> Tagging $IMAGE_NAME as $DOCKER_REPO:$CACHE_TAG-$TAG"
