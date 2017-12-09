@@ -1,10 +1,10 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 5.6.4
+ENV STACK 5.6.5
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl libc6-compat
 RUN mkdir -p /usr/local/lib \
