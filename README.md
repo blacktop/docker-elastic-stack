@@ -8,7 +8,7 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 
 ## Dependencies
 
-- [alpine:3.6](https://index.docker.io/_/gliderlabs/alpine/)
+- [alpine:3.7](https://hub.docker.com/_/alpine/)
 - [openjdk8-jre](https://pkgs.alpinelinux.org/package/v3.4/community/x86_64/openjdk8-jre)
 - [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 - [Logstash](https://www.elastic.co/products/logstash)
