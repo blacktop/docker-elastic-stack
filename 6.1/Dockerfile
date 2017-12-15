@@ -4,9 +4,9 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.1.0
+ENV STACK 6.0.1
 
-RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl libc6-compat
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -80,10 +80,6 @@ COPY config/logstash/logstash.yml /etc/logstash/
 
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
-
-# Install geoip/user-agent plugin
-RUN elasticsearch-plugin install -b ingest-geoip
-RUN elasticsearch-plugin install -b ingest-user-agent
 
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
