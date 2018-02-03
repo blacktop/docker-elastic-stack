@@ -4,7 +4,7 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.1.2
+ENV STACK 6.1.3
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
@@ -19,7 +19,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
 	&& wget --progress=bar:force -O logstash-$STACK.tar.gz \
-	  https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
+	https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
 	&& tar -xzf logstash-$STACK.tar.gz \
 	&& mv logstash-$STACK /usr/share/logstash \
 	&& echo "Download Kibana..." \
@@ -28,18 +28,18 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
 	&& echo "Configure [Elasticsearch] ===================================================" \
 	&& for path in \
-		/usr/share/elasticsearch/data \
-		/usr/share/elasticsearch/logs \
-		/usr/share/elasticsearch/config \
-		/usr/share/elasticsearch/config/scripts \
-		/usr/share/elasticsearch/plugins \
+	/usr/share/elasticsearch/data \
+	/usr/share/elasticsearch/logs \
+	/usr/share/elasticsearch/config \
+	/usr/share/elasticsearch/config/scripts \
+	/usr/share/elasticsearch/plugins \
 	; do \
 	mkdir -p "$path"; \
 	done \
 	&& echo "Configure [Logstash] ========================================================" \
 	&& if [ -f "$LS_SETTINGS_DIR/logstash.yml" ]; then \
-			sed -ri 's!^(path.log|path.config):!#&!g' "$LS_SETTINGS_DIR/logstash.yml"; \
-		fi \
+	sed -ri 's!^(path.log|path.config):!#&!g' "$LS_SETTINGS_DIR/logstash.yml"; \
+	fi \
 	&& echo "Configure [Kibana] ==========================================================" \
 	# the default "server.host" is "localhost" in 5+
 	&& sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /usr/share/kibana/config/kibana.yml \
