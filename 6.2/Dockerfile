@@ -6,7 +6,7 @@ RUN apk add --no-cache openjdk8-jre tini su-exec
 
 ENV STACK 6.2.1
 
-RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl libc6-compat
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -84,10 +84,6 @@ ENV LS_SETTINGS_DIR /etc/logstash
 
 # fixes mktemp issue in alpine
 ENV ES_TMPDIR /usr/share/elasticsearch/tmp
-
-# Install geoip/user-agent plugin
-RUN elasticsearch-plugin install -b ingest-geoip
-RUN elasticsearch-plugin install -b ingest-user-agent
 
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
