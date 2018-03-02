@@ -4,7 +4,7 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.2.1
+ENV STACK 6.2.2
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
@@ -33,7 +33,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	/usr/share/elasticsearch/config \
 	/usr/share/elasticsearch/config/scripts \
 	/usr/share/elasticsearch/plugins \
-  /usr/share/elasticsearch/tmp \
+	/usr/share/elasticsearch/tmp \
 	; do \
 	mkdir -p "$path"; \
 	done \
