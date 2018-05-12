@@ -4,7 +4,7 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.2.3
+ENV STACK 6.2.4
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
