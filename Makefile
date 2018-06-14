@@ -1,7 +1,7 @@
 REPO=blacktop
 NAME=elastic-stack
-BUILD ?= 6.2
-LATEST ?= 6.2
+BUILD ?= 6.3
+LATEST ?= 6.3
 
 all: build size test
 

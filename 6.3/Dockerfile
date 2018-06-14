@@ -4,7 +4,7 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 5.6.10
+ENV STACK 6.3.0
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
@@ -33,6 +33,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	/usr/share/elasticsearch/config \
 	/usr/share/elasticsearch/config/scripts \
 	/usr/share/elasticsearch/plugins \
+	/usr/share/elasticsearch/tmp \
 	; do \
 	mkdir -p "$path"; \
 	done \
@@ -80,6 +81,9 @@ COPY config/logstash/logstash.yml /etc/logstash/
 
 # necessary for 5.0+ (overriden via "--path.settings", ignored by < 5.0)
 ENV LS_SETTINGS_DIR /etc/logstash
+
+# fixes mktemp issue in alpine
+ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
