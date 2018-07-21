@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Run elastic-stack
           command: |
-            docker run -d --name elstack -p 80:80 -p 9200:9200 app; sleep 30;
+            docker run -d --name estack -p 80:80 -p 9200:9200 app; sleep 30;
             docker logs estack
       - run:
           name: Run elasticsearch
