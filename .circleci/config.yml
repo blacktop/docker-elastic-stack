@@ -1,0 +1,59 @@
+version: 2
+jobs:
+  build:
+    working_directory: /app
+    docker:
+      - image: docker:18.06.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache jq
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/app.tar | true
+      - run:
+          name: Build application Docker image
+          command: |
+            cd $(cat LATEST)
+            docker version
+            docker build --cache-from=app -t app .
+      - run:
+          name: Get Docker image size
+          command: |
+            mkdir /tmp/artifacts;
+            docker images --format "{{.Size}}" app > /tmp/artifacts/size;
+      - store_artifacts:
+          path: /tmp/artifacts
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/app.tar app
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Run elastic-stack
+          command: |
+            docker run -d --name estack -p 9200:9200 -p 5601:5601 app; sleep 10;
+            docker logs estack
+      - run:
+          name: Run elasticsearch
+          command: |
+            docker run --rm --network container:estack blacktop/httpie GET http://localhost:9200
+      - run:
+          name: Run kibana
+          command: |
+            docker run --rm --network container:estack blacktop/httpie GET http://localhost:5601
