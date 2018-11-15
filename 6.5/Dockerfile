@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL maintainer "https://github.com/blacktop"
 
@@ -6,7 +6,7 @@ RUN apk add --no-cache openjdk8-jre tini su-exec
 
 ENV STACK 6.5.0
 
-RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl libc6-compat
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -14,16 +14,16 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
 	&& echo "Download Elasticsearch..." \
-	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK.tar.gz \
+	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-$STACK.tar.gz \
 	&& tar -xzf elasticsearch-$STACK.tar.gz \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
 	&& wget --progress=bar:force -O logstash-$STACK.tar.gz \
-	https://artifacts.elastic.co/downloads/logstash/logstash-$STACK.tar.gz \
+	https://artifacts.elastic.co/downloads/logstash/logstash-oss-$STACK.tar.gz \
 	&& tar -xzf logstash-$STACK.tar.gz \
 	&& mv logstash-$STACK /usr/share/logstash \
 	&& echo "Download Kibana..." \
-	&& wget --progress=bar:force -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
+	&& wget --progress=bar:force -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-oss-$STACK-linux-x86_64.tar.gz \
 	&& tar -xzf kibana-$STACK.tar.gz \
 	&& mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
 	&& echo "Configure [Elasticsearch] ===================================================" \
@@ -84,10 +84,6 @@ ENV LS_SETTINGS_DIR /etc/logstash
 
 # fixes mktemp issue in alpine
 ENV ES_TMPDIR /usr/share/elasticsearch/tmp
-
-# Install geoip/user-agent plugin
-RUN elasticsearch-plugin install -b ingest-geoip
-RUN elasticsearch-plugin install -b ingest-user-agent
 
 # Add custom nginx config
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
