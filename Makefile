@@ -19,7 +19,7 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
 test:
-	docker run -d --name "estest$(BUILD)" -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD); sleep 15;
+	docker run -d --name "estest$(BUILD)" -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD); sleep 20;
 	docker logs "estest$(BUILD)"
 	docker exec "estest$(BUILD)" head -n100 /var/log/elasticsearch.stdout.log
 	http localhost:9200 | jq .cluster_name
