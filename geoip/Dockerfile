@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM node:10.14.1-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
@@ -47,7 +47,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
 	# usr alpine nodejs and not bundled version
 	&& bundled='NODE="${DIR}/node/bin/node"' \
-	&& apline_node='NODE="/usr/bin/node"' \
+	&& apline_node='NODE="/usr/local/bin/node"' \
 	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
 	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
 	&& rm -rf /usr/share/kibana/node \
