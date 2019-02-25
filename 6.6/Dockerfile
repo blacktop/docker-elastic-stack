@@ -1,10 +1,10 @@
-FROM node:10.14.1-alpine
+FROM node:10.15.1-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.6.0
+ENV STACK 6.6.1
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
