@@ -19,11 +19,13 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
 test:
-	docker run -d --name "estest$(BUILD)" -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD); sleep 20;
-	docker logs "estest$(BUILD)"
-	docker exec "estest$(BUILD)" head -n100 /var/log/elasticsearch.stdout.log
+	docker run -d --name $(NAME) -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD); sleep 20;
+	docker logs $(NAME)
+	@wait-for-es
+	@docker logs $(NAME)
+	docker exec $(NAME) head -n100 /var/log/elasticsearch.stdout.log
 	http localhost:9200 | jq .cluster_name
-	docker rm -f "estest$(BUILD)"
+	docker rm -f $(NAME)
 
 run:
 	docker run -d --name elstack -p 80:80 -p 9200:9200 $(REPO)/$(NAME):$(BUILD)
