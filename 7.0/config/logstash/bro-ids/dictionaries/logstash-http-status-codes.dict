@@ -1,0 +1,95 @@
+########################
+# logstash Lookup Dictionaries - HTTP Status Codes
+# Created by 505Forensics (http://www.505forensics.com)
+# MIT License, so do what you want with it!
+#
+# For use with logstash to translate HTTP status codes into text for analysis
+#
+# Usage: Insert this dictionary into your logstash configuration file; make sure to insert source and destination fields in the correct places
+#
+# Dependencies: Utilizing the logstash 'translate' filter requires having the logstash contrib plugins added, which are community supported and not part of the official release. Visit logstash.net to find out how to install these.
+#
+# Also note that the dictionary entries below are integers (numbers are not encapsulated with quotes). Therefore, the type must be converted to integer within Logstash/Elasticsearch.
+#
+#######################
+    
+translate {
+    #Insert the source field below between the quotes
+    field => ""
+    
+    #Insert the destination field below between the quotes. This is a new field, so it can be any name you want
+    destination => ""
+    
+    dictionary => [
+      #1xx Codes Are Informational
+      100, "Continue",
+      101, "Switching Protocols",
+      102, "Processing",
+      
+      #2xx Codes Are Successful; We Like These
+      200, "OK",
+      201, "Created",
+      202, "Accepted",
+      203, "Non-Authoritative Information",
+      204, "No Content",
+      205, "Reset Content",
+      206, "Partial Content",
+      207, "Multi-Status",
+      208, "Already Reported",
+      226, "Instance Manipulation Used",
+      
+      #3xx Codes Indicate that Further User Agent Action May be Needed
+      300, "Multiple Choices",
+      301, "Moved Permanently",
+      302, "Not Found",
+      303, "See Other",
+      304, "Not Modified",
+      305, "Use Proxy",
+      #306 is no longer used, however is still reserved
+      307, "Temporary Redirect",
+      308, "Permanent Redirect",
+      
+      #4xx Codes Refer to Client Errors
+      400, "Bad Request",
+      401, "Unauthorized",
+      402, "Payment Required",
+      403, "Forbidden",
+      404, "Not Found",
+      405, "Method Not Allowed",
+      406, "Not Acceptable",
+      407, "Proxy Authentication Required",
+      408, "Request Timeout",
+      409, "Conflict",
+      410, "Gone",
+      411, "Length Required",
+      412, "Precondition Failed",
+      413, "Request Entity Too Large",
+      414, "Request URI Too Long",
+      415, "Unsupported Media Type",
+      416, "Requested Range Not Satisfiable,
+      417, "Expectation Failed",
+      422, "Unprocessable Entity",
+      423, "Locked",
+      424, "Failed Dependency",
+      426, "Upgrade Required",
+      428, "Precondition Required",
+      429, "Too Many Requests",
+      431, "Request Header Fields Too Large"
+      440, "Login Timeout",
+      444, "No Response (This is specific to Nginx)",
+      450, "Blocked my Microsoft Windows Parental Controls",
+      
+      #5xx Codes Refer to Server Errors
+      500, "Internal Server Error",
+      501, "Not Implemented",
+      502, "Bad Gateway",
+      503, "Service Unavailable",
+      504, "Gateway Timeout",
+      505, "HTTP Version Not Supported",
+      506, "Variant Also Negotiates",
+      507, "Insufficient Storage",
+      508, "Loop Detected",
+      510, "Not Extended",
+      511, "Network Authentication Required"
+    ]
+}
