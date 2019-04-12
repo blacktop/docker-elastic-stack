@@ -1,5 +1,13 @@
-http.host: 0.0.0.0
+network.host: 0.0.0.0
 
 # Uncomment the following lines for a production cluster deployment
-#transport.host: 0.0.0.0
-#discovery.zen.minimum_master_nodes: 1
+# --------------------------------- Discovery ----------------------------------
+#
+# Pass an initial list of hosts to perform discovery when this node is started:
+# The default list of hosts is ["127.0.0.1", "[::1]"]
+#
+discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+#
+# Bootstrap the cluster using an initial set of master-eligible nodes:
+#
+#cluster.initial_master_nodes: ["node-1", "node-2"]
