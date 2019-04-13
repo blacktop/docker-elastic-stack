@@ -18,16 +18,33 @@ endif
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
-test:
-	docker run -d --name $(NAME) -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD); sleep 20;
+test: stop
+	docker run -d --name $(NAME) -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD)
 	docker logs $(NAME)
 	@wait-for-es
 	@docker logs $(NAME)
 	docker exec $(NAME) head -n100 /var/log/elasticsearch.stdout.log
 	http localhost:9200 | jq .cluster_name
+	http localhost
 	docker rm -f $(NAME)
 
-run:
-	docker run -d --name elstack -p 80:80 -p 9200:9200 $(REPO)/$(NAME):$(BUILD)
+.PHONY: log_es
+log_es:
+	docker exec -it $(NAME) bash -c "tail -f /var/log/elasticsearch.*.log"
+
+.PHONY: log_kb
+log_kb:
+	docker exec -it $(NAME) tail -f /var/log/kibana*.log
+
+.PHONY: log_ls
+log_ls:
+	docker exec -it $(NAME) tail -f /var/log/logstash*.log
+
+run: stop
+	docker run -d --name $(NAME) -p 80:80 -p 9200:9200 $(REPO)/$(NAME):$(BUILD)
+
+.PHONY: stop
+stop:
+	docker rm -f $(NAME) || true
 
 .PHONY: build size tags test run
