@@ -4,9 +4,9 @@ LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 7.0.1
+ENV STACK 6.8.0
 
-RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl nss
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -14,7 +14,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
 	&& echo "Download Elasticsearch..." \
-	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-$STACK-linux-x86_64.tar.gz \
+	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-$STACK.tar.gz \
 	&& tar -xzf elasticsearch-$STACK.tar.gz \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
@@ -47,9 +47,9 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
 	# usr alpine nodejs and not bundled version
 	&& bundled='NODE="${DIR}/node/bin/node"' \
-	&& alpine_node='NODE="/usr/local/bin/node"' \
-	&& sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana-plugin \
-	&& sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana \
+	&& apline_node='NODE="/usr/local/bin/node"' \
+	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
+	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
 	&& rm -rf /usr/share/kibana/node \
 	&& echo "Make Nginx SSL directory..." \
 	&& mkdir -p /etc/nginx/ssl \
