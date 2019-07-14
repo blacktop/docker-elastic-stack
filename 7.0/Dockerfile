@@ -50,7 +50,6 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& alpine_node='NODE="/usr/local/bin/node"' \
 	&& sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana-plugin \
 	&& sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana \
-	&& rm -rf /usr/share/kibana/node \
 	&& echo "Make Nginx SSL directory..." \
 	&& mkdir -p /etc/nginx/ssl \
 	&& rm /etc/nginx/conf.d/default.conf \
@@ -60,6 +59,8 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& chown -R elstack:elstack /usr/share/logstash \
 	&& chown -R elstack:elstack /usr/share/kibana \
 	&& echo "Clean Up..." \
+	&& rm -rf /usr/share/elasticsearch/jdk \
+	&& rm -rf /usr/share/kibana/node \
 	&& rm -rf /tmp/* \
 	&& apk del --purge .build-deps
 

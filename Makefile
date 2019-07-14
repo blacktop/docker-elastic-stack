@@ -19,7 +19,7 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
 test: stop
-	docker run -d --name $(NAME) -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD)
+	docker run -d --name $(NAME) -p 80:80 -p 9200:9200 -e cluster.name=testcluster $(REPO)/$(NAME):$(BUILD)
 	docker logs $(NAME)
 	@wait-for-es
 	@docker logs $(NAME)

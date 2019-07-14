@@ -2,7 +2,7 @@
 
 # Elastic Stack Dockerfile
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker%20image-1.14GB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-elastic-stack.png?style=shield)](https://circleci.com/gh/blacktop/docker-elastic-stack) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/elastic-stack.svg)](https://hub.docker.com/r/blacktop/elastic-stack/) [![Docker Image](https://img.shields.io/badge/docker%20image-850MB-blue.svg)](https://hub.docker.com/r/blacktop/elastic-stack/)
 
 This repository contains a **Dockerfile** of the [Elastic Stack](https://www.elastic.co/products).
 
@@ -20,9 +20,9 @@ This repository contains a **Dockerfile** of the [Elastic Stack](https://www.ela
 $ docker images
 
 REPOSITORY                    TAG                 VIRTUAL SIZE
-blacktop/elastic-stack        latest              1.14GB
-blacktop/elastic-stack        7.2                 1.14GB
-blacktop/elastic-stack        7.1                 1.14GB
+blacktop/elastic-stack        latest              850MB
+blacktop/elastic-stack        7.2                 850MB
+blacktop/elastic-stack        7.1                 850MB
 blacktop/elastic-stack        7.0                 801MB
 blacktop/elastic-stack        6.8                 801MB
 blacktop/elastic-stack        6.7                 801MB
