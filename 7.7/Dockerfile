@@ -1,12 +1,12 @@
-FROM node:10.15.2-alpine
+FROM node:10.19.0-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 6.8.9
+ENV STACK 7.7.0
 
-RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl nss
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -14,7 +14,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
 	&& echo "Download Elasticsearch..." \
-	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-$STACK.tar.gz \
+	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-$STACK-no-jdk-linux-x86_64.tar.gz \
 	&& tar -xzf elasticsearch-$STACK.tar.gz \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
@@ -47,10 +47,9 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& grep -q "^server\.host: '0.0.0.0'\$" /usr/share/kibana/config/kibana.yml \
 	# usr alpine nodejs and not bundled version
 	&& bundled='NODE="${DIR}/node/bin/node"' \
-	&& apline_node='NODE="/usr/local/bin/node"' \
-	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
-	&& sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
-	&& rm -rf /usr/share/kibana/node \
+	&& alpine_node='NODE="/usr/local/bin/node"' \
+	&& sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana-plugin \
+	&& sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana \
 	&& echo "Make Nginx SSL directory..." \
 	&& mkdir -p /etc/nginx/ssl \
 	&& rm /etc/nginx/conf.d/default.conf \
@@ -61,6 +60,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& chown -R elstack:elstack /usr/share/kibana \
 	&& echo "Clean Up..." \
 	&& rm -rf /tmp/* \
+	&& rm -rf /usr/share/kibana/node \
 	&& apk del --purge .build-deps
 
 RUN apk add --no-cache supervisor libc6-compat
@@ -98,6 +98,7 @@ COPY entrypoints/elastic-entrypoint.sh /
 COPY entrypoints/logstash-entrypoint.sh /
 COPY entrypoints/kibana-entrypoint.sh /
 COPY entrypoints/nginx-entrypoint.sh /
+RUN chmod +x /*entrypoint.sh
 
 VOLUME ["/usr/share/elasticsearch/data"]
 VOLUME ["/etc/logstash/conf.d"]
