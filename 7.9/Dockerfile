@@ -1,4 +1,4 @@
-FROM node:10.21.0-alpine
+FROM node:10.22.0-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
