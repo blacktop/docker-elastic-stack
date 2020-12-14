@@ -1,10 +1,10 @@
-FROM node:10.22.0-alpine
+FROM node:10.22.1-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
 RUN apk add --no-cache openjdk8-jre tini su-exec
 
-ENV STACK 7.9.3
+ENV STACK 7.10.1
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl nss
 RUN mkdir -p /usr/local/lib \
@@ -19,7 +19,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
 	&& wget --progress=bar:force -O logstash-$STACK.tar.gz \
-	https://artifacts.elastic.co/downloads/logstash/logstash-oss-$STACK.tar.gz \
+	https://artifacts.elastic.co/downloads/logstash/logstash-oss-$STACK-linux-x86_64.tar.gz \
 	&& tar -xzf logstash-$STACK.tar.gz \
 	&& mv logstash-$STACK /usr/share/logstash \
 	&& echo "Download Kibana..." \
