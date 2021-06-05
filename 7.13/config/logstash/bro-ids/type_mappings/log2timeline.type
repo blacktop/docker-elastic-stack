@@ -1,0 +1,72 @@
+{
+    "log2timeline": {
+        "_timestamp": {
+            "enabled": "true",
+            "path": "timestamp",
+            "default": "null"
+        },
+        "_source": {
+            "enabled": true
+        },
+        "properties": {
+            "timestamp": {
+                "type": "date",
+                "format" : "dateOptionalTime"
+            },
+            "timezone": {
+                "type": "string"
+            },
+            "MACB": {
+                "type": "string"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "sourcetype": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "type": {
+                "type": "string"
+            },
+            "user": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "host": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "short": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "desc": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "version": {
+                "type": "string"
+            },
+            "filename": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "inode": {
+                "type": "long"
+            },
+            "notes": {
+                "type": "string",
+                "store" : "no"
+            },
+            "format": {
+                "type": "string"
+            },
+            "extra": {
+                "type": "string",
+                "store" : "no"
+            }
+        }
+    }
+}
