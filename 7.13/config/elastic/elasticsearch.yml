@@ -11,3 +11,4 @@ discovery.seed_hosts: ["127.0.0.1"]
 # Bootstrap the cluster using an initial set of master-eligible nodes:
 #
 #cluster.initial_master_nodes: ["node-1", "node-2"]
+xpack.ml.enabled: false

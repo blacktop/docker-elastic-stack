@@ -6,7 +6,7 @@ RUN apk add --no-cache openjdk8-jre tini su-exec
 
 ENV STACK 7.11.2
 
-RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl nss
+RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl nss libc6-compat
 RUN mkdir -p /usr/local/lib \
 	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
@@ -14,16 +14,16 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& cd /tmp \
 	&& echo "Download Elastic Stack ======================================================" \
 	&& echo "Download Elasticsearch..." \
-	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-$STACK-no-jdk-linux-x86_64.tar.gz \
+	&& wget --progress=bar:force -O elasticsearch-$STACK.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$STACK-no-jdk-linux-x86_64.tar.gz \
 	&& tar -xzf elasticsearch-$STACK.tar.gz \
 	&& mv elasticsearch-$STACK /usr/share/elasticsearch \
 	&& echo "Download Logstash..." \
 	&& wget --progress=bar:force -O logstash-$STACK.tar.gz \
-	https://artifacts.elastic.co/downloads/logstash/logstash-oss-$STACK-linux-x86_64.tar.gz \
+	https://artifacts.elastic.co/downloads/logstash/logstash-$STACK-linux-x86_64.tar.gz \
 	&& tar -xzf logstash-$STACK.tar.gz \
 	&& mv logstash-$STACK /usr/share/logstash \
 	&& echo "Download Kibana..." \
-	&& wget --progress=bar:force -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-oss-$STACK-linux-x86_64.tar.gz \
+	&& wget --progress=bar:force -O kibana-$STACK.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$STACK-linux-x86_64.tar.gz \
 	&& tar -xzf kibana-$STACK.tar.gz \
 	&& mv kibana-$STACK-linux-x86_64 /usr/share/kibana \
 	&& echo "Configure [Elasticsearch] ===================================================" \
@@ -63,7 +63,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& rm -rf /usr/share/kibana/node \
 	&& apk del --purge .build-deps
 
-RUN apk add --no-cache supervisor libc6-compat
+RUN apk add --no-cache supervisor
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV PATH /usr/share/logstash/bin:$PATH
