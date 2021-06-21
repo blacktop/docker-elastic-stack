@@ -1,0 +1,107 @@
+{
+    "mhnfeed": {
+        "properties": {
+            "channel": {
+                "type": "string"
+            },
+            "ident": {
+                "type": "string"
+            },
+            "last_error": {
+                "type": "string"
+            },
+            "last_error_timestamp": {
+                "type": "date",
+                "format": "dateOptionalTime"
+            },
+            "payload": {
+                "properties": {
+                    "commands": {
+                        "type": "string"
+                    },
+                    "endTime": {
+                        "type": "date",
+                        "format": "dateOptionalTime"
+                    },
+                    "hostIP": {
+                        "type": "ip"
+                    },
+                    "hostPort": {
+                        "type": "long"
+                    },
+                    "loggedin": {
+                        "type": "string"
+                    },
+                    "peerIP": {
+                        "type": "ip"
+                    },
+                    "peerPort": {
+                        "type": "long"
+                    },
+                    "session": {
+                        "type": "string"
+                    },
+                    "startTime": {
+                        "type": "date",
+                        "format": "dateOptionalTime"
+                    },
+                    "ttylog": {
+                        "type": "string"
+                    },
+                    "unknownCommands": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                }
+            },
+            "peer_area_code": {
+                "type": "long"
+            },
+            "peer_city_name": {
+                "type": "string"
+            },
+            "peer_continent_code": {
+                "type": "string"
+            },
+            "peer_country_code2": {
+                "type": "string"
+            },
+            "peer_country_code3": {
+                "type": "string"
+            },
+            "peer_country_name": {
+                "type": "string"
+            },
+            "peer_dma_code": {
+                "type": "long"
+            },
+            "peer_geopoint": {
+                "type": "geo_point"
+            },
+            "peer_latitude": {
+                "type": "double"
+            },
+            "peer_longitude": {
+                "type": "double"
+            },
+            "peer_postal_code": {
+                "type": "string"
+            },
+            "peer_real_region_name": {
+                "type": "string"
+            },
+            "peer_region_name": {
+                "type": "string"
+            },
+            "peer_timezone": {
+                "type": "string"
+            },
+            "timestamp": {
+                "type": "date",
+                "format": "dateOptionalTime"
+            }
+        }
+    }
+}
