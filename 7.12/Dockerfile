@@ -8,7 +8,8 @@ ENV STACK 7.12.1
 
 RUN apk add --no-cache libzmq bash nodejs nginx apache2-utils openssl nss libc6-compat
 RUN mkdir -p /usr/local/lib \
-	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
+	&& ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so \
+	&& ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2
 RUN apk add --no-cache -t .build-deps wget ca-certificates \
 	&& set -x \
 	&& cd /tmp \
